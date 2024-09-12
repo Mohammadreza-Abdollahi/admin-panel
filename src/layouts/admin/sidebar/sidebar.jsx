@@ -1,4 +1,6 @@
 import Profile from '../../../assets/img/profile.png'
+import SidebarGroupItem from './sidebarGroupItem';
+import SidebarItem from './sidebarItem';
 
 const Aside = () => {
     return ( 
@@ -15,80 +17,30 @@ const Aside = () => {
                     </div>
                 </section>
                 <section className='my-2'>
-                    <div className='text-center mb-1'>
-                        <span className='text-palete-1-700 text-lg mr-40 transition-all group-hover:duration-500 opacity-0 group-hover:mr-0 group-hover:opacity-100 '><b>فروشگاه</b></span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-boxes-stacked text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مدیریت گروه محصول</span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-box-open text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مدیریت محصول</span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-copyright text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مدیریت برند ها</span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-certificate text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مدیریت گارانتی ها</span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-palette text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مدیریت رنگ ها</span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-percent text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مدیریت تخفیف ها</span>
-                    </div>
+                    <SidebarGroupItem title='فروشگاه'/>
+                    <SidebarItem icon='fa-solid fa-boxes-stacked' title='مدیریت گروه محصول'/>
+                    <SidebarItem icon='fa-solid fa-box-open' title='مدیریت محصول'/>
+                    <SidebarItem icon='fa-solid fa-copyright' title='مدیریت برند ها'/>
+                    <SidebarItem icon='fa-solid fa-certificate' title='مدیریت گارانتی ها'/>
+                    <SidebarItem icon='fa-solid fa-palette' title='مدیریت رنگ ها'/>
+                    <SidebarItem icon='fa-solid fa-percent' title='مدیریت تخفیف ها'/>
                 </section>
                 <section className='my-2'>
-                    <div className='text-center mb-1'>
-                        <span className='text-palete-1-700 text-lg mr-40 transition-all group-hover:duration-500 opacity-0 group-hover:mr-0 group-hover:opacity-100 '><b>سفارشات و سبد</b></span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-cart-plus text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-2xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مدیریت سبد ها</span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-dolly text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مدیریت سفارشات</span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-truck text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مدیریت نحوه  ارسال</span>
-                    </div>
+                    <SidebarGroupItem title='سفارشات و سید'/>
+                    <SidebarItem icon='fa-solid fa-cart-plus' title='مدیریت سبد ها'/>
+                    <SidebarItem icon='fa-solid fa-dolly' title='مدیریت سفارشات'/>
+                    <SidebarItem icon='fa-solid fa-truck' title='مدیریت نحوه  ارسال'/>
                 </section>
                 <section className='my-2'>
-                    <div className='text-center mb-1'>
-                        <span className='text-palete-1-700 text-lg mr-40 transition-all group-hover:duration-500 opacity-0 group-hover:mr-0 group-hover:opacity-100 '><b>کاربران و همکاران</b></span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-users text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-2xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مشاهده کاربران</span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-user-pen text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">نقش ها</span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-shield-halved text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">مجوز ها</span>
-                    </div>
+                    <SidebarGroupItem title='کاربران و همکاران'/>
+                    <SidebarItem icon='fa-solid fa-users' title='مشاهده کاربران'/>
+                    <SidebarItem icon='fa-solid fa-user-pen' title='نقش ها'/>
+                    <SidebarItem icon='fa-solid fa-shield-halved' title='مجوز ها'/>
                 </section>
                 <section className='my-2'>
-                    <div className='text-center mb-1'>
-                        <span className='text-palete-1-700 text-lg mr-40 transition-all group-hover:duration-500 opacity-0 group-hover:mr-0 group-hover:opacity-100 '><b>ارتباطات</b></span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-circle-info text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">راهنما</span>
-                    </div>
-                    <div className="bg-palete-3-100-1 border border-palete-3-500 py-1 mb-1 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:duration-300">
-                        <i class="fa-solid fa-comment text-lg mx-5 group-hover:mx-1 group-hover:px-2 group-hover:text-xl align-middle transition-all group-hover:duration-500"></i>
-                        <span className="text-base align-middle mr-14 opacity-0 transition-all group-hover:duration-500 group-hover:opacity-100 group-hover:mr-0">کامنت ها</span>
-                    </div>
+                    <SidebarGroupItem title='ارتباطات'/>
+                    <SidebarItem icon='fa-solid fa-circle-info' title='راهنما'/>
+                    <SidebarItem icon='fa-solid fa-comment' title='کامنت ها'/>
                 </section>
             </section>
         </>
