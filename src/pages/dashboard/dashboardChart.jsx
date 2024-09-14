@@ -1,22 +1,9 @@
-import { useState } from "react";
-import { dataPoints, labels } from "../../mock/chartData";
 import LineChart from "../../components/chart";
 
-const DashboardChart = () => {
-    const [data , setData] = useState({
-        
-        labels: labels,
-        datasets: [{
-            label: 'سلام',
-            data: dataPoints,       
-            backgroundColor: ['#3fc1c9'],
-            borderColor: ['#3fc1c9']
-                
-        }]
-    })
+const DashboardChart = ({data , font , xFontSize , yFontSize , showTitle , titleText}) => {
     return ( 
         <> 
-            <LineChart chartData={data}/>
+            <LineChart chartData={data} font={font} xFontSize={xFontSize} yFontSize={yFontSize} showTitle={showTitle} titleText={titleText}/>
         </>
      );
 }

@@ -21,6 +21,8 @@ const DashboardTable = () => {
                         <DashboardTableRow col1={1} col2={'دسته شماره فلان'} col3={'محصول فلان'} col4={'روبه اتمام'}/>
                         <DashboardTableRow col1={1} col2={'دسته شماره فلان'} col3={'محصول فلان'} col4={'پایان یافته'}/>
                         <DashboardTableRow col1={1} col2={'دسته شماره فلان'} col3={'محصول فلان'} col4={'روبه اتمام'}/>
+                        <DashboardTableRow col1={1} col2={'دسته شماره فلان'} col3={'محصول فلان'} col4={'روبه اتمام'}/>
+                        <DashboardTableRow col1={1} col2={'دسته شماره فلان'} col3={'محصول فلان'} col4={'روبه اتمام'}/>
                     </tbody>
                 </table>
             </section>

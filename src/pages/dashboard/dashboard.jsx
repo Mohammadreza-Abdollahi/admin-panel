@@ -1,9 +1,23 @@
+import { useState } from "react";
 import DashboardChart from "./dashboardChart";
 import DashboardSubCart from "./dashboardSubCarts";
 import DashboardTable from "./dashboardTable";
 import DashboardTopCart from "./dashboardTopCarts";
+import { dataPoints, labels } from "../../mock/chartData";
 
 const Dashboard = () => {
+    const [data , setData] = useState({
+        
+        labels: labels,
+        datasets: [
+        {
+            label: 'فروش',
+            data: dataPoints,       
+            backgroundColor: ['#3fc1c9'],
+            borderColor: ['#3fc1c9'], 
+        },
+        ],  
+    })
     return (
         <>
             <div className="flex justify-around gap-3 mb-3">
@@ -18,12 +32,12 @@ const Dashboard = () => {
                 <DashboardSubCart weekly={'7'} monthly={'15'} firstColor='from-gradient-5' secondColor='to-gradient-6'/>
                 <DashboardSubCart weekly={'9'} monthly={'8'} firstColor='from-gradient-7' secondColor='to-gradient-8'/>
             </div>
-            <section className="flex justify-around gap-3">
+            <section className="flex justify-around items-start gap-3">
                 <div className="w-full">
                     <DashboardTable/>
                 </div>
                 <div className="w-full">
-                    <DashboardChart/>
+                    <DashboardChart data={data} font={'font'} xFontSize={16} yFontSize={17} showTitle={true} titleText={'نمودار فروش سالانه'}/>
                 </div>
             </section>
         </>
