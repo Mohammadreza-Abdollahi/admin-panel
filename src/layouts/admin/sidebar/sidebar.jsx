@@ -1,7 +1,7 @@
 import Profile from '../../../assets/img/profile.png'
-import SidebarAvatar from './sidebarAvatar';
-import SidebarGroupItem from './sidebarGroupItem';
-import SidebarItem from './sidebarItem';
+import SidebarAvatar from './SidebarAvatar';
+import SidebarGroupItem from './SidebarGroupItem';
+import SidebarItem from './SidebarItem';
 
 const Aside = () => {
     return ( 

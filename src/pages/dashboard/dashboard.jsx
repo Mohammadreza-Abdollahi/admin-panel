@@ -1,8 +1,8 @@
 import { useState } from "react";
-import DashboardChart from "./dashboardChart";
-import DashboardSubCart from "./dashboardSubCarts";
-import DashboardTable from "./dashboardTable";
-import DashboardTopCart from "./dashboardTopCarts";
+import DashboardChart from "./DashboardChart";
+import DashboardSubCart from "./DashboardSubCarts";
+import DashboardTable from "./DashboardTable";
+import DashboardTopCart from "./DashboardTopCarts";
 import { dataPoints, labels } from "../../mock/chartData";
 
 const Dashboard = () => {
@@ -13,7 +13,7 @@ const Dashboard = () => {
         {
             label: 'فروش',
             data: dataPoints,       
-            backgroundColor: ['#3fc1c9'],
+            backgroundColor: ['rgba(0,0,0,.1)'],
             borderColor: ['#3fc1c9'], 
         },
         ],  
@@ -37,7 +37,7 @@ const Dashboard = () => {
                     <DashboardTable/>
                 </div>
                 <div className="w-full">
-                    <DashboardChart data={data} font={'font'} xFontSize={16} yFontSize={17} showTitle={true} titleText={'نمودار فروش سالانه'}/>
+                    <DashboardChart data={data} font={'font'} xFontSize={16} yFontSize={17} showTitle={true} titleText={'نمودار فروش سالانه'} borderWidth={3} dashWidth={5} dashWidthHover={8}/>
                 </div>
             </section>
         </>

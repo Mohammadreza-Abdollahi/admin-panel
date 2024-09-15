@@ -1,5 +1,5 @@
 import { Tooltip } from "@mui/material";
-import HeaderLeftBtn from "./headerLeftBtn";
+import HeaderLeftBtn from "./HeaderLeftBtn";
 
 const HeaderLeft = ({logo}) => {
     return ( 

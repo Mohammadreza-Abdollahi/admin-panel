@@ -1,4 +1,4 @@
-import IndexAdmin from "./layouts/admin/index";
+import IndexAdmin from "./layouts/admin/Index";
 
 const App = () => {
   return ( 

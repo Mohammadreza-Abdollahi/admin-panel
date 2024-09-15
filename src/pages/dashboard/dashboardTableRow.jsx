@@ -8,7 +8,7 @@ const DashboardTableRow = ({col1 , col2 , col3 , col4}) => {
                 <td className="py-1">{col2}</td>
                 <td className="py-1">{col3}</td>
                 <td className="py-1">{col4}</td>
-                <td className="py-1"><Tooltip arrow placement="left" title={<><span className="text-base">حذف</span></>}><i className="fa-solid fa-xmark text-3xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip></td>
+                <td className="py-1"><Tooltip arrow placement="left" title={<><span className="text-base">حذف</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip></td>
             </tr>
         </>
      );

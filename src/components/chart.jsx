@@ -1,11 +1,12 @@
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJs, CategoryScale , LinearScale , PointElement , LineElement , Title , Tooltip , Legend , defaults } from "chart.js/auto";
 
-const LineChart = ({chartData , font , xFontSize , yFontSize , showTitle ,titleText , }) => {
-    defaults.elements.line.borderWidth = 2;
+const LineChart = ({chartData , font , xFontSize , yFontSize , showTitle ,titleText , borderWidth , dashWidth , dashWidthHover }) => {
+    defaults.elements.line.borderWidth = borderWidth;
     defaults.elements.line.tension = .2;
-    defaults.elements.point.borderWidth = 5;
-    defaults.elements.point.hoverBorderWidth = 7;
+    defaults.elements.line.fill = true;
+    defaults.elements.point.borderWidth = dashWidth;
+    defaults.elements.point.hoverBorderWidth = dashWidthHover;
     return ( 
         <Line data={chartData} options={{
             scales: {

@@ -1,7 +1,8 @@
-import Aside from "./sidebar/sidebar";
-import Header from "./header/header";
+import Aside from "./sidebar/Sidebar";
+import Header from "./header/Header";
 import '../../assets/css/content.css'
-import Dashboard from "../../pages/dashboard/dashboard";
+import Dashboard from "../../pages/dashboard/Dashboard";
+import Category from "../../pages/category/Category";
 
 const IndexAdmin = () => {
     return ( 
@@ -9,7 +10,8 @@ const IndexAdmin = () => {
             <Header/>
             <Aside/>
             <section className="my-bg pt-20 mr-24 pr-3 pl-3">
-                <Dashboard/>
+                {/* <Dashboard/> */}
+                <Category/>
             </section>
         </>
      );
