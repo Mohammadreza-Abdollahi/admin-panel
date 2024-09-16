@@ -14,15 +14,15 @@ const CategoryTable = () => {
                 </thead>
                 <tbody className="text-slate-600">
                     <CategoryTableRow col1={1} col2={'دسته شماره فلان'} col3={'فعال'}/>
-                    <CategoryTableRow col1={1} col2={'دسته شماره فلان'} col3={'فعال'}/>
-                    <CategoryTableRow col1={1} col2={'دسته شماره فلان'} col3={'فعال'}/>
-                    <CategoryTableRow col1={1} col2={'دسته شماره فلان'} col3={'فعال'}/>
-                    <CategoryTableRow col1={1} col2={'دسته شماره فلان'} col3={'فعال'}/>
-                    <CategoryTableRow col1={1} col2={'دسته شماره فلان'} col3={'فعال'}/>
-                    <CategoryTableRow col1={1} col2={'دسته شماره فلان'} col3={'فعال'}/>
-                    <CategoryTableRow col1={1} col2={'دسته شماره فلان'} col3={'فعال'}/>
-                    <CategoryTableRow col1={1} col2={'دسته شماره فلان'} col3={'فعال'}/>
-                    <CategoryTableRow col1={1} col2={'دسته شماره فلان'} col3={'فعال'}/>
+                    <CategoryTableRow col1={2} col2={'دسته شماره فلان'} col3={'فعال'}/>
+                    <CategoryTableRow col1={3} col2={'دسته شماره فلان'} col3={'فعال'}/>
+                    <CategoryTableRow col1={4} col2={'دسته شماره فلان'} col3={'فعال'}/>
+                    <CategoryTableRow col1={5} col2={'دسته شماره فلان'} col3={'فعال'}/>
+                    <CategoryTableRow col1={6} col2={'دسته شماره فلان'} col3={'فعال'}/>
+                    <CategoryTableRow col1={7} col2={'دسته شماره فلان'} col3={'فعال'}/>
+                    <CategoryTableRow col1={8} col2={'دسته شماره فلان'} col3={'فعال'}/>
+                    <CategoryTableRow col1={9} col2={'دسته شماره فلان'} col3={'فعال'}/>
+                    <CategoryTableRow col1={10} col2={'دسته شماره فلان'} col3={'فعال'}/>
                 </tbody>
             </table>
         </>
