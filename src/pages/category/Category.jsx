@@ -5,6 +5,7 @@ import Btn from "../../components/Btn";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openClose } from "../../redux/category/categoryDialog";
+import CategoryPagination from "./CategoryPagination";
 
 const Category = () => {
   const {isOpen} = useSelector(state=>state.categoryDialog);
@@ -30,7 +31,9 @@ const Category = () => {
       <section>
         <CategoryTable />
       </section>
-      
+      <section className="text-center mt-3">
+        <CategoryPagination/>
+      </section>
     </>
   );
 };

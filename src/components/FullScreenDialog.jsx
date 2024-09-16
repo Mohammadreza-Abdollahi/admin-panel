@@ -5,7 +5,6 @@ import { openClose } from "../redux/category/categoryDialog";
 const FullScreenDialog = ({btnText = 'بازگشت' , dialogTitle , children}) => {
     const {isOpen} = useSelector(state=>state.categoryDialog);
     const dispatch = useDispatch();
-    console.log(isOpen);
     return ( 
         <>
             <Dialog dir="ltr" fullScreen open={isOpen} TransitionComponent={Slide}>
