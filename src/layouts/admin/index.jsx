@@ -12,8 +12,8 @@ const IndexAdmin = () => {
             <Aside/>
             <section className="my-bg pt-20 mr-24 pr-3 pl-3">
                 {/* <Dashboard/> */}
-                <Category/>
-                {/* <Product/> */}
+                {/* <Category/> */}
+                <Product/>
             </section>
         </>
      );
