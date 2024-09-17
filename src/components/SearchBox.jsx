@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-const CategorySearch = ({btnTxt , placeholder}) => {
+const SearchBox = ({btnTxt , placeholder}) => {
     const [focus , setFocus] = useState(false);
     const handleFocus = ()=>{
         setFocus(!focus)
@@ -15,4 +15,4 @@ const CategorySearch = ({btnTxt , placeholder}) => {
      );
 }
  
-export default CategorySearch;
+export default SearchBox;
