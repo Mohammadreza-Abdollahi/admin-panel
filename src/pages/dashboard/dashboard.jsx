@@ -48,7 +48,7 @@ const Dashboard = () => {
             </div>
             <section className="flex justify-around items-start gap-3">
                 <div className="w-full">
-                    <PaginationTable data={tableData} dataInfo={dataInfo} actionCol={actionColumn}/>
+                    <PaginationTable data={tableData} dataInfo={dataInfo} actionCol={actionColumn} rowInPage={8}/>
                 </div>
                 <div className="w-full">
                     <DashboardChart data={chartData} font={'font'} xFontSize={16} yFontSize={17} showTitle={true} titleText={'نمودار فروش سالانه'} borderWidth={3} dashWidth={5} dashWidthHover={8}/>

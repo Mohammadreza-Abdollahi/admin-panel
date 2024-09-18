@@ -3,7 +3,6 @@ import Btn from "../../components/Btn";
 import { useDispatch } from "react-redux";
 import { productOpenClose } from "../../redux/product/productDialog";
 import ProductDialog from "./ProductDialog";
-import ProductPagination from "./ProductPagination";
 import ModalContainer from "../../components/ModalPortal";
 import PaginationTable from "../../components/PaginationTable";
 import { data, dataInfo } from "../../mock/productData";
@@ -14,12 +13,13 @@ const actionsColumn = {
   elements: (id)=>sendElements(id)
 }
 const sendElements = (id)=>{
-  console.log(id);
+  // console.log(id);
   return(
     <>
-    <Tooltip arrow placement="top" title={<><span className="text-base">اشتراک گذاری</span></>}><i className="fa-solid fa-share-nodes text-xl text-blue-500 hover:bg-blue-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+    <Tooltip arrow placement="top" title={<><span className="text-base">مدیریت گالری</span></>}><i className="fa-regular fa-images text-xl text-blue-500 hover:bg-blue-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
     <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش</span></>}><i className="fa-solid fa-edit text-xl text-yellow-500 hover:bg-yellow-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-    <Tooltip arrow placement="top" title={<><span className="text-base">افزودن</span></>}><i className="fa-solid fa-plus text-xl text-green-600 hover:bg-green-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+    <Tooltip arrow placement="top" title={<><span className="text-base">ثبت ویژگی</span></>}><i className="fa-solid fa-plus text-xl text-green-600 hover:bg-green-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+    <Tooltip arrow placement="top" title={<><span className="text-base">حذف محصول</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
   </>
   )
 }
@@ -47,10 +47,7 @@ const Product = () => {
         </dir>
       </section>
       <section>
-        <PaginationTable data={data} dataInfo={dataInfo} actionCol={actionsColumn}/>
-      </section>
-      <section className="text-center mt-3">
-        <ProductPagination/>
+        <PaginationTable data={data} dataInfo={dataInfo} actionCol={actionsColumn} rowInPage={8}/>
       </section>
     </>
   );

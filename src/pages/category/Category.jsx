@@ -17,10 +17,10 @@ const senElements = (id)=>{
   console.log(id);
   return(
     <>
-      <Tooltip arrow placement="top" title={<><span className="text-base">اشتراک گذاری</span></>}><i className="fa-solid fa-share-nodes text-xl text-blue-500 hover:bg-blue-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-      <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش</span></>}><i className="fa-solid fa-edit text-xl text-yellow-500 hover:bg-yellow-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-      <Tooltip arrow placement="top" title={<><span className="text-base">افزودن</span></>}><i className="fa-solid fa-plus text-xl text-green-600 hover:bg-green-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-      <Tooltip arrow placement="top" title={<><span className="text-base">حذف</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">زیرمجموعه</span></>}><i className="fa-solid fa-share-nodes text-xl text-blue-500 hover:bg-blue-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش دسته</span></>}><i className="fa-solid fa-edit text-xl text-yellow-500 hover:bg-yellow-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">افزودن ویژگی</span></>}><i className="fa-solid fa-plus text-xl text-green-600 hover:bg-green-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">حذف دسته</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
     </>
   )
 }
@@ -47,11 +47,8 @@ const Category = () => {
           <span onClick={()=>dispatch(openClose())}><Btn btnTxt={"افزودن"}/></span>
         </dir>
       </section>
-      <section>
-        <PaginationTable data={data} dataInfo={dataInfo} actionCol={actionsColumn}/>
-      </section>
-      <section className="text-center mt-3">
-        <CategoryPagination/>
+      <section className="transition-all duration-1000">
+        <PaginationTable data={data} dataInfo={dataInfo} actionCol={actionsColumn} rowInPage={10}/>
       </section>
     </>
   );
