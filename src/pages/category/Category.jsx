@@ -1,5 +1,4 @@
 import CategoryDialog from "./CategoryDialog";
-import CategoryTable from "./CategoryTable";
 import Btn from "../../components/Btn";
 import { useDispatch, useSelector } from "react-redux";
 import { openClose } from "../../redux/category/categoryDialog";
@@ -8,7 +7,6 @@ import SearchBox from "../../components/SearchBox";
 import ModalContainer from "../../components/ModalPortal";
 import PaginationTable from "../../components/PaginationTable";
 import { data, dataInfo } from "../../mock/categoryData";
-import { elements } from "chart.js";
 import { Tooltip } from "@mui/material";
 
 const actionsColumn = {
@@ -28,7 +26,6 @@ const senElements = (id)=>{
 }
 
 const Category = () => {
-  const {isOpen} = useSelector(state=>state.categoryDialog);
   const dispatch = useDispatch();
   
   return (

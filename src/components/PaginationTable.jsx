@@ -22,7 +22,7 @@ const PaginationTable = ({data , dataInfo , actionCol}) => {
                             <tr key={d.id} className="transition-all duration-150 border-b-palete-2-200 border-b-2 hover:bg-palete-2-300 hover:bg-opacity-50">
                                 {
                                     dataInfo.map(i=>(
-                                        <td key={`${i.field}${d.id}`} className={`py-1 ring-1 ring-palete-2-200 ${i.field == 'likes' ? 'text-green-600 text-lg' : null} ${i.field === 'disLikes' ? 'text-red-600 text-lg' : null}`}>{typeof d[i.field] == 'number' ? (d[i.field].toLocaleString('fa')) : (d[i.field])}</td>
+                                        <td key={`${i.field}${d.id}`} className={`py-2.5 ring-1 ring-palete-2-200 ${i.field == 'likes' ? 'text-green-600 text-lg' : null} ${i.field === 'disLikes' ? 'text-red-600 text-lg' : null}`}>{typeof d[i.field] == 'number' ? (d[i.field].toLocaleString('fa')) : (d[i.field])}</td>
                                     ))
                                 }
                                 {

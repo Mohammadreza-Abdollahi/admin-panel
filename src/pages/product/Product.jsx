@@ -3,7 +3,6 @@ import Btn from "../../components/Btn";
 import { useDispatch } from "react-redux";
 import { productOpenClose } from "../../redux/product/productDialog";
 import ProductDialog from "./ProductDialog";
-import ProductTable from "./ProductTable";
 import ProductPagination from "./ProductPagination";
 import ModalContainer from "../../components/ModalPortal";
 import PaginationTable from "../../components/PaginationTable";
