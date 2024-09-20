@@ -1,5 +1,3 @@
-import CategorySearch from "../../components/SearchBox";
-import Btn from "../../components/Btn";
 import { useDispatch } from "react-redux";
 import { productOpenClose } from "../../redux/product/productDialog";
 import ProductDialog from "./ProductDialog";

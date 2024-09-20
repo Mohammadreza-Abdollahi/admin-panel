@@ -1,9 +1,5 @@
 import CategoryDialog from "./CategoryDialog";
-import Btn from "../../components/Btn";
-import { useDispatch, useSelector } from "react-redux";
 import { openClose } from "../../redux/category/categoryDialog";
-import CategoryPagination from "./CategoryPagination";
-import SearchBox from "../../components/SearchBox";
 import ModalContainer from "../../components/ModalPortal";
 import PaginationTable from "../../components/PaginationTable";
 import { data, dataInfo } from "../../mock/categoryData";

@@ -12,7 +12,7 @@ const actionColumn = {
     elements: (id)=>sendElements(id)
 }
 const sendElements = (id)=>{
-    console.log(id);
+    // console.log(id);
     return(
         <Tooltip arrow placement="left" title={<><span className="text-base">حذف</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
     )

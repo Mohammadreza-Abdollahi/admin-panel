@@ -1,4 +1,4 @@
-import { Alert, Pagination, ThemeProvider } from "@mui/material";
+import { Pagination, ThemeProvider } from "@mui/material";
 import { componentsTheme } from "../themes/componentsTheme";
 import { useEffect, useState } from "react";
 import Btn from "./Btn";
@@ -16,7 +16,6 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
     const handleChangePage = (e , v)=>{
         setCurrentPage(v);
     };
-    console.log(searchChar);
     useEffect(()=>{
         setInitData(data.filter(data=> data.title.includes(searchChar)))
         setCurrentPage(1);
@@ -80,7 +79,7 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
                 {
                     tableData.length === 0 ? (
                         <div className="flex justify-center items-center text-center text-xl bg-red-100 text-red-800 py-3 rounded-b-md border-2 border-t-0 border-red-300">
-                            <i class="fa-solid fa-circle-exclamation text-2xl mx-2"></i>
+                            <i className="fa-solid fa-circle-exclamation text-2xl mx-2"></i>
                             <h1 className="">هیچ محصولی وجود ندارد...</h1>
                         </div>
                     ) : null
