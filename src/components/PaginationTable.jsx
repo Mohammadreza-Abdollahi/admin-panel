@@ -5,7 +5,7 @@ import Btn from "./Btn";
 import SearchBox from "./SearchBox";
 import { useDispatch } from "react-redux";
 
-const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable = false , dialogOpenner}) => {
+const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable = false , dialogOpenner , searchParam = 'title'}) => {
     const dispatch = useDispatch();
     const [initData , setInitData] = useState(data);
     const [searchChar , setSearchChar] = useState('');
@@ -17,7 +17,7 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
         setCurrentPage(v);
     };
     useEffect(()=>{
-        setInitData(data.filter(data=> data.title.includes(searchChar)))
+        setInitData(data.filter(data=> data[searchParam].includes(searchChar)))
         setCurrentPage(1);
     },[searchChar])
     useEffect(()=>{
