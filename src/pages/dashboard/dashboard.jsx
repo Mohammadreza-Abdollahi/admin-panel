@@ -1,7 +1,6 @@
 import { useState } from "react";
 import DashboardChart from "./DashboardChart";
 import DashboardSubCart from "./DashboardSubCarts";
-import DashboardTable from "./DashboardTable";
 import DashboardTopCart from "./DashboardTopCarts";
 import { dataPoints, labels } from "../../mock/chartData";
 import PaginationTable from "../../components/PaginationTable";
@@ -47,8 +46,11 @@ const Dashboard = () => {
                 <DashboardSubCart weekly={'9'} monthly={'8'} firstColor='from-gradient-7' secondColor='to-gradient-8'/>
             </div>
             <section className="flex justify-around items-start gap-3">
-                <div className="w-full">
-                    <PaginationTable data={tableData} dataInfo={dataInfo} actionCol={actionColumn} rowInPage={8}/>
+                <div className="w-full text-center">
+                    <div className="mb-6">
+                        <span className="text-xl text-slate-500"><b>محصولات رو به اتمام</b></span>
+                    </div>
+                    <PaginationTable data={tableData} dataInfo={dataInfo} actionCol={actionColumn} rowInPage={6}/>
                 </div>
                 <div className="w-full">
                     <DashboardChart data={chartData} font={'font'} xFontSize={16} yFontSize={17} showTitle={true} titleText={'نمودار فروش سالانه'} borderWidth={3} dashWidth={5} dashWidthHover={8}/>

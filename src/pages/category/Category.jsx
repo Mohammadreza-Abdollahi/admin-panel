@@ -14,7 +14,6 @@ const actionsColumn = {
   elements: (id)=>senElements(id)
 }
 const senElements = (id)=>{
-  console.log(id);
   return(
     <>
       <Tooltip arrow placement="top" title={<><span className="text-base">زیرمجموعه</span></>}><i className="fa-solid fa-share-nodes text-xl text-blue-500 hover:bg-blue-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
@@ -26,7 +25,6 @@ const senElements = (id)=>{
 }
 
 const Category = () => {
-  const dispatch = useDispatch();
   
   return (
     <>
@@ -36,19 +34,8 @@ const Category = () => {
       <h1 className="text-3xl text-center my-4 text-slate-800">
         <b>مدیریت دسته بندی محصولات</b>
       </h1>
-      <section className="flex justify-between items-center my-1">
-        <div className="w-1/3 text-start">
-          <SearchBox
-            btnTxt={"جستجو"}
-            placeholder={"دسته بندی مورد نظر را جستجو کنید..."}
-          />
-        </div>
-        <dir className="w-1/3 text-end">
-          <span onClick={()=>dispatch(openClose())}><Btn btnTxt={"افزودن"}/></span>
-        </dir>
-      </section>
       <section className="transition-all duration-1000">
-        <PaginationTable data={data} dataInfo={dataInfo} actionCol={actionsColumn} rowInPage={10}/>
+        <PaginationTable data={data} dataInfo={dataInfo} actionCol={actionsColumn} rowInPage={10} searchable={true} dialogOpenner={openClose}/>
       </section>
     </>
   );

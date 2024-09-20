@@ -2,7 +2,7 @@ export const data = [
     {
         id: 1,
         category: 'دسته فلان',
-        title: 'محصول فلان',
+        title: 'گوشی موبایل A23',
         price: 150000,
         count: 21,
         likes: 12,
@@ -12,7 +12,7 @@ export const data = [
     {
         id: 2,
         category: '2دسته فلان',
-        title: '2محصول فلان',
+        title: 'لپ تاپ مک بوک پرو',
         price: 150000,
         count: 21,
         likes: 12,
@@ -22,7 +22,7 @@ export const data = [
     {
         id: 3,
         category: '3دسته فلان',
-        title: '3محصول فلان',
+        title: 'پرینتر سه بعدی',
         price: 150000,
         count: 21,
         likes: 12,
@@ -32,7 +32,7 @@ export const data = [
     {
         id: 4,
         category: '4دسته فلان',
-        title: '4محصول فلان',
+        title: 'ماشین اسباب بازی',
         price: 150000,
         count: 21,
         likes: 12,
@@ -42,7 +42,7 @@ export const data = [
     {
         id: 5,
         category: '5دسته فلان',
-        title: '5محصول فلان',
+        title: 'روغن سرخ کردنی',
         price: 150000,
         count: 21,
         likes: 12,
@@ -52,7 +52,7 @@ export const data = [
     {
         id: 6,
         category: 'دسته فلان',
-        title: 'محصول فلان',
+        title: 'گوشکوب برقی',
         price: 150000,
         count: 21,
         likes: 12,
@@ -62,7 +62,7 @@ export const data = [
     {
         id: 7,
         category: '2دسته فلان',
-        title: '2محصول فلان',
+        title: 'کارت صدا',
         price: 150000,
         count: 21,
         likes: 12,
@@ -72,7 +72,7 @@ export const data = [
     {
         id: 8,
         category: '3دسته فلان',
-        title: '3محصول فلان',
+        title: 'کول پد لپ تاپ',
         price: 150000,
         count: 21,
         likes: 12,
@@ -82,7 +82,7 @@ export const data = [
     {
         id: 9,
         category: '4دسته فلان',
-        title: '4محصول فلان',
+        title: 'سبد میوه',
         price: 150000,
         count: 21,
         likes: 12,
@@ -92,7 +92,7 @@ export const data = [
     {
         id: 10,
         category: '5دسته فلان',
-        title: '5محصول فلان',
+        title: 'غذای گربه',
         price: 150000,
         count: 21,
         likes: 12,
@@ -102,7 +102,7 @@ export const data = [
     {
         id: 11,
         category: 'دسته فلان',
-        title: 'محصول فلان',
+        title: 'پکیج قابلمه',
         price: 150000,
         count: 21,
         likes: 12,
@@ -112,7 +112,7 @@ export const data = [
     {
         id: 12,
         category: '2دسته فلان',
-        title: '2محصول فلان',
+        title: 'لیوان 7 پارچه',
         price: 150000,
         count: 21,
         likes: 12,
@@ -122,7 +122,7 @@ export const data = [
     {
         id: 13,
         category: '3دسته فلان',
-        title: '3محصول فلان',
+        title: 'گردنبند طلا',
         price: 150000,
         count: 21,
         likes: 12,
@@ -132,7 +132,7 @@ export const data = [
     {
         id: 14,
         category: '4دسته فلان',
-        title: '4محصول فلان',
+        title: 'انگشتر نقره',
         price: 150000,
         count: 21,
         likes: 12,
@@ -142,7 +142,7 @@ export const data = [
     {
         id: 15,
         category: '5دسته فلان',
-        title: '5محصول فلان',
+        title: 'قهوه ساز',
         price: 150000,
         count: 21,
         likes: 12,
@@ -152,7 +152,7 @@ export const data = [
     {
         id: 16,
         category: 'دسته فلان',
-        title: 'محصول فلان',
+        title: 'ساعت دیواری',
         price: 150000,
         count: 21,
         likes: 12,
@@ -162,7 +162,7 @@ export const data = [
     {
         id: 17,
         category: '2دسته فلان',
-        title: '2محصول فلان',
+        title: 'گلدان زینتی',
         price: 150000,
         count: 21,
         likes: 12,
@@ -172,7 +172,7 @@ export const data = [
     {
         id: 18,
         category: '3دسته فلان',
-        title: '3محصول فلان',
+        title: 'رومیزی طرح سنتی',
         price: 150000,
         count: 21,
         likes: 12,
@@ -182,7 +182,7 @@ export const data = [
     {
         id: 19,
         category: '4دسته فلان',
-        title: '4محصول فلان',
+        title: 'یخچال ساید',
         price: 150000,
         count: 21,
         likes: 12,
@@ -192,7 +192,7 @@ export const data = [
     {
         id: 20,
         category: '5دسته فلان',
-        title: '5محصول فلان',
+        title: 'تلوزیون ال جی',
         price: 150000,
         count: 21,
         likes: 12,
@@ -202,7 +202,7 @@ export const data = [
     {
         id: 21,
         category: 'دسته فلان',
-        title: 'محصول فلان',
+        title: 'مبلمان 10 نفره',
         price: 150000,
         count: 21,
         likes: 12,
@@ -212,7 +212,7 @@ export const data = [
     {
         id: 22,
         category: '2دسته فلان',
-        title: '2محصول فلان',
+        title: 'چای ساز اسنوا',
         price: 150000,
         count: 21,
         likes: 12,
@@ -222,7 +222,7 @@ export const data = [
     {
         id: 24,
         category: '3دسته فلان',
-        title: '3محصول فلان',
+        title: 'سماور مسی',
         price: 150000,
         count: 21,
         likes: 12,
@@ -232,7 +232,7 @@ export const data = [
     {
         id: 25,
         category: '4دسته فلان',
-        title: '4محصول فلان',
+        title: 'ظروف مسی',
         price: 150000,
         count: 21,
         likes: 12,
@@ -242,7 +242,7 @@ export const data = [
     {
         id: 26,
         category: '5دسته فلان',
-        title: '5محصول فلان',
+        title: 'ماکرو ویو فلان',
         price: 150000,
         count: 21,
         likes: 12,

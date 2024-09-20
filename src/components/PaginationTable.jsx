@@ -1,30 +1,48 @@
-import { Pagination, ThemeProvider } from "@mui/material";
+import { Alert, Pagination, ThemeProvider } from "@mui/material";
 import { componentsTheme } from "../themes/componentsTheme";
 import { useEffect, useState } from "react";
+import Btn from "./Btn";
+import SearchBox from "./SearchBox";
+import { useDispatch } from "react-redux";
 
-const PaginationTable = ({data , dataInfo , actionCol , rowInPage}) => {
+const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable = false , dialogOpenner}) => {
+    const dispatch = useDispatch();
+    const [initData , setInitData] = useState(data);
+    const [searchChar , setSearchChar] = useState('');
     const [tableData , setTableData] = useState([]);
     const [currentPage , setCurrentPage] = useState(1);
     const [numOfPage , setNumOfPage] = useState(rowInPage);
     const [pageCount , setPageCount] = useState(1);
-
     const handleChangePage = (e , v)=>{
         setCurrentPage(v);
     };
-
+    console.log(searchChar);
     useEffect(()=>{
-        let pCount = Math.ceil(data.length / numOfPage);
-        console.log(pCount);
+        setInitData(data.filter(data=> data.title.includes(searchChar)))
+        setCurrentPage(1);
+    },[searchChar])
+    useEffect(()=>{
+        let pCount = Math.ceil(initData.length / numOfPage);
         setPageCount(pCount);
-    },[])
-    useEffect(()=>{
         let start = (currentPage * numOfPage) - numOfPage;
         let end = (currentPage * numOfPage);
-        setTableData(data.slice(start,end));
-    },[currentPage]);
+        setTableData(initData.slice(start,end));
+    },[currentPage , numOfPage , data , initData]);
     return ( 
         <>
             <section>
+                {
+                    searchable ? (
+                        <section className="flex justify-between items-center my-1">
+                            <div className="w-1/3 text-start">
+                                <SearchBox btnTxt={"جستجو"} placeholder={"دسته بندی مورد نظر را جستجو کنید..."} setSearch={setSearchChar}/>
+                            </div>
+                            <dir className="w-1/3 text-end">
+                                <span onClick={()=>dispatch(dialogOpenner())}><Btn btnTxt={"افزودن"}/></span>
+                            </dir>
+                        </section>
+                    ) : null
+                }
                 <table className="text-center w-full bg-palete-2-100 bg-opacity-60 rounded-sm overflow-hidden ring-1 ring-palete-2-300">
                     <thead className="border-b-palete-2-300 border-b-4 bg-palete-2-200 bg-opacity-70">
                         <tr className="text-slate-800">
@@ -59,14 +77,25 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage}) => {
                         }
                     </tbody>
                 </table>
+                {
+                    tableData.length === 0 ? (
+                        <div className="flex justify-center items-center text-center text-xl bg-red-100 text-red-800 py-3 rounded-b-md border-2 border-t-0 border-red-300">
+                            <i class="fa-solid fa-circle-exclamation text-2xl mx-2"></i>
+                            <h1 className="">هیچ محصولی وجود ندارد...</h1>
+                        </div>
+                    ) : null
+                }
             </section>
             <section className="text-center">
-                <div className="inline-block mt-3" dir="ltr">
-                    <ThemeProvider theme={componentsTheme}>
-                        {console.log(pageCount)}
-                        <Pagination count={pageCount} page={currentPage} size="large" color="secondary" onChange={handleChangePage}/>
-                    </ThemeProvider>
-                </div>
+                {
+                    pageCount > 1 ?(
+                    <div className="inline-block mt-3" dir="ltr">
+                        <ThemeProvider theme={componentsTheme}>
+                            <Pagination count={pageCount} page={currentPage} size="large" color="secondary" onChange={handleChangePage}/>
+                        </ThemeProvider>
+                    </div>
+                    ) : null
+                }
             </section>
         </>
      );
