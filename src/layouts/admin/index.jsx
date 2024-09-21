@@ -6,6 +6,7 @@ import Category from "../../pages/category/Category";
 import Product from "../../pages/product/Product";
 import { Route, Routes } from "react-router-dom";
 import Colors from "../../pages/colors/Colors";
+import Guaranties from "../../pages/guaranties/Guaranties";
 
 const IndexAdmin = () => {
     return ( 
@@ -18,6 +19,7 @@ const IndexAdmin = () => {
                     <Route path="/category" element={<Category/>}/>
                     <Route path="/product" element={<Product/>}/>
                     <Route path="/colors" element={<Colors/>}/>
+                    <Route path="/guaranties" element={<Guaranties/>}/>
                 </Routes>
             </section>
         </>
