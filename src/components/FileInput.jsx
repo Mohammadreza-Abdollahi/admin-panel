@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const FileInput = ({name , label , value = null , readOnly = false}) => {
+const FileInput = ({name , label , value = null}) => {
     const [focus , setFocus] = useState(false);
     const handleFocus = ()=>{
         setFocus(!focus)

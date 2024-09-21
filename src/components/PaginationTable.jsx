@@ -5,7 +5,7 @@ import Btn from "./Btn";
 import SearchBox from "./SearchBox";
 import { useDispatch } from "react-redux";
 
-const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable = false , dialogOpenner , searchParam = 'title'}) => {
+const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable = false , dialogOpenner , searchParam = 'title' , hasBtn = true}) => {
     const dispatch = useDispatch();
     const [initData , setInitData] = useState(data);
     const [searchChar , setSearchChar] = useState('');
@@ -32,12 +32,16 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
             <section>
                 {
                     searchable ? (
-                        <section className="flex justify-between items-center my-1">
+                        <section className="flex justify-between items-center my-1 mb-3">
                             <div className="w-1/3 text-start">
                                 <SearchBox btnTxt={"جستجو"} placeholder={"دسته بندی مورد نظر را جستجو کنید..."} setSearch={setSearchChar}/>
                             </div>
                             <dir className="w-1/3 text-end">
-                                <span onClick={()=>dispatch(dialogOpenner())}><Btn btnTxt={"افزودن"}/></span>
+                                {
+                                    hasBtn ? (
+                                        <span onClick={()=>dispatch(dialogOpenner())}><Btn btnTxt={"افزودن"}/></span>
+                                    ) : null
+                                }
                             </dir>
                         </section>
                     ) : null

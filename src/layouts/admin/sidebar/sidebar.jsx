@@ -15,10 +15,10 @@ const Aside = () => {
                     <SidebarGroupItem title='فروشگاه'/>
                     <SidebarItem itemPath={'/category'} icon='fa-solid fa-boxes-stacked' title='مدیریت گروه محصول'/>
                     <SidebarItem itemPath={'/product'} icon='fa-solid fa-box-open' title='مدیریت محصول'/>
-                    <SidebarItem itemPath={'/test1'} icon='fa-solid fa-copyright' title='مدیریت برند ها'/>
+                    <SidebarItem itemPath={'/brands'} icon='fa-solid fa-copyright' title='مدیریت برند ها'/>
                     <SidebarItem itemPath={'/guaranties'} icon='fa-solid fa-certificate' title='مدیریت گارانتی ها'/>
                     <SidebarItem itemPath={'/colors'} icon='fa-solid fa-palette' title='مدیریت رنگ ها'/>
-                    <SidebarItem itemPath={'/test4'} icon='fa-solid fa-percent' title='مدیریت تخفیف ها'/>
+                    <SidebarItem itemPath={'/discounts'} icon='fa-solid fa-percent' title='مدیریت تخفیف ها'/>
                 </section>
                 <section className='my-2'>
                     <SidebarGroupItem title='سفارشات و سید'/>

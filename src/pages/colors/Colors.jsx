@@ -1,5 +1,3 @@
-import { useDispatch } from "react-redux";
-import { productOpenClose } from "../../redux/product/productDialog";
 import ModalContainer from "../../components/ModalPortal";
 import PaginationTable from "../../components/PaginationTable";
 import { Tooltip } from "@mui/material";

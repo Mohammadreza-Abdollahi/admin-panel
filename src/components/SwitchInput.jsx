@@ -11,7 +11,7 @@ const SwitchInput = ({name , label , switchLabel , isActive}) => {
         <div className="text-xl">
             <label>{label}
                 <ThemeProvider theme={componentsTheme}>
-                    <FormControlLabel control={<Switch checked={active} onChange={(e)=>setActive(e.target.checked)} name={name} color="secondary"/>} label={active ? 'فعال' : 'غیر فعال'} />
+                    <FormControlLabel control={<div className="bg-palete-3-100-1 rounded-full border-2 border-palete-2-400-1 mx-2"><Switch checked={active} onChange={(e)=>setActive(e.target.checked)} name={name} color="secondary"/></div>} label={active ? 'فعال' : 'غیر فعال'} />
                 </ThemeProvider>
             </label>
         </div>
