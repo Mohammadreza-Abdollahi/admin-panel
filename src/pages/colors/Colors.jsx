@@ -1,9 +1,9 @@
 import ModalContainer from "../../components/ModalPortal";
-import PaginationTable from "../../components/PaginationTable";
 import { Tooltip } from "@mui/material";
 import ColorsDialog from "./ColorsDialog";
-import { data, dataInfo } from "../../mock/colorsData";
+import { data } from "../../mock/colorsData";
 import { colorsOpenClose } from "../../redux/colors/colorsDialog";
+import ColorsTable from "./ColorsTable";
 
 const actionsColumn = {
   title: 'عملیات',
@@ -28,7 +28,7 @@ const Colors = () => {
         <b>مدیریت رنگ ها</b>
       </h1>
       <section>
-        <PaginationTable data={data} dataInfo={dataInfo} actionCol={actionsColumn} rowInPage={10} searchable={true} dialogOpenner={colorsOpenClose} searchParam={'colorName'}/>
+        <ColorsTable data={data} actionCol={actionsColumn} rowInPage={10} searchable={true} dialogOpenner={colorsOpenClose} searchParam={'colorName'}/>
       </section>
     </>
   );

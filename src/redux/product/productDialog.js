@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    isOpen: false
+    isOpen: false,
+    addAttr: false
 }
 
 const productDialog = createSlice({
@@ -10,10 +11,13 @@ const productDialog = createSlice({
     reducers: {
         productOpenClose: (state)=>{
             state.isOpen = !state.isOpen;
+        },
+        addProductsAttributesOpenClose: (state)=>{
+            state.addAttr = !state.addAttr;
         }
     }
 })
 
 export default productDialog.reducer;
 
-export const {productOpenClose} = productDialog.actions;
+export const {productOpenClose , addProductsAttributesOpenClose} = productDialog.actions;
