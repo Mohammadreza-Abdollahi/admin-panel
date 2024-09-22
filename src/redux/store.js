@@ -5,6 +5,7 @@ import colorsDialogReducer from "./colors/colorsDialog";
 import guarantiesDialogReducer from "./guaranties/guarantiesDialog";
 import brandsDialogReducer from "./brands/brandsDialog";
 import discountsDialogReducer from "./discounts/discountsDialog";
+import cartsDialogReducer from "./carts/cartsDialog";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     guarantiesDialog: guarantiesDialogReducer,
     brandsDialog: brandsDialogReducer,
     discountsDialog: discountsDialogReducer,
+    cartsDialog: cartsDialogReducer,
   },
 });
 
