@@ -4,6 +4,7 @@ import { Tooltip } from "@mui/material";
 import BrandsDialog from "./BrandsDialog";
 import { data, dataInfo } from "../../mock/brandsData";
 import { brandsOpenClose } from "../../redux/brands/brandsDialog";
+import BrandsTable from "./BrandsTable";
 
 const actionsColumn = {
   title: 'عملیات',
@@ -13,7 +14,7 @@ const sendElements = (id)=>{
   // console.log(id);
   return(
     <>
-      <Tooltip arrow placement="top" title={<><span className="text-base">حذف گارانتی</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">حذف برند</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
     </>
   )
 }
@@ -25,10 +26,10 @@ const Brands = () => {
         <BrandsDialog/>
       </ModalContainer>
       <h1 className="text-3xl text-center my-4 text-slate-800">
-        <b>مدیریت گارانتی ها</b>
+        <b>مدیریت برند ها</b>
       </h1>
       <section>
-        <PaginationTable data={data} dataInfo={dataInfo} actionCol={actionsColumn} rowInPage={10} searchable={true} dialogOpenner={brandsOpenClose} searchParam={'persianBrandTitle'}/>
+        <BrandsTable data={data} actionCol={actionsColumn} rowInPage={6} searchable={true} dialogOpenner={brandsOpenClose} searchParam={'persianBrandTitle'}/>
       </section>
     </>
   );
