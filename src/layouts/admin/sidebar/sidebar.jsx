@@ -30,7 +30,7 @@ const Aside = () => {
                     <SidebarGroupItem title='کاربران و همکاران'/>
                     <SidebarItem itemPath={'/users'} icon='fa-solid fa-users' title='مشاهده کاربران'/>
                     <SidebarItem itemPath={'/roles'} icon='fa-solid fa-user-pen' title='نقش ها'/>
-                    <SidebarItem itemPath={'/test10'} icon='fa-solid fa-shield-halved' title='مجوز ها'/>
+                    <SidebarItem itemPath={'/permissions'} icon='fa-solid fa-shield-halved' title='مجوز ها'/>
                 </section>
                 <section className='my-2'>
                     <SidebarGroupItem title='ارتباطات'/>

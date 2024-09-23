@@ -14,6 +14,7 @@ import Orders from "../../pages/orders/Orders";
 import Deliveries from "../../pages/deliveries/Deliveries";
 import Users from "../../pages/users/Users";
 import Roles from "../../pages/roles/Roles";
+import Permissions from "../../pages/permissions/Permissions";
 
 const IndexAdmin = () => {
     return ( 
@@ -34,6 +35,7 @@ const IndexAdmin = () => {
                     <Route path="/deliveries" element={<Deliveries/>}/>
                     <Route path="/users" element={<Users/>}/>
                     <Route path="/roles" element={<Roles/>}/>
+                    <Route path="/permissions" element={<Permissions/>}/>
                 </Routes>
             </section>
         </>
