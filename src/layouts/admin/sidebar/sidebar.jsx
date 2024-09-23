@@ -24,12 +24,12 @@ const Aside = () => {
                     <SidebarGroupItem title='سفارشات و سید'/>
                     <SidebarItem itemPath={'/carts'} icon='fa-solid fa-cart-plus' title='مدیریت سبد ها'/>
                     <SidebarItem itemPath={'/orders'} icon='fa-solid fa-dolly' title='مدیریت سفارشات'/>
-                    <SidebarItem itemPath={'/test7'} icon='fa-solid fa-truck' title='مدیریت نحوه  ارسال'/>
+                    <SidebarItem itemPath={'/deliveries'} icon='fa-solid fa-truck' title='مدیریت نحوه  ارسال'/>
                 </section>
                 <section className='my-2'>
                     <SidebarGroupItem title='کاربران و همکاران'/>
-                    <SidebarItem itemPath={'/test8'} icon='fa-solid fa-users' title='مشاهده کاربران'/>
-                    <SidebarItem itemPath={'/test9'} icon='fa-solid fa-user-pen' title='نقش ها'/>
+                    <SidebarItem itemPath={'/users'} icon='fa-solid fa-users' title='مشاهده کاربران'/>
+                    <SidebarItem itemPath={'/roles'} icon='fa-solid fa-user-pen' title='نقش ها'/>
                     <SidebarItem itemPath={'/test10'} icon='fa-solid fa-shield-halved' title='مجوز ها'/>
                 </section>
                 <section className='my-2'>

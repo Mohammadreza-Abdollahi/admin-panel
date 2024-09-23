@@ -11,6 +11,9 @@ import Brands from "../../pages/brands/Brands";
 import Discounts from "../../pages/discounts/Discounts";
 import Carts from "../../pages/carts/Carts";
 import Orders from "../../pages/orders/Orders";
+import Deliveries from "../../pages/deliveries/Deliveries";
+import Users from "../../pages/users/Users";
+import Roles from "../../pages/roles/Roles";
 
 const IndexAdmin = () => {
     return ( 
@@ -28,6 +31,9 @@ const IndexAdmin = () => {
                     <Route path="/discounts" element={<Discounts/>}/>
                     <Route path="/carts" element={<Carts/>}/>
                     <Route path="/orders" element={<Orders/>}/>
+                    <Route path="/deliveries" element={<Deliveries/>}/>
+                    <Route path="/users" element={<Users/>}/>
+                    <Route path="/roles" element={<Roles/>}/>
                 </Routes>
             </section>
         </>
