@@ -27,7 +27,7 @@ export const data = [
 export const dataInfo = [
     { field: 'id' , title: '#' },
     { field: 'buyerId' , title: 'شناسه خریدار' },
-    { field: 'buyerName' , title: 'نام هریدار' },
+    { field: 'buyerName' , title: 'نام خریدار' },
     { field: 'date' , title: 'تاریخ' },
     { field: 'totalPrice' , title: 'مبلغ کل سبد' },
     { field: 'status' , title: 'وضعیت' },

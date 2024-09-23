@@ -23,7 +23,7 @@ const Aside = () => {
                 <section className='my-2'>
                     <SidebarGroupItem title='سفارشات و سید'/>
                     <SidebarItem itemPath={'/carts'} icon='fa-solid fa-cart-plus' title='مدیریت سبد ها'/>
-                    <SidebarItem itemPath={'/test6'} icon='fa-solid fa-dolly' title='مدیریت سفارشات'/>
+                    <SidebarItem itemPath={'/orders'} icon='fa-solid fa-dolly' title='مدیریت سفارشات'/>
                     <SidebarItem itemPath={'/test7'} icon='fa-solid fa-truck' title='مدیریت نحوه  ارسال'/>
                 </section>
                 <section className='my-2'>

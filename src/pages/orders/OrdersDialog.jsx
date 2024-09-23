@@ -9,7 +9,7 @@ import Btn from "../../components/Btn";
 import CartItem from "../../components/CartItem";
 import { useState } from "react";
 
-const CartsDialog = () => {
+const OrdersDialog = () => {
     const {isOpen} = useSelector(state=>state.cartsDialog);
     const [totlaPrice , setTotalPrice] = useState(1550000)
     return ( 
@@ -60,4 +60,4 @@ const CartsDialog = () => {
      );
 }
  
-export default CartsDialog;
+export default OrdersDialog;

@@ -1,0 +1,50 @@
+export const data = [
+    {
+        id: 1,
+        buyerId: 253,
+        buyerName: 'محمدرضا عبداللهی',
+        status: 'پرداخت شده',
+        paymentDate: '1403/5/9',
+        paymentAmount: 250000,
+    },
+    {
+        id: 2,
+        buyerId: 625,
+        buyerName: 'محمدرضا محمدی',
+        status: 'پرداخت شده',
+        paymentDate: '1403/5/9',
+        paymentAmount: 4260000,
+    },
+    {
+        id: 3,
+        buyerId: 897,
+        buyerName: 'امید موسوی',
+        status: 'در انتظار پرداخت',
+        paymentDate: '-',
+        paymentAmount: 0,
+    },
+    {
+        id: 4,
+        buyerId: 625,
+        buyerName: 'کاظم بیگی',
+        status: 'پرداخت شده',
+        paymentDate: '1403/5/9',
+        paymentAmount: 5140000,
+    },
+    {
+        id: 5,
+        buyerId: 897,
+        buyerName: 'زهرا کمالیان',
+        status: 'در انتظار پرداخت',
+        paymentDate: '-',
+        paymentAmount: 0,
+    },
+];
+export const dataInfo = [
+    { field: 'id' , title: '#' },
+    { field: 'buyerId' , title: 'شناسه خریدار' },
+    { field: 'buyerName' , title: 'نام خریدار' },
+    { field: 'status' , title: 'وضعیت' },
+    { field: 'paymentDate' , title: 'تاریخ پرداخت' },
+    { field: 'paymentAmount' , title: 'مبلغ پرداختی' },
+];

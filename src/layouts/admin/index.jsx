@@ -10,6 +10,7 @@ import Guaranties from "../../pages/guaranties/Guaranties";
 import Brands from "../../pages/brands/Brands";
 import Discounts from "../../pages/discounts/Discounts";
 import Carts from "../../pages/carts/Carts";
+import Orders from "../../pages/orders/Orders";
 
 const IndexAdmin = () => {
     return ( 
@@ -26,6 +27,7 @@ const IndexAdmin = () => {
                     <Route path="/brands" element={<Brands/>}/>
                     <Route path="/discounts" element={<Discounts/>}/>
                     <Route path="/carts" element={<Carts/>}/>
+                    <Route path="/orders" element={<Orders/>}/>
                 </Routes>
             </section>
         </>
