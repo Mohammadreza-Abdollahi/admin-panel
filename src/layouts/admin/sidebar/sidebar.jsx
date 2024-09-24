@@ -35,7 +35,7 @@ const Aside = () => {
                 <section className='my-2'>
                     <SidebarGroupItem title='ارتباطات'/>
                     <SidebarItem itemPath={'/questions'} icon='fa-solid fa-circle-info' title='راهنما'/>
-                    <SidebarItem itemPath={'/test12'} icon='fa-solid fa-comment' title='کامنت ها'/>
+                    <SidebarItem itemPath={'/comments'} icon='fa-solid fa-comment' title='کامنت ها'/>
                 </section>
             </section>
         </>

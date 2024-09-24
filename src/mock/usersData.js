@@ -8,7 +8,7 @@ export const data = [
         signUpDate: '1399/4/23',
     },
     {
-        id: 1,
+        id: 2,
         fullName: 'اکبر کامروا',
         phone: "09138923654",
         email: 'akbar1234@gmail.com',
@@ -16,7 +16,7 @@ export const data = [
         signUpDate: '1400/7/21',
     },
     {
-        id: 1,
+        id: 3,
         fullName: 'رضا کبیری',
         phone: "09961236585",
         email: 'reza1384@gmail.com',

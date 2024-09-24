@@ -7,6 +7,7 @@ import brandsDialogReducer from "./brands/brandsDialog";
 import discountsDialogReducer from "./discounts/discountsDialog";
 import cartsDialogReducer from "./carts/cartsDialog";
 import questionsDialogReducer from "./questions/questionsDialog";
+import commentsDialogReducer from "./comments/commentsDialog";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     discountsDialog: discountsDialogReducer,
     cartsDialog: cartsDialogReducer,
     questionsDialog: questionsDialogReducer,
+    commentsDialog: commentsDialogReducer,
   },
 });
 
