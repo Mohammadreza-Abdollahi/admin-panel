@@ -39,7 +39,7 @@ const IndexAdmin = () => {
                     <Route path="/roles" element={<Roles/>}/>
                     <Route path="/permissions" element={<Permissions/>}/>
                     <Route path="/questions" element={<Questions/>}/>
-                    <Route path="/comments" element={<Comments/>}/>
+                    <Route path="/  " element={<Comments/>}/>
                 </Routes>
             </section>
         </>
