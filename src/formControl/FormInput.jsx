@@ -7,11 +7,9 @@ const FormInput = (props) => {
     const [focus , setFocus] = useState(false);
     const handleFocus = ()=>{
         setFocus(true)
-        console.log(focus);
     };
     const handleBlur = ()=>{
         setFocus(false)
-        console.log(focus);
     };
     return ( 
         <>
@@ -21,21 +19,21 @@ const FormInput = (props) => {
                     <FastField name={name}>
                         {props=><input {...props.field} type={type} onFocus={handleFocus} onBlur={handleBlur} id={name} placeholder={formik.errors[name] ? formik.errors[name] : placeholder} className="appearance-none w-full py-2 px-2 text-xl focus:outline-none"/>}
                     </FastField>
-                    {/* {
+                    {
                         formik.errors[name] ? (
                         <Tooltip className="text-lg" placement="left" arrow TransitionComponent={Zoom} title={
                             <>
                                 <span className="text-base">{formik.errors[name]}</span>
                             </>
                         }>
-                            <div className="-translate-y-4 -translate-x-1/2 top-1/2 left-6 absolute w-7 h-7 text-center">
-                                <i className="fa-solid fa-circle-exclamation text-red-500 align-top text-2xl"></i>
+                            <div className="-translate-y-4 -translate-x-1/2 top-5 left-6 absolute w-7 h-7 text-center">
+                                <i className="fa-solid fa-circle-exclamation text-red-500 align-top text-3xl"></i>
                             </div>
                         </Tooltip>
                         ) : (
                             null
                         )
-                    } */}
+                    }
                 </div>
             </div>
         </>
