@@ -3,6 +3,7 @@ import LoginImg from '../../assets/img/login.jpg'
 import FormControler from '../../formControl/FormControler';
 import * as Yup from 'yup'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
     phone: '',
@@ -16,13 +17,16 @@ const validationSchema = Yup.object({
                  .required('رمز عبور نمیتواند خالی باشد!'),
     remember: Yup.boolean()
 });
-const handleSubmit = (values)=>{
+const handleSubmit = (values , navigate)=>{
     console.log({...values, remember: values.remember ? 1 : 0})
     axios.post('https://ecomadminapi.azhadev.ir/api/auth/login' , {
         ...values,
         remember: values.remember ? 1 : 0
     }).then(res=>{
-        console.log(res);
+        if(res.status === 200){
+            localStorage.setItem('loginToken' , JSON.stringify(res.data));
+            navigate('/');
+        }
     })
 };
 const formOption = [
@@ -34,6 +38,7 @@ const formOption = [
 ];
 
 const Login = () => {
+    const navigate = useNavigate();
     return ( 
         <>
             <section className="w-full hfill py-32 bg-gradient-to-br from-gradient-1 to-gradient-2">
@@ -41,7 +46,7 @@ const Login = () => {
                     <section className='px-10 flex justify-around items-start'>
                         <Formik
                         initialValues={initialValues}
-                        onSubmit={handleSubmit}
+                        onSubmit={(values)=>handleSubmit(values , navigate)}
                         validationSchema={validationSchema} >
                             {
                                 Formik=>{

@@ -1,28 +1,23 @@
-import Aside from "./sidebar/Sidebar";
-import Header from "./header/Header";
-import '../../assets/css/content.css'
-import Dashboard from "../../pages/dashboard/Dashboard";
-import Category from "../../pages/category/Category";
-import Product from "../../pages/product/Product";
 import { Route, Routes } from "react-router-dom";
-import Colors from "../../pages/colors/Colors";
-import Guaranties from "../../pages/guaranties/Guaranties";
-import Brands from "../../pages/brands/Brands";
-import Discounts from "../../pages/discounts/Discounts";
-import Carts from "../../pages/carts/Carts";
-import Orders from "../../pages/orders/Orders";
-import Deliveries from "../../pages/deliveries/Deliveries";
-import Users from "../../pages/users/Users";
-import Roles from "../../pages/roles/Roles";
-import Permissions from "../../pages/permissions/Permissions";
-import Questions from "../../pages/questions/Questions";
-import Comments from "../../pages/comments/Comments";
+import Dashboard from "./dashboard/Dashboard";
+import Category from "./category/Category";
+import Product from "./product/Product";
+import Colors from "./colors/Colors";
+import Guaranties from "./guaranties/Guaranties";
+import Brands from "./brands/Brands";
+import Discounts from "./discounts/Discounts";
+import Carts from "./carts/Carts";
+import Orders from "./orders/Orders";
+import Deliveries from "./deliveries/Deliveries";
+import Users from "./users/Users";
+import Roles from "./roles/Roles";
+import Permissions from "./permissions/Permissions";
+import Questions from "./questions/Questions";
+import Comments from "./comments/Comments";
 
-const IndexAdmin = () => {
+const Content = () => {
     return ( 
         <>
-            <Header/>
-            <Aside/>
             <section className="my-bg pt-20 mr-24 pr-3 pl-3">
                 <Routes>
                     <Route path="/" element={<Dashboard/>}/>
@@ -39,11 +34,11 @@ const IndexAdmin = () => {
                     <Route path="/roles" element={<Roles/>}/>
                     <Route path="/permissions" element={<Permissions/>}/>
                     <Route path="/questions" element={<Questions/>}/>
-                    <Route path="/  " element={<Comments/>}/>
+                    <Route path="/comments" element={<Comments/>}/>
                 </Routes>
             </section>
         </>
      );
 }
  
-export default IndexAdmin;
+export default Content;
