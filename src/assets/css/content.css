@@ -4,3 +4,19 @@
     background-size: contain;
     min-height: 100vh;
 }
+@font-face {
+    font-family: font;
+    src: url('../font/IRANSans.ttf');
+}
+*{
+    font-family: font !important;
+}
+.active{
+    background-color: #ffcbd8 !important;
+}
+.active i{
+    color: #c50b51;
+}
+.hfill{
+    height: 100vh;
+}
