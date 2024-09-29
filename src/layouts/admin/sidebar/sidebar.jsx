@@ -2,6 +2,7 @@ import Profile from '../../../assets/img/profile.png'
 import SidebarAvatar from './SidebarAvatar';
 import SidebarGroupItem from './SidebarGroupItem';
 import SidebarItem from './SidebarItem';
+import { faGaugeHigh , faBoxesStacked , faBoxOpen , faCopyright , faCertificate , faPalette , faPercent , faCartPlus , faDolly , faTruck , faUsers , faUserPen , faShieldHalved , faCircleInfo , faComment } from '@fortawesome/free-solid-svg-icons';
 
 const Aside = () => {
     return ( 
@@ -9,33 +10,33 @@ const Aside = () => {
             <section className="overflow-hidden group text-nowrap max-w-24 min-w-24 hover:min-w-80 transition-all hover:transition-all ease-in-out duration-300 hover:duration-300 hover:z-50 fixed h-full inline-block pt-3 px-5 bg-gray-500 shadow-2xl border-l-2 border-palete-2-400-1">
                 <SidebarAvatar profile={Profile}/>
                 <section>
-                <SidebarItem itemPath={'/'} icon='fa-solid fa-gauge-high' title='داشبورد'/>
+                <SidebarItem itemPath={'/'} icon={faGaugeHigh} title='داشبورد'/>
                 </section>
                 <section className='my-2'>
                     <SidebarGroupItem title='فروشگاه'/>
-                    <SidebarItem itemPath={'/category'} icon='fa-solid fa-boxes-stacked' title='مدیریت گروه محصول'/>
-                    <SidebarItem itemPath={'/product'} icon='fa-solid fa-box-open' title='مدیریت محصول'/>
-                    <SidebarItem itemPath={'/brands'} icon='fa-solid fa-copyright' title='مدیریت برند ها'/>
-                    <SidebarItem itemPath={'/guaranties'} icon='fa-solid fa-certificate' title='مدیریت گارانتی ها'/>
-                    <SidebarItem itemPath={'/colors'} icon='fa-solid fa-palette' title='مدیریت رنگ ها'/>
-                    <SidebarItem itemPath={'/discounts'} icon='fa-solid fa-percent' title='مدیریت تخفیف ها'/>
+                    <SidebarItem itemPath={'/category'} icon={faBoxesStacked} title='مدیریت گروه محصول'/>
+                    <SidebarItem itemPath={'/product'} icon={faBoxOpen} title='مدیریت محصول'/>
+                    <SidebarItem itemPath={'/brands'} icon={faCopyright} title='مدیریت برند ها'/>
+                    <SidebarItem itemPath={'/guaranties'} icon={faCertificate} title='مدیریت گارانتی ها'/>
+                    <SidebarItem itemPath={'/colors'} icon={faPalette} title='مدیریت رنگ ها'/>
+                    <SidebarItem itemPath={'/discounts'} icon={faPercent} title='مدیریت تخفیف ها'/>
                 </section>
                 <section className='my-2'>
                     <SidebarGroupItem title='سفارشات و سید'/>
-                    <SidebarItem itemPath={'/carts'} icon='fa-solid fa-cart-plus' title='مدیریت سبد ها'/>
-                    <SidebarItem itemPath={'/orders'} icon='fa-solid fa-dolly' title='مدیریت سفارشات'/>
-                    <SidebarItem itemPath={'/deliveries'} icon='fa-solid fa-truck' title='مدیریت نحوه  ارسال'/>
+                    <SidebarItem itemPath={'/carts'} icon={faCartPlus} title='مدیریت سبد ها'/>
+                    <SidebarItem itemPath={'/orders'} icon={faDolly} title='مدیریت سفارشات'/>
+                    <SidebarItem itemPath={'/deliveries'} icon={faTruck} title='مدیریت نحوه  ارسال'/>
                 </section>
                 <section className='my-2'>
                     <SidebarGroupItem title='کاربران و همکاران'/>
-                    <SidebarItem itemPath={'/users'} icon='fa-solid fa-users' title='مشاهده کاربران'/>
-                    <SidebarItem itemPath={'/roles'} icon='fa-solid fa-user-pen' title='نقش ها'/>
-                    <SidebarItem itemPath={'/permissions'} icon='fa-solid fa-shield-halved' title='مجوز ها'/>
+                    <SidebarItem itemPath={'/users'} icon={faUsers} title='مشاهده کاربران'/>
+                    <SidebarItem itemPath={'/roles'} icon={faUserPen} title='نقش ها'/>
+                    <SidebarItem itemPath={'/permissions'} icon={faShieldHalved} title='مجوز ها'/>
                 </section>
                 <section className='my-2'>
                     <SidebarGroupItem title='ارتباطات'/>
-                    <SidebarItem itemPath={'/questions'} icon='fa-solid fa-circle-info' title='راهنما'/>
-                    <SidebarItem itemPath={'/comments'} icon='fa-solid fa-comment' title='کامنت ها'/>
+                    <SidebarItem itemPath={'/questions'} icon={faCircleInfo} title='راهنما'/>
+                    <SidebarItem itemPath={'/comments'} icon={faComment} title='کامنت ها'/>
                 </section>
             </section>
         </>

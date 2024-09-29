@@ -5,7 +5,6 @@ const AuthLayout = () => {
     return ( 
         <>
             <Routes>
-                <Route path="/auth" element={<Login/>}/>
                 <Route path="/auth/login" element={<Login/>}/>
             </Routes>
         </>

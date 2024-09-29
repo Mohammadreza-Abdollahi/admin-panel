@@ -5,6 +5,8 @@ import BrandsDialog from "./BrandsDialog";
 import { data, dataInfo } from "../../mock/brandsData";
 import { brandsOpenClose } from "../../redux/brands/brandsDialog";
 import BrandsTable from "./BrandsTable";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const actionsColumn = {
   title: 'عملیات',
@@ -14,7 +16,7 @@ const sendElements = (id)=>{
   // console.log(id);
   return(
     <>
-      <Tooltip arrow placement="top" title={<><span className="text-base">حذف برند</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">حذف برند</span></>}><FontAwesomeIcon icon={faTrash} className="text-xl text-red-500 hover:bg-red-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
     </>
   )
 }

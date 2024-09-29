@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const DashboardTopCart = ({count = 0 , title , subTitle , icon , firstColor , secondColor}) => {
     return ( 
         <>
@@ -9,7 +11,7 @@ const DashboardTopCart = ({count = 0 , title , subTitle , icon , firstColor , se
                 </div>
                 <div>
                     <div className="bg-palete-3-100-1 w-24 h-24 rounded-full flex justify-center items-center">
-                        <i className={`${icon} text-6xl text-palete-3-800 align-middle`}></i>
+                    <FontAwesomeIcon icon={icon} className="text-6xl text-palete-3-800 align-middle" />
                     </div>
                 </div>
             </section>

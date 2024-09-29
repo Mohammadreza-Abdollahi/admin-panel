@@ -6,6 +6,8 @@ import PaginationTable from "../../components/PaginationTable";
 import { data, dataInfo } from "../../mock/productData";
 import { Tooltip } from "@mui/material";
 import AddProductsAttributes from "./AddProductsAttributes";
+import { faImages , faEdit , faPlus , faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -17,10 +19,10 @@ const Product = () => {
     // console.log(id);
     return(
       <>
-      <Tooltip arrow placement="top" title={<><span className="text-base">مدیریت گالری</span></>}><i className="fa-regular fa-images text-xl text-blue-500 hover:bg-blue-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-      <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش</span></>}><i className="fa-solid fa-edit text-xl text-yellow-500 hover:bg-yellow-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-      <Tooltip arrow placement="top" title={<><span className="text-base">ثبت ویژگی</span></>}><i onClick={()=>dispatch(addProductsAttributesOpenClose())} className="fa-solid fa-plus text-xl text-green-600 hover:bg-green-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-      <Tooltip arrow placement="top" title={<><span className="text-base">حذف محصول</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">مدیریت گالری</span></>}><FontAwesomeIcon icon={faImages} className="text-xl text-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش</span></>}><FontAwesomeIcon icon={faEdit} className="text-xl text-yellow-500 hover:bg-yellow-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">ثبت ویژگی</span></>}><FontAwesomeIcon icon={faPlus} onClick={()=>dispatch(addProductsAttributesOpenClose())} className="text-xl text-green-500 hover:bg-green-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">حذف محصول</span></>}><FontAwesomeIcon icon={faTrash} className="text-xl text-red-500 hover:bg-red-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
     </>
     )
   }

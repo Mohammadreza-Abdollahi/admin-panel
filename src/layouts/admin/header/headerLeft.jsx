@@ -1,13 +1,14 @@
 import { Tooltip } from "@mui/material";
 import HeaderLeftBtn from "./HeaderLeftBtn";
+import { faMagnifyingGlass , faBell , faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
 const HeaderLeft = ({logo}) => {
     return ( 
         <>
             <section>
-                <HeaderLeftBtn tooltipTitle='جستجو' icon='fa-solid fa-magnifying-glass'/>
-                <HeaderLeftBtn tooltipTitle='اعلان ها' icon='fa-solid fa-bell'/>
-                <HeaderLeftBtn tooltipTitle='تنظیمات' icon='fa-solid fa-ellipsis-vertical'/>
+                <HeaderLeftBtn tooltipTitle='جستجو' icon={faMagnifyingGlass}/>
+                <HeaderLeftBtn tooltipTitle='اعلان ها' icon={faBell}/>
+                <HeaderLeftBtn tooltipTitle='تنظیمات' icon={faEllipsisVertical}/>
             </section>
         </>
      );

@@ -6,6 +6,8 @@ import { data, dataInfo } from "../../mock/categoryData";
 import { Tooltip } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import AddCategoryAttributes from "./AddCategoryAttributes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShareNodes , faEdit , faPlus , faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Category = () => {
   const dispatch = useDispatch();
@@ -16,10 +18,10 @@ const Category = () => {
   const senElements = (id)=>{
     return(
       <>
-        <Tooltip arrow placement="top" title={<><span className="text-base">زیرمجموعه</span></>}><i className="fa-solid fa-share-nodes text-xl text-blue-500 hover:bg-blue-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-        <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش دسته</span></>}><i onClick={()=>dispatch(openClose())} className="fa-solid fa-edit text-xl text-yellow-500 hover:bg-yellow-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-        <Tooltip arrow placement="top" title={<><span className="text-base">افزودن ویژگی</span></>}><i onClick={()=>dispatch(addAttributeOpenClose())} className="fa-solid fa-plus text-xl text-green-600 hover:bg-green-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-        <Tooltip arrow placement="top" title={<><span className="text-base">حذف دسته</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+        <Tooltip arrow placement="top" title={<><span className="text-base">زیرمجموعه</span></>}><FontAwesomeIcon icon={faShareNodes} className="text-xl text-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+        <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش دسته</span></>}><FontAwesomeIcon icon={faEdit} onClick={()=>dispatch(openClose())} className="text-xl text-yellow-500 hover:bg-yellow-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+        <Tooltip arrow placement="top" title={<><span className="text-base">افزودن ویژگی</span></>}><FontAwesomeIcon icon={faPlus} onClick={()=>dispatch(addAttributeOpenClose())} className="text-xl text-green-500 hover:bg-green-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+        <Tooltip arrow placement="top" title={<><span className="text-base">حذف دسته</span></>}><FontAwesomeIcon icon={faTrash} className="text-xl text-red-500 hover:bg-red-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
       </>
     )
   }

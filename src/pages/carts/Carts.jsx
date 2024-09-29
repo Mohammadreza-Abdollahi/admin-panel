@@ -4,6 +4,8 @@ import { Tooltip } from "@mui/material";
 import { data, dataInfo } from "../../mock/cartsData";
 import CartsDialog from "./CartsDialog";
 import { cartsOpenClose } from "../../redux/carts/cartsDialog";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const actionsColumn = {
   title: 'عملیات',
@@ -13,8 +15,8 @@ const sendElements = (id)=>{
   // console.log(id);
   return(
     <>
-      <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش</span></>}><i className="fa-solid fa-edit text-xl text-yellow-500 hover:bg-yellow-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
-      <Tooltip arrow placement="top" title={<><span className="text-base">حذف سبد</span></>}><i className="fa-solid fa-trash text-xl text-red-500 hover:bg-red-100 px-2 rounded-md cursor-pointer"></i></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش</span></>}><FontAwesomeIcon icon={faEdit} className="text-xl text-yellow-500 hover:bg-yellow-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+      <Tooltip arrow placement="top" title={<><span className="text-base">حذف سبد</span></>}><FontAwesomeIcon icon={faTrash} className="text-xl text-red-500 hover:bg-red-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
     </>
   )
 }
