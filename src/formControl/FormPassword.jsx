@@ -8,11 +8,9 @@ const FormPassword = (props) => {
     const [focus , setFocus] = useState(false);
     const handleFocus = ()=>{
         setFocus(true)
-        console.log(focus);
     };
     const handleBlur = ()=>{
         setFocus(false)
-        console.log(focus);
     };
     const inpRef = useRef();
 

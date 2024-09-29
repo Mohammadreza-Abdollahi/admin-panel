@@ -4,6 +4,7 @@ import FormControler from '../../formControl/FormControler';
 import * as Yup from 'yup'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Alert } from '../../utils/alert';
 
 const initialValues = {
     phone: '',
@@ -18,14 +19,16 @@ const validationSchema = Yup.object({
     remember: Yup.boolean()
 });
 const handleSubmit = (values , navigate)=>{
-    console.log({...values, remember: values.remember ? 1 : 0})
     axios.post('https://ecomadminapi.azhadev.ir/api/auth/login' , {
         ...values,
         remember: values.remember ? 1 : 0
     }).then(res=>{
         if(res.status === 200){
+            Alert('success','ورود شما موفقیت امیز بود',4000);
             localStorage.setItem('loginToken' , JSON.stringify(res.data));
             navigate('/');
+        }else{
+            Alert('error','خطایی پیش امده!');
         }
     })
 };
