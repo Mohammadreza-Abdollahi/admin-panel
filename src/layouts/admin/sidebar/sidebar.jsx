@@ -7,7 +7,7 @@ import { faGaugeHigh , faBoxesStacked , faBoxOpen , faCopyright , faCertificate 
 const Aside = () => {
     return ( 
         <>
-            <section className="overflow-hidden group text-nowrap max-w-24 min-w-24 hover:min-w-80 transition-all hover:transition-all ease-in-out duration-300 hover:duration-300 hover:z-50 fixed h-full inline-block pt-3 px-5 bg-gray-500 shadow-2xl border-l-2 border-palete-2-400-1">
+            <section className="overflow-hidden group text-nowrap max-w-24 min-w-24 z-50 hover:min-w-80 transition-all hover:transition-all ease-in-out duration-300 hover:duration-300 hover:z-50 fixed h-full inline-block pt-3 px-5 bg-gray-500 shadow-2xl border-l-2 border-palete-2-400-1">
                 <SidebarAvatar profile={Profile}/>
                 <section>
                 <SidebarItem itemPath={'/'} icon={faGaugeHigh} title='داشبورد'/>
