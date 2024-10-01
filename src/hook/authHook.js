@@ -16,13 +16,13 @@ export const useIsLogin = ()=>{
                 setIsLogin(res.status === 200 ? true : false);
                 setLoading(false)
             }).catch(e=>{
-                localStorage.removeItem('loginToken')
+                localStorage.removeItem('loginToken');
                 setIsLogin(false);
-                setLoading(false)
+                setLoading(false);
             })
         }else{
-            setIsLogin(false)
-            setLoading(false)
+            setIsLogin(false);
+            setLoading(false);
         }
     },[])
     return [loading , isLogin]
