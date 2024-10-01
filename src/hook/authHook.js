@@ -10,7 +10,8 @@ export const useIsLogin = ()=>{
             axios.get('https://ecomadminapi.azhadev.ir/api/auth/user', {
                 headers: {
                     'Authorization' : `Bearer ${loginToken.token}`
-                }
+                },
+                timeout: 30000
             }).then(res=>{
                 setIsLogin(res.status === 200 ? true : false);
                 setLoading(false)

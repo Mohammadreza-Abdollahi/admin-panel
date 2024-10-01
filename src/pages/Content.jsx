@@ -14,6 +14,7 @@ import Roles from "./roles/Roles";
 import Permissions from "./permissions/Permissions";
 import Questions from "./questions/Questions";
 import Comments from "./comments/Comments";
+import Logout from "../layouts/authLayout/Logout";
 
 const Content = () => {
     return ( 
@@ -35,6 +36,7 @@ const Content = () => {
                     <Route path="/permissions" element={<Permissions/>}/>
                     <Route path="/questions" element={<Questions/>}/>
                     <Route path="/comments" element={<Comments/>}/>
+                    <Route path="/logout" element={<Logout/>}/>
                 </Routes>
             </section>
         </>

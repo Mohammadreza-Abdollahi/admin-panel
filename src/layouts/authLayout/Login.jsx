@@ -18,7 +18,8 @@ const validationSchema = Yup.object({
                  .required('رمز عبور نمیتواند خالی باشد!'),
     remember: Yup.boolean()
 });
-const handleSubmit = (values , navigate)=>{
+const handleSubmit = (values , navigate , submitMethods)=>{
+    console.log(submitMethods);    
     axios.post('https://ecomadminapi.azhadev.ir/api/auth/login' , {
         ...values,
         remember: values.remember ? 1 : 0
@@ -27,9 +28,12 @@ const handleSubmit = (values , navigate)=>{
             Alert('success','ورود شما موفقیت امیز بود',4000);
             localStorage.setItem('loginToken' , JSON.stringify(res.data));
             navigate('/');
-        }else{
-            Alert('error','خطایی پیش امده!');
         }
+        if(res.status === 203){
+            Alert('error', res.data.message ,4000);
+            submitMethods.setSubmitting(false   )
+        }
+        console.log(res)
     })
 };
 const formOption = [
@@ -49,7 +53,7 @@ const Login = () => {
                     <section className='px-10 flex justify-around items-start'>
                         <Formik
                         initialValues={initialValues}
-                        onSubmit={(values)=>handleSubmit(values , navigate)}
+                        onSubmit={(values , submitMethods)=>handleSubmit(values , navigate , submitMethods)}
                         validationSchema={validationSchema} >
                             {
                                 Formik=>{

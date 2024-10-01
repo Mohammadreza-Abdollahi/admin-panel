@@ -1,6 +1,8 @@
 import { Tooltip, Zoom } from "@mui/material";
 import { FastField } from "formik";
 import { useRef, useState } from "react";
+import { faCircleExclamation , faEye , faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const FormPassword = (props) => {
     const { label , name , placeholder , formik } = props
@@ -28,7 +30,7 @@ const FormPassword = (props) => {
             <div className={`flex ring-2 rounded-sm text-lg text-slate-800 overflow-hidden transition-all duration-150 ${focus ? 'ring-palete-4-500-1' : 'ring-palete-2-400-1'}`}>
                 <label  className={`appearance-none w-1/4 py-2 px-4 text-white transition-all duration-150 text-center ${focus ? 'bg-palete-4-500-1' : 'bg-palete-2-400-1'}`} htmlFor={name}>{label}</label>
                 <div className="relative w-3/4">
-                    <span onClick={handleShowPass} className={`absolute -translate-y-4 -translate-x-1/2 top-1/2 right-1 cursor-pointer text-center`}><i className={`${showPass ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'} text-2xl text-label-border`}></i></span>
+                    <span onClick={handleShowPass} className={`absolute align-middle text-center cursor-pointer -translate-y-1/2 top-6 right-3 text-palete-2-400-1 hover:text-palete-4-500-1 transition-all duration-150`}><FontAwesomeIcon icon={showPass ? faEyeSlash : faEye} className="text-2xl"/></span>
                     <FastField name={name}>
                         {props=><input {...props.field} ref={inpRef} onFocus={handleFocus} onBlur={handleBlur} type={showPass ? 'text' : 'password'} id={name} placeholder={placeholder} className="appearance-none w-full py-2 pr-14 px-2 text-xl focus:outline-none"/>}
                     </FastField>
@@ -39,8 +41,8 @@ const FormPassword = (props) => {
                                     <span className="text-base">{formik.errors[name]}</span>
                                 </>
                             }>
-                                <div className="-translate-y-4 -translate-x-1/2 top-5 left-6 absolute w-7 h-7 text-center">
-                                    <i className="fa-solid fa-circle-exclamation text-red-500 align-top text-3xl"></i>
+                                <div className="-translate-y-4 -translate-x-1/2 top-1/2 left-6 absolute w-7 h-7 text-center">
+                                    <FontAwesomeIcon icon={faCircleExclamation} className="text-red-500 align-top text-3xl"/>
                                 </div>
                             </Tooltip>
                         ) : (

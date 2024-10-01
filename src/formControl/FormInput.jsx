@@ -1,3 +1,5 @@
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip, Zoom } from "@mui/material";
 import { FastField } from "formik";
 import { useState } from "react";
@@ -26,8 +28,8 @@ const FormInput = (props) => {
                                 <span className="text-base">{formik.errors[name]}</span>
                             </>
                         }>
-                            <div className="-translate-y-4 -translate-x-1/2 top-5 left-6 absolute w-7 h-7 text-center">
-                                <i className="fa-solid fa-circle-exclamation text-red-500 align-top text-3xl"></i>
+                            <div className="-translate-y-4 -translate-x-1/2 top-1/2 left-6 absolute w-7 h-7 text-center">
+                                <FontAwesomeIcon icon={faCircleExclamation} className="text-red-500 align-top text-3xl"/>
                             </div>
                         </Tooltip>
                         ) : (
