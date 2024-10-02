@@ -1,12 +1,10 @@
-import { Divider, ListItemIcon, ListItemText, Menu, MenuItem, Tooltip } from "@mui/material";
-import HeaderLeftBtn from "./HeaderLeftBtn";
-import { faMagnifyingGlass , faBell , faEllipsisVertical, faAppleAlt, faGaugeHigh, faPaperPlane, faMessage, faEnvelope, faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { Divider, Menu, MenuItem, Tooltip } from "@mui/material";
+import { faMagnifyingGlass , faBell , faEllipsisVertical, faGaugeHigh, faPaperPlane, faEnvelope, faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const HeaderLeft = ({logo}) => {
-    // const [open , setOpen] = useState(true);
+const HeaderLeft = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {

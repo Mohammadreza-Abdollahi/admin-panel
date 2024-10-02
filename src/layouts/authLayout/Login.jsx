@@ -2,9 +2,9 @@ import { Formik } from 'formik';
 import LoginImg from '../../assets/img/login.jpg'
 import FormControler from '../../formControl/FormControler';
 import * as Yup from 'yup'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from '../../utils/alert';
+import { loginService } from '../../services/authService';
 
 const initialValues = {
     phone: '',
@@ -18,23 +18,20 @@ const validationSchema = Yup.object({
                  .required('رمز عبور نمیتواند خالی باشد!'),
     remember: Yup.boolean()
 });
-const handleSubmit = (values , navigate , submitMethods)=>{
-    console.log(submitMethods);    
-    axios.post('https://ecomadminapi.azhadev.ir/api/auth/login' , {
-        ...values,
-        remember: values.remember ? 1 : 0
-    }).then(res=>{
+const handleSubmit = async (values , navigate , submitMethods)=>{
+    try{
+        const res = await loginService(values);
         if(res.status === 200){
             Alert('success','ورود شما موفقیت امیز بود',4000);
             localStorage.setItem('loginToken' , JSON.stringify(res.data));
             navigate('/');
+        }else{
+            Alert('error', 'مشکلی پیش امده است!' ,4000);
         }
-        if(res.status === 203){
-            Alert('error', res.data.message ,4000);
-            submitMethods.setSubmitting(false   )
-        }
-        console.log(res)
-    })
+    } catch(error){
+            Alert('error', error ,4000);
+            submitMethods.setSubmitting(false);
+    }
 };
 const formOption = [
     {
