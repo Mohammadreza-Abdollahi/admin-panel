@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardChart from "./DashboardChart";
 import DashboardSubCart from "./DashboardSubCarts";
 import DashboardTopCart from "./DashboardTopCarts";
@@ -22,7 +22,6 @@ const sendElements = (id)=>{
 
 const Dashboard = () => {
     const [chartData , setChartData] = useState({
-        
         labels: labels,
         datasets: [
         {
@@ -33,6 +32,9 @@ const Dashboard = () => {
         },
         ],  
     })
+    useEffect(()=>{
+        document.title = 'پنل مدیریت | داشبورد'
+    },[])
     return (
         <>
             <div className="flex justify-around gap-3 mb-3 pt-2">

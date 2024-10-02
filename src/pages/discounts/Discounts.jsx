@@ -6,6 +6,7 @@ import { data, dataInfo } from "../../mock/discountsData";
 import { discountsOpenClose } from "../../redux/discounts/discountsDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 
 const actionsColumn = {
   title: 'عملیات',
@@ -21,6 +22,9 @@ const sendElements = (id)=>{
 }
 
 const Discounts = () => {  
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | تخفیف ها'
+  },[])
   return (
     <>
       <ModalContainer>

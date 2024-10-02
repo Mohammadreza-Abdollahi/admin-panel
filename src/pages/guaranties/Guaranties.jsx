@@ -6,6 +6,7 @@ import GuarantiesDialog from "./GuarantiesDialog";
 import { guarantiesOpenClose } from "../../redux/guaranties/guarantiesDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 
 const actionsColumn = {
   title: 'عملیات',
@@ -21,6 +22,9 @@ const sendElements = (id)=>{
 }
 
 const Guaranties = () => {  
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | گارانتی ها'
+  },[])
   return (
     <>
       <ModalContainer>

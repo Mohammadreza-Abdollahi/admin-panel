@@ -7,6 +7,7 @@ import { brandsOpenClose } from "../../redux/brands/brandsDialog";
 import BrandsTable from "./BrandsTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 
 const actionsColumn = {
   title: 'عملیات',
@@ -22,6 +23,9 @@ const sendElements = (id)=>{
 }
 
 const Brands = () => {  
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | برند ها'
+  },[])
   return (
     <>
       <ModalContainer>

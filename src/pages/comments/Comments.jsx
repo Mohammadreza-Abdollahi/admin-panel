@@ -6,6 +6,7 @@ import { data, dataInfo } from "../../mock/commentsData";
 import { commentsOpenClose } from "../../redux/comments/commentsDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 
 const actionsColumn = {
   title: 'عملیات',
@@ -22,6 +23,9 @@ const sendElements = (id)=>{
 }
 
 const Comments = () => {  
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | نظرات'
+  },[])
   return (
     <>
       <ModalContainer>

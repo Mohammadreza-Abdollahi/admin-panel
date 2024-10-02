@@ -8,6 +8,7 @@ import { Tooltip } from "@mui/material";
 import AddProductsAttributes from "./AddProductsAttributes";
 import { faImages , faEdit , faPlus , faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect } from "react";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ const Product = () => {
     </>
     )
   }
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | محصولات'
+  },[])
   return (
     <>
       <ModalContainer>

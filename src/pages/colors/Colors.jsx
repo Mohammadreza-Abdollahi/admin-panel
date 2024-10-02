@@ -6,6 +6,7 @@ import { colorsOpenClose } from "../../redux/colors/colorsDialog";
 import ColorsTable from "./ColorsTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 
 const actionsColumn = {
   title: 'عملیات',
@@ -21,6 +22,9 @@ const sendElements = (id)=>{
 }
 
 const Colors = () => {  
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | رنگ ها'
+  },[])
   return (
     <>
       <ModalContainer>

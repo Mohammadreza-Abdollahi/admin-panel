@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AddCategoryAttributes from "./AddCategoryAttributes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareNodes , faEdit , faPlus , faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 
 const Category = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ const Category = () => {
       </>
     )
   }
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | دسته بندی ها'
+},[])
   return (
     <>
       <ModalContainer>  

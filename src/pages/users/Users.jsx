@@ -4,6 +4,7 @@ import { Tooltip } from "@mui/material";
 import { data, dataInfo } from "../../mock/usersData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 const actionsColumn = {
   title: 'عملیات',
   elements: (id)=>sendElements(id)
@@ -19,6 +20,9 @@ const sendElements = (id)=>{
 }
 
 const Users = () => {  
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | کاربران'
+  },[])
   return (
     <>
       <ModalContainer>

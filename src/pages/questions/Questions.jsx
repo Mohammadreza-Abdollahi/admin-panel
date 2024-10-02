@@ -6,6 +6,7 @@ import QuestionsDialog from "./QuestionsDialog";
 import { questionsOpenClose } from "../../redux/questions/questionsDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 const actionsColumn = {
   title: 'عملیات',
   elements: (id)=>sendElements(id)
@@ -21,13 +22,16 @@ const sendElements = (id)=>{
 }
 
 const Questions = () => {  
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | پرسش ها'
+  },[])
   return (
     <>
       <ModalContainer>
         <QuestionsDialog/>
       </ModalContainer>
       <h1 className="text-3xl text-center my-4 text-slate-800">
-        <b>مدیریت مجوز ها</b>
+        <b>مدیریت سوالات</b>
       </h1>
       <section>
         <PaginationTable data={data} dataInfo={dataInfo} actionCol={actionsColumn} rowInPage={10} searchable={true} dialogOpenner={questionsOpenClose} searchParam={'fullName'}/>

@@ -6,6 +6,7 @@ import CartsDialog from "./CartsDialog";
 import { cartsOpenClose } from "../../redux/carts/cartsDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 
 const actionsColumn = {
   title: 'عملیات',
@@ -22,6 +23,9 @@ const sendElements = (id)=>{
 }
 
 const Carts = () => {  
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | سبد ها'
+  },[])
   return (
     <>
       <ModalContainer>

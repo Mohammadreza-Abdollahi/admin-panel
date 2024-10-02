@@ -4,6 +4,7 @@ import { Tooltip } from "@mui/material";
 import { data, dataInfo } from "../../mock/ordersData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 const actionsColumn = {
   title: 'عملیات',
   elements: (id)=>sendElements(id)
@@ -19,6 +20,9 @@ const sendElements = (id)=>{
 }
 
 const Orders = () => {  
+  useEffect(()=>{
+    document.title = 'پنل مدیریت | سفارشات'
+  },[])
   return (
     <>
       <ModalContainer>
