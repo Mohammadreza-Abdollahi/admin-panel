@@ -12,6 +12,7 @@ import { getCategoriesService } from "../../services/categoryServices";
 import { Alert } from "../../utils/alert";
 import ShowInMenu from "./ShowInMenu";
 import TableSkeleton from "../../components/TableSkeleton";
+import CreatedAt from "./CreatedAt";
 
 const Category = () => {
   const [data , setData] = useState([]);
@@ -19,28 +20,23 @@ const Category = () => {
   const dispatch = useDispatch();
   const optionalCols = [
     {
+      title: 'زمان ایجاد',
+      elements: (data)=><CreatedAt data={data}/>
+    },
+    {
       title: 'نمایش در منو',
       elements: (data)=><ShowInMenu data={data}/>
     },
     {
       title: 'عملیات',
-      elements: (data)=>actions(data)
+      elements: (data)=>tableActions(data)
     }
   ]
   const dataInfo = [
     { field: 'id' , title: '#' },
     { field: 'title' , title: 'عنوان' },
-    { field: 'created_at' , title: 'زمان ایجاد'},
   ];
-  const showInMenu = (data)=>{
-    console.log(data);
-    return(
-      <>
-        <span className={`text-lg ${data.show_in_menu ? 'text-green-600' : 'text-red-600'}`}>{data.show_in_menu ? 'بله' : 'خیر'}</span>
-      </>
-    )
-  }
-  const actions = (data)=>{
+  const tableActions = (data)=>{
     return(
       <>
         <Tooltip arrow placement="top" title={<><span className="text-base">زیرمجموعه</span></>}><FontAwesomeIcon icon={faShareNodes} className="text-xl text-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
