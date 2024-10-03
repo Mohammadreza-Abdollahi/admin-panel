@@ -19,7 +19,7 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
     useEffect(()=>{
         setInitData(data.filter(data=> data[searchParam].includes(searchChar)))
         setCurrentPage(1);
-    },[searchChar])
+    },[searchChar , data])
     useEffect(()=>{
         let pCount = Math.ceil(initData.length / numOfPage);
         setPageCount(pCount);
@@ -55,9 +55,11 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
                                 ))
                             }
                             {
-                                actionCol ? (
-                                    <th className="py-3">{actionCol.title}</th>
-                                ) : null
+                                actionCol ? actionCol.map((item , index)=>{
+                                    return(
+                                        <td key={`${item.id}__${index}`}>{item.title}</td>
+                                    )
+                                }) : null
                             }
                         </tr>
                     </thead>
@@ -71,9 +73,11 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
                                         ))
                                     }
                                     {
-                                        actionCol ? (
-                                            <td className={`py-1 ring-1 ring-palete-2-200`}>{actionCol.elements(d.id)}</td>
-                                        ) : null
+                                        actionCol ? actionCol.map((item , index)=>{
+                                            return(
+                                                <td className="py-2.5 ring-1 ring-palete-2-200" key={`${item.id}___${index}`}>{item.elements(d)}</td>
+                                            )
+                                        }) : null
                                     }
                                 </tr>
                             ))
