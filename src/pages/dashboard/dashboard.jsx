@@ -9,10 +9,12 @@ import { Tooltip } from "@mui/material";
 import { faShoppingBasket , faCartFlatbed , faBagShopping , faMoneyBill1Wave , faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const actionColumn = {
-    title: 'عملیات',
-    elements: (id)=>sendElements(id)
-}
+const actionColumn = [
+    {
+        title: 'عملیات',
+        elements: (id)=>sendElements(id)
+    }
+];
 const sendElements = (id)=>{
     // console.log(id);
     return(

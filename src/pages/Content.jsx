@@ -22,7 +22,9 @@ const Content = () => {
             <section className="my-bg pt-20 mr-24 pr-3 pl-3">
                 <Routes>
                     <Route path="/" element={<Dashboard/>}/>
-                    <Route path="/category" element={<Category/>}/>
+                    <Route path="/category" element={<Category/>}>
+                        <Route path=":categoryId"/>
+                    </Route>
                     <Route path="/product" element={<Product/>}/>
                     <Route path="/colors" element={<Colors/>}/>
                     <Route path="/guaranties" element={<Guaranties/>}/>

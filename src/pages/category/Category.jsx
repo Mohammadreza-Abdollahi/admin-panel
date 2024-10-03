@@ -6,17 +6,21 @@ import { Tooltip } from "@mui/material";
 import { useDispatch } from "react-redux";
 import AddCategoryAttributes from "./AddCategoryAttributes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShareNodes , faEdit , faPlus , faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faShareNodes , faEdit , faPlus , faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { getCategoriesService } from "../../services/categoryServices";
 import { Alert } from "../../utils/alert";
 import ShowInMenu from "./ShowInMenu";
 import TableSkeleton from "../../components/TableSkeleton";
 import CreatedAt from "./CreatedAt";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const Category = () => {
   const [data , setData] = useState([]);
   const [loading , setLoading] = useState(true);
+  const navigate = useNavigate();
+  const params = useParams();
+  const location = useLocation();
   const dispatch = useDispatch();
   const optionalCols = [
     {
@@ -35,20 +39,26 @@ const Category = () => {
   const dataInfo = [
     { field: 'id' , title: '#' },
     { field: 'title' , title: 'عنوان' },
+    { field: 'parent_id' , title: 'شناسه والد' },
   ];
   const tableActions = (data)=>{
     return(
       <>
-        <Tooltip arrow placement="top" title={<><span className="text-base">زیرمجموعه</span></>}><FontAwesomeIcon icon={faShareNodes} className="text-xl text-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+        {
+          !params.categoryId ? (
+            <Tooltip arrow placement="top" title={<><span className="text-base">زیرمجموعه</span></>}><FontAwesomeIcon icon={faShareNodes} onClick={()=>navigate(`/category/${data.id}` , {state: data})} className="text-xl text-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+          ) : null
+        }
         <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش دسته</span></>}><FontAwesomeIcon icon={faEdit} onClick={()=>dispatch(openClose())} className="text-xl text-yellow-500 hover:bg-yellow-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
         <Tooltip arrow placement="top" title={<><span className="text-base">افزودن ویژگی</span></>}><FontAwesomeIcon icon={faPlus} onClick={()=>dispatch(addAttributeOpenClose())} className="text-xl text-green-500 hover:bg-green-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
         <Tooltip arrow placement="top" title={<><span className="text-base">حذف دسته</span></>}><FontAwesomeIcon icon={faTrash} className="text-xl text-red-500 hover:bg-red-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
       </>
     )
   }
+  console.log(location);
   const handleGetCategories = async ()=>{
     try{
-      const res = await getCategoriesService();
+      const res = await getCategoriesService(params.categoryId);
       if(res.status === 200){
         setData(res.data.data);
         setLoading(false)
@@ -62,7 +72,7 @@ const Category = () => {
   useEffect(()=>{
     document.title = 'پنل مدیریت | دسته بندی ها';
     handleGetCategories();
-},[])
+},[params])
   return (
     <>
       <ModalContainer>  
@@ -72,6 +82,17 @@ const Category = () => {
       <h1 className="text-3xl text-center my-4 text-slate-800">
         <b>مدیریت دسته بندی محصولات</b>
       </h1>
+      {
+        location.state ? (
+          <h2 className="text-xl text-center my-4 text-slate-800">
+            <span className="bg-palete-2-100 pl-8 py-1 rounded-full">
+              <FontAwesomeIcon icon={faXmark} className="text-red-500 pl-3 pr-4 align-middle cursor-pointer" onClick={()=>navigate('/category')}/>
+              <b>زیر گروه: </b>
+              <span className="text-palete-2-500">{location.state.title}</span>
+            </span>
+          </h2>
+        ) : null
+      }
       <section className="transition-all duration-1000">
         {
           !loading ? (

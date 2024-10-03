@@ -57,7 +57,7 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
                             {
                                 actionCol ? actionCol.map((item , index)=>{
                                     return(
-                                        <td key={`${item.id}__${index}`}>{item.title}</td>
+                                        <th key={`${item.id}__${index}`}>{item.title}</th>
                                     )
                                 }) : null
                             }
@@ -75,7 +75,7 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
                                     {
                                         actionCol ? actionCol.map((item , index)=>{
                                             return(
-                                                <td className="py-2.5 ring-1 ring-palete-2-200" key={`${item.id}___${index}`}>{item.elements(d)}</td>
+                                                <td className="py-1.5 ring-1 ring-palete-2-200" key={`${item.id}___${index}`}>{item.elements(d)}</td>
                                             )
                                         }) : null
                                     }
