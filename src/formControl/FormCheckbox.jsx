@@ -1,6 +1,6 @@
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ErrorMessage, FastField } from "formik";
+import { FastField } from "formik";
 
 const FormCheckbox = (props) => {
     const { label , name , option } = props
