@@ -64,7 +64,7 @@ const HeaderLeft = () => {
                     sx={{'width': 170}}
                     >
                         <span className="text-slate-600 w-full group">
-                        <span className="text-xl ml-2 text-slate-600 group-hover:text-palete-5-400 align-middle"><FontAwesomeIcon icon={faGaugeHigh} className='align-middle'/></span>
+                        <span className="text-xl ml-2 text-slate-600 group-hover:text-palete-5-400 align-middle transition-all duration-150"><FontAwesomeIcon icon={faGaugeHigh} className='align-middle'/></span>
                             داشبورد
                         </span>
                     </MenuItem>
@@ -72,7 +72,7 @@ const HeaderLeft = () => {
                     sx={{'width': 170}}
                     >
                         <span className="text-slate-600 w-full group">
-                        <span className="text-xl ml-2 text-slate-600 group-hover:text-palete-5-400 align-middle"><FontAwesomeIcon icon={faPaperPlane} className='align-middle'/></span>
+                        <span className="text-xl ml-2 text-slate-600 group-hover:text-palete-5-400 align-middle transition-all duration-150"><FontAwesomeIcon icon={faPaperPlane} className='align-middle'/></span>
                             تیکت ها
                         </span>
                     </MenuItem>
@@ -80,7 +80,7 @@ const HeaderLeft = () => {
                     sx={{'width': 170}}
                     >
                         <span className="text-slate-600 w-full group">
-                        <span className="text-xl ml-2 text-slate-600 group-hover:text-palete-5-400 align-middle"><FontAwesomeIcon icon={faEnvelope} className='align-middle'/></span>
+                        <span className="text-xl ml-2 text-slate-600 group-hover:text-palete-5-400 align-middle transition-all duration-150"><FontAwesomeIcon icon={faEnvelope} className='align-middle'/></span>
                             پیام ها
                         </span>
                     </MenuItem>
@@ -90,7 +90,7 @@ const HeaderLeft = () => {
                         sx={{'width': 170}}
                         >
                             <span className="text-slate-600 w-full group">
-                            <span className="text-xl ml-2 text-slate-600 group-hover:text-palete-5-400 align-middle"><FontAwesomeIcon icon={faPowerOff} className='align-middle'/></span>
+                            <span className="text-xl ml-2 text-slate-600 group-hover:text-palete-5-400 align-middle transition-all duration-150"><FontAwesomeIcon icon={faPowerOff} className='align-middle'/></span>
                                 خروج
                             </span>
                         </MenuItem>

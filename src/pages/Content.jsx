@@ -15,6 +15,7 @@ import Permissions from "./permissions/Permissions";
 import Questions from "./questions/Questions";
 import Comments from "./comments/Comments";
 import Logout from "../layouts/authLayout/Logout";
+import CategorySub from "./category/CategorySub";
 
 const Content = () => {
     return ( 
@@ -23,7 +24,7 @@ const Content = () => {
                 <Routes>
                     <Route path="/" element={<Dashboard/>}/>
                     <Route path="/category" element={<Category/>}>
-                        <Route path=":categoryId"/>
+                        <Route path=":categoryId" element={<CategorySub/>}/>
                     </Route>
                     <Route path="/product" element={<Product/>}/>
                     <Route path="/colors" element={<Colors/>}/>
