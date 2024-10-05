@@ -1,13 +1,12 @@
-import TextareaInput from "../../components/TextareaInput";
-import FileInput from "../../components/FileInput";
-import SwitchInput from "../../components/SwitchInput";
-import Btn from "../../components/Btn";
 import FullScreenDialog from "../../components/FullScreenDialog";
 import { useSelector } from "react-redux";
 import { openClose } from "../../redux/category/categoryDialog";
-import TextInput from "../../components/Input";
 import FormControler from "../../formControl/FormControler";
 import { Form, Formik } from "formik";
+import { getCategoriesService } from "../../services/categoryServices";
+import { useEffect, useState } from "react";
+import { Alert } from "../../utils/alert";
+import * as Yup from 'yup';
 
 const initialValues = {
   parent_id: '',
@@ -17,18 +16,40 @@ const initialValues = {
   is_active: false,
   show_in_menu: false,
 };
-const validationSchema = ''
+const validationSchema = Yup.object({
+  parent_id: Yup.string(),
+  title: Yup.string()
+            .required('عنوان نمیتواند خالی باشد!')
+            .matches(/^[\u0600-\u06FF\sa-zA-Z0-9@!%$?&]+$/ , 'باید تنها از حروف و اعداد استفاده شود!'),
+  descriptions: Yup.string()
+                   .matches(/^[\u0600-\u06FF\sa-zA-Z0-9@!%$?&]+$/ , 'باید تنها از حروف و اعداد استفاده شود!'),
+  image: Yup.mixed()
+            .test('filesize' , 'حجم فایل نمیتواند بیشتر از 50 مگابایت باشد!' , (value)=> !value ? true : value.size <= (50 * 1024))
+            .test('fileformat' , 'فرمت فایل باید Jpeg باشد!' , (value)=> !value ? true : value.type === 'image/jpeg'),
+  is_active: Yup.boolean(),
+  show_in_menu: Yup.boolean(),
+})
 const onSubmit = (values)=>{
   console.log(values);
 }
-
 const CategoryDialog = () => {
+  const [selectData , setSelectData] = useState([]);
   const { isOpen } = useSelector((state) => state.categoryDialog);
-  const data = [
-    {id: 1 , title: 'aaa'},
-    {id: 2 , title: 'bbb'},
-    {id: 3 , title: 'ccc'},
-  ]
+  const handleGetCategories = async ()=>{
+    try{
+      const res = await getCategoriesService();
+      if(res.status === 200){
+        setSelectData(res.data.data);
+      }else{
+      Alert('error' , 'دسته بندی ها دریافت نشدند!');
+      }
+    }catch(error){
+      Alert('error' , error);
+    }
+  }
+  useEffect(()=>{
+    handleGetCategories()
+  },[])
   return (
     <>
       <FullScreenDialog
@@ -38,11 +59,11 @@ const CategoryDialog = () => {
       >
         <Formik
         initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={onSubmit}
         >
           {
             Formik=>{
-              console.log(Formik.values)
               return(
                 <Form>
                   <section dir="rtl" className="w-2/5 mx-auto py-5">
@@ -52,7 +73,7 @@ const CategoryDialog = () => {
                       control={'select'}
                       name={'parent_id'}
                       label={'دسته والد :'}
-                      data={data}
+                      data={selectData}
                       dataValue={'id'}
                       dataTitle={'title'}
                       />
@@ -100,7 +121,7 @@ const CategoryDialog = () => {
                         formik={Formik}
                         name={'show_in_menu'}
                         label={"نمایش در منو :"}
-                        switchLabel={Formik.values.is_active ? 'بله' : 'خیر'}
+                        switchLabel={Formik.values.show_in_menu ? 'بله' : 'خیر'}
                         />
                       </div>
                     </div>
