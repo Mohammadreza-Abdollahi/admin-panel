@@ -68,15 +68,19 @@ const CategoryDialog = () => {
                 <Form>
                   <section dir="rtl" className="w-2/5 mx-auto py-5">
                     <div className="my-5">
-                      <FormControler
-                      formik={Formik}
-                      control={'select'}
-                      name={'parent_id'}
-                      label={'دسته والد :'}
-                      data={selectData}
-                      dataValue={'id'}
-                      dataTitle={'title'}
-                      />
+                      {
+                        selectData ? (
+                          <FormControler
+                          formik={Formik}
+                          control={'select'}
+                          name={'parent_id'}
+                          label={'دسته والد :'}
+                          data={selectData}
+                          dataValue={'id'}
+                          dataTitle={'title'}
+                          />
+                        ) : null
+                      }
                     </div>
                     <div className="my-5">
                       <FormControler
@@ -105,7 +109,7 @@ const CategoryDialog = () => {
                       label={'تصویر :'}
                       />
                     </div>
-                    <div className="my-5 text-center flex justify-between">
+                    <div className="my-5 text-center flex justify-around">
                       <div>
                         <FormControler
                         control={'switch'}

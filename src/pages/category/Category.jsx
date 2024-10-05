@@ -64,7 +64,7 @@ const Category = () => {
         Alert('error','دسته بندی ها درافت نشدند!')
       }
     }catch(error){
-      Alert('error','خطایی در سمت سرور رخ')
+      Alert('error','خطایی رخ داده')
     }
   }
   useEffect(()=>{
