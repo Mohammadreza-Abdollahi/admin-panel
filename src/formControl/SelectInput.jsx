@@ -20,7 +20,7 @@ const SelectInput = ({formik , data , dataValue , dataTitle , name , label , sec
                 {
                     (param)=>(
                         <select {...param.field} name={name} id={name} onFocus={handleFocus} onBlur={handleBlue} className="w-3/4 px-3 focus:outline-none">
-                            <option selected={true} value="">انتخاب نشده</option>
+                            <option value="">انتخاب نشده</option>
                             {
                                 data.map(d=>(
                                     <option value={d[dataValue]}>{d[dataTitle]}</option>

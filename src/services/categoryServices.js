@@ -6,6 +6,12 @@ export const getCategoriesService = async (id = null)=>{
         'get'
     );
 };
+export const getCategoryByIdService = async (id)=>{
+    return await httpService(
+        `/admin/categories/${id}`,
+        'get'
+    );
+};
 export const createCategoryService = async (data)=>{
     if(data.image){
         let formData = new FormData();

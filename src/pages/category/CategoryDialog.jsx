@@ -1,9 +1,9 @@
 import FullScreenDialog from "../../components/FullScreenDialog";
 import { useDispatch, useSelector } from "react-redux";
-import { openClose } from "../../redux/category/categoryDialog";
+import { openCloseDialog } from "../../redux/category/categorySlice";
 import FormControler from "../../formControl/FormControler";
 import { Form, Formik } from "formik";
-import { createCategoryService, getCategoriesService } from "../../services/categoryServices";
+import { createCategoryService, getCategoriesService, getCategoryByIdService } from "../../services/categoryServices";
 import { useEffect, useState } from "react";
 import { Alert } from "../../utils/alert";
 import * as Yup from 'yup';
@@ -43,7 +43,7 @@ const onSubmit = async (values , actions , setForceRender , dispatch)=>{
     console.log(res);
     if(res.status === 201){
       Alert('success' , "دسته با موفقیت ایجاد شد!");
-      dispatch(openClose());
+      dispatch(openCloseDialog());
       actions.resetForm();
       actions.setSubmitting(false);
       setForceRender(prev=>prev + 1);
@@ -55,7 +55,7 @@ const onSubmit = async (values , actions , setForceRender , dispatch)=>{
 }
 const CategoryDialog = ({setForceRender}) => {
   const [selectData , setSelectData] = useState([]);
-  const { isOpen } = useSelector((state) => state.categoryDialog);
+  const { dialogIsOpen , editId } = useSelector((state) => state.categorySlice);
   const [reinitialize , setReinitialize] = useState(null);
   const params = useParams();
   const dispatch = useDispatch();
@@ -71,11 +71,35 @@ const CategoryDialog = ({setForceRender}) => {
       Alert('error' , error);
     }
   }
+  const handleGetCategoryById = async (id)=>{
+    try{
+      const res = await getCategoryByIdService(id);
+      if(res.status === 200){
+        const oldData = res.data.data;
+        console.log(oldData);
+        setReinitialize({
+          parent_id: oldData.parent_id,
+          title: oldData.title,
+          descriptions: oldData.descriptions,
+          image: '',
+          is_active: oldData.is_active ? true : false,
+          show_in_menu: oldData.show_in_menu ? true : false,
+        })
+        console.log(reinitialize);
+      }else{
+        Alert('error' , 'دسته دریافت نشد!');
+      }
+    }catch(error){
+      Alert('error' , error);
+    }
+  }
   useEffect(()=>{
     handleGetCategories()
   },[])
   useEffect(()=>{
-    if(params.categoryId){
+    if(editId){
+      handleGetCategoryById(editId);
+    }else if(params.categoryId){
       setReinitialize({
         ...initialValues,
         parent_id: params.categoryId
@@ -83,13 +107,18 @@ const CategoryDialog = ({setForceRender}) => {
     }else{
       setReinitialize(null)
     }
-  },[params.categoryId])
+  },[params.categoryId , editId]);
+  useEffect(()=>{
+    if(!dialogIsOpen){
+      setReinitialize(null)
+    }
+  },[dialogIsOpen])
   return (
     <>
       <FullScreenDialog
-        dialogTitle={"افزودن دسته محصولات"}
-        open={isOpen}
-        myDispatch={openClose}
+        dialogTitle={`(${editId}) افزودن دسته محصولات`}
+        open={dialogIsOpen}
+        myDispatch={openCloseDialog}
       >
         <Formik
         initialValues={reinitialize || initialValues}

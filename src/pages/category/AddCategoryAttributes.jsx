@@ -1,23 +1,20 @@
-import TextareaInput from "../../components/TextareaInput";
-import FileInput from "../../components/FileInput";
 import SwitchInput from "../../components/SwitchInput";
 import Btn from "../../components/Btn";
 import FullScreenDialog from "../../components/FullScreenDialog";
 import { useSelector } from "react-redux";
-import { addAttributeOpenClose } from "../../redux/category/categoryDialog";
-import TextInput from "../../components/Input";
+import { AttributeOpenCloseDialog } from "../../redux/category/categorySlice";
 import Input from "../../components/Input";
 import PaginationTable from "../../components/PaginationTable";
 import { data, dataInfo } from "../../mock/attributesData";
 
 const AddCategoryAttributes = () => {
-  const { addAttr } = useSelector((state) => state.categoryDialog);
+  const { addAttrDialog } = useSelector((state) => state.categorySlice);
   return (
     <>
       <FullScreenDialog
         dialogTitle={"افزودن ویژگی به دسته محصولات"}
-        open={addAttr}
-        myDispatch={addAttributeOpenClose}
+        open={addAttrDialog}
+        myDispatch={AttributeOpenCloseDialog}
       >
         <section dir="rtl" className="w-5/6 flex justify-around gap-5 mx-auto py-5 mt-5">
           <div className="w-full">

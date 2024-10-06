@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import categoryDialogReducer from "./category/categoryDialog";
+import categoryReducer from "./category/categorySlice";
 import productDialogReducer from "./product/productDialog";
 import colorsDialogReducer from "./colors/colorsDialog";
 import guarantiesDialogReducer from "./guaranties/guarantiesDialog";
@@ -11,7 +11,7 @@ import commentsDialogReducer from "./comments/commentsDialog";
 
 const store = configureStore({
   reducer: {
-    categoryDialog: categoryDialogReducer,
+    categorySlice: categoryReducer,
     productDialog: productDialogReducer,
     colorsDialog: colorsDialogReducer,
     guarantiesDialog: guarantiesDialogReducer,

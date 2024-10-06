@@ -1,9 +1,9 @@
 import CategoryDialog from "./CategoryDialog";
-import { addAttributeOpenClose, openClose } from "../../redux/category/categoryDialog";
+import categorySlice, { AttributeOpenCloseDialog, openCloseDialog, setEditId } from "../../redux/category/categorySlice";
 import ModalContainer from "../../components/ModalPortal";
 import PaginationTable from "../../components/PaginationTable";
 import { Tooltip } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AddCategoryAttributes from "./AddCategoryAttributes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareNodes , faEdit , faPlus , faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -49,8 +49,8 @@ const Category = () => {
             <Tooltip arrow placement="top" title={<><span className="text-base">زیرمجموعه</span></>}><FontAwesomeIcon icon={faShareNodes} onClick={()=>navigate(`/category/${data.id}` , {state: data})} className="text-xl text-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
           ) : null
         }
-        <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش دسته</span></>}><FontAwesomeIcon icon={faEdit} onClick={()=>dispatch(openClose())} className="text-xl text-yellow-500 hover:bg-yellow-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
-        <Tooltip arrow placement="top" title={<><span className="text-base">افزودن ویژگی</span></>}><FontAwesomeIcon icon={faPlus} onClick={()=>dispatch(addAttributeOpenClose())} className="text-xl text-green-500 hover:bg-green-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+        <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش دسته</span></>}><FontAwesomeIcon icon={faEdit} onClick={()=>{dispatch(openCloseDialog());dispatch(setEditId(data.id))}} className="text-xl text-yellow-500 hover:bg-yellow-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+        <Tooltip arrow placement="top" title={<><span className="text-base">افزودن ویژگی</span></>}><FontAwesomeIcon icon={faPlus} onClick={()=>dispatch(AttributeOpenCloseDialog())} className="text-xl text-green-500 hover:bg-green-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
         <Tooltip arrow placement="top" title={<><span className="text-base">حذف دسته</span></>}><FontAwesomeIcon icon={faTrash} className="text-xl text-red-500 hover:bg-red-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
       </>
     )
@@ -73,7 +73,7 @@ const Category = () => {
   useEffect(()=>{
     document.title = 'پنل مدیریت | دسته بندی ها';
     handleGetCategories();
-},[params , forceRender])
+  },[params , forceRender])
   return (
     <>
       <ModalContainer>  
@@ -89,7 +89,7 @@ const Category = () => {
       <section className="transition-all duration-1000">
         {
           !loading ? (
-            <PaginationTable data={data} dataInfo={dataInfo} actionCol={optionalCols} rowInPage={10} searchable={true} dialogOpenner={openClose}/>
+            <PaginationTable data={data} dataInfo={dataInfo} actionCol={optionalCols} rowInPage={10} searchable={true} dialogOpenner={openCloseDialog}/>
           ) : (
             <TableSkeleton/>
           )
