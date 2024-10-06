@@ -22,14 +22,14 @@ const handleSubmit = async (values , navigate , submitMethods)=>{
     try{
         const res = await loginService(values);
         if(res.status === 200){
-            Alert('success','ورود شما موفقیت امیز بود',4000);
+            Alert('success','ورود شما موفقیت امیز بود');
             localStorage.setItem('loginToken' , JSON.stringify(res.data));
             navigate('/');
         }else{
-            Alert('error', 'مشکلی پیش امده است!' ,4000);
+            Alert('error', 'مشکلی پیش امده است!');
         }
     } catch(error){
-            Alert('error', error ,4000);
+            Alert('error', error);
             submitMethods.setSubmitting(false);
     }
 };

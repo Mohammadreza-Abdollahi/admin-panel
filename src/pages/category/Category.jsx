@@ -18,6 +18,7 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 const Category = () => {
   const [data , setData] = useState([]);
   const [loading , setLoading] = useState(true);
+  const [forceRender , setForceRender] = useState(0);
   const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
@@ -55,26 +56,28 @@ const Category = () => {
     )
   }
   const handleGetCategories = async ()=>{
+    setLoading(true)
     try{
       const res = await getCategoriesService(params.categoryId);
       if(res.status === 200){
         setData(res.data.data);
-        setLoading(false)
       }else{
         Alert('error','دسته بندی ها درافت نشدند!')
       }
     }catch(error){
       Alert('error','خطایی رخ داده')
+    }finally{
+      setLoading(false)
     }
   }
   useEffect(()=>{
     document.title = 'پنل مدیریت | دسته بندی ها';
     handleGetCategories();
-},[params])
+},[params , forceRender])
   return (
     <>
       <ModalContainer>  
-        <CategoryDialog/>
+        <CategoryDialog setForceRender={setForceRender}/>
         <AddCategoryAttributes/>
       </ModalContainer>
       <h1 className="text-3xl text-center my-4 text-slate-800">

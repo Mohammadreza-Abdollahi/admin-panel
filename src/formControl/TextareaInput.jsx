@@ -17,7 +17,7 @@ const TextareaInput = ({formik , name , label , value , placeholder , readOnly =
             <FastField name={name}>
                 {
                     (param)=>(
-                        <textarea {...param.field} onFocus={handleFocus} onBlur={handleFocus} rows={row} value={value === undefined ? null : value} name={name} type='text' readOnly={readOnly} placeholder={placeholder} className="appearance-none w-3/4 py-2 px-2 text-xl focus:outline-none"/>
+                        <textarea {...param.field} onFocus={handleFocus} onBlur={handleFocus} rows={row} name={name} type='text' readOnly={readOnly} placeholder={placeholder} className="appearance-none w-3/4 py-2 px-2 text-xl focus:outline-none"/>
                     )
                 }
             </FastField>

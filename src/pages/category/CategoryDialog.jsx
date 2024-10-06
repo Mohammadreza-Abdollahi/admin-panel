@@ -1,9 +1,9 @@
 import FullScreenDialog from "../../components/FullScreenDialog";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openClose } from "../../redux/category/categoryDialog";
 import FormControler from "../../formControl/FormControler";
 import { Form, Formik } from "formik";
-import { getCategoriesService } from "../../services/categoryServices";
+import { createCategoryService, getCategoriesService } from "../../services/categoryServices";
 import { useEffect, useState } from "react";
 import { Alert } from "../../utils/alert";
 import * as Yup from 'yup';
@@ -12,7 +12,7 @@ const initialValues = {
   parent_id: '',
   title: '',
   descriptions: '',
-  image: null,
+  image: '',
   is_active: false,
   show_in_menu: false,
 };
@@ -29,12 +29,33 @@ const validationSchema = Yup.object({
   is_active: Yup.boolean(),
   show_in_menu: Yup.boolean(),
 })
-const onSubmit = (values)=>{
-  console.log(values);
+const onSubmit = async (values , actions , setForceRender , dispatch)=>{
+  console.log(actions);
+  try{
+    values = {
+      ...values,
+      is_active: values.is_active ? 1 : 0,
+      show_in_menu: values.show_in_menu ? 1 : 0,
+    };
+    console.log(values);
+    const res = await createCategoryService(values);
+    console.log(res);
+    if(res.status === 201){
+      Alert('success' , "دسته با موفقیت ایجاد شد!");
+      dispatch(openClose());
+      actions.resetForm();
+      actions.setSubmitting(false);
+      setForceRender(prev=>prev + 1);
+    }
+  }catch(error){
+    Alert('error' , 'مشکلی رخ داده است!');
+  }
+  
 }
-const CategoryDialog = () => {
+const CategoryDialog = ({setForceRender}) => {
   const [selectData , setSelectData] = useState([]);
   const { isOpen } = useSelector((state) => state.categoryDialog);
+  const dispatch = useDispatch();
   const handleGetCategories = async ()=>{
     try{
       const res = await getCategoriesService();
@@ -60,7 +81,7 @@ const CategoryDialog = () => {
         <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        onSubmit={(values , actions)=>onSubmit(values , actions , setForceRender , dispatch)}
         >
           {
             Formik=>{
