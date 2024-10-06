@@ -7,6 +7,7 @@ import { createCategoryService, getCategoriesService } from "../../services/cate
 import { useEffect, useState } from "react";
 import { Alert } from "../../utils/alert";
 import * as Yup from 'yup';
+import { useParams } from "react-router-dom";
 
 const initialValues = {
   parent_id: '',
@@ -55,6 +56,8 @@ const onSubmit = async (values , actions , setForceRender , dispatch)=>{
 const CategoryDialog = ({setForceRender}) => {
   const [selectData , setSelectData] = useState([]);
   const { isOpen } = useSelector((state) => state.categoryDialog);
+  const [reinitialize , setReinitialize] = useState(null);
+  const params = useParams();
   const dispatch = useDispatch();
   const handleGetCategories = async ()=>{
     try{
@@ -71,6 +74,16 @@ const CategoryDialog = ({setForceRender}) => {
   useEffect(()=>{
     handleGetCategories()
   },[])
+  useEffect(()=>{
+    if(params.categoryId){
+      setReinitialize({
+        ...initialValues,
+        parent_id: params.categoryId
+      })
+    }else{
+      setReinitialize(null)
+    }
+  },[params.categoryId])
   return (
     <>
       <FullScreenDialog
@@ -79,9 +92,10 @@ const CategoryDialog = ({setForceRender}) => {
         myDispatch={openClose}
       >
         <Formik
-        initialValues={initialValues}
+        initialValues={reinitialize || initialValues}
         validationSchema={validationSchema}
         onSubmit={(values , actions)=>onSubmit(values , actions , setForceRender , dispatch)}
+        enableReinitialize
         >
           {
             Formik=>{
