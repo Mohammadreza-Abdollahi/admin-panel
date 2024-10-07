@@ -35,4 +35,10 @@ export const updateCategoryService = async (id , data)=>{
         'put',
         data
     )
-}
+};
+export const deleteCategoryService = async (id)=>{
+    return await httpService(
+        `/admin/categories/${id}`,
+        'delete'
+    );
+};

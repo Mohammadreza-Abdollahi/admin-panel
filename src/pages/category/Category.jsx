@@ -8,8 +8,8 @@ import AddCategoryAttributes from "./AddCategoryAttributes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareNodes , faEdit , faPlus , faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import { getCategoriesService } from "../../services/categoryServices";
-import { Alert } from "../../utils/alert";
+import { deleteCategoryService, getCategoriesService } from "../../services/categoryServices";
+import { Alert, Confirm } from "../../utils/alert";
 import ShowInMenu from "./ShowInMenu";
 import TableSkeleton from "../../components/loadings/TableSkeleton";
 import CreatedAt from "./CreatedAt";
@@ -51,7 +51,7 @@ const Category = () => {
         }
         <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش دسته</span></>}><FontAwesomeIcon icon={faEdit} onClick={()=>{dispatch(openCloseDialog());dispatch(setEditId(data.id))}} className="text-xl text-yellow-500 hover:bg-yellow-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
         <Tooltip arrow placement="top" title={<><span className="text-base">افزودن ویژگی</span></>}><FontAwesomeIcon icon={faPlus} onClick={()=>dispatch(AttributeOpenCloseDialog())} className="text-xl text-green-500 hover:bg-green-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
-        <Tooltip arrow placement="top" title={<><span className="text-base">حذف دسته</span></>}><FontAwesomeIcon icon={faTrash} className="text-xl text-red-500 hover:bg-red-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+        <Tooltip arrow placement="top" title={<><span className="text-base">حذف دسته</span></>}><FontAwesomeIcon icon={faTrash} onClick={()=>handleDeleteCategory(data)} className="text-xl text-red-500 hover:bg-red-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
       </>
     )
   }
@@ -70,6 +70,20 @@ const Category = () => {
       setLoading(false)
     }
   }
+  const handleDeleteCategory = async (data)=>{
+    const confirmRes = (await Confirm('حذف دسته بندی!',`آیا از حذف دسته بندی "${data.title}" اطمینان دارید؟`,'warning','حذف دسته','لغو')).isConfirmed;
+    if(confirmRes){
+      try{
+        const res = await deleteCategoryService(data.id);
+        if(res.status === 200){
+          setForceRender(prev=>prev + 1);
+          Alert('success',`دسته ${data.title} با موفقیت حذف شد.`);
+        };
+      }catch(error){
+        Alert('error','خطایی رخ داده');
+      }
+    }
+  };
   useEffect(()=>{
     document.title = 'پنل مدیریت | دسته بندی ها';
     handleGetCategories();

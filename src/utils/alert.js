@@ -17,3 +17,15 @@ export const Alert = (icon , title , time = 6000)=>{
         title: title
     });
 }
+export const Confirm = async (title , text , icon , confirmText , cancelText)=>{
+    return await Swal.fire({
+        title: title,
+        text: text,
+        icon: icon,
+        showCancelButton: true,
+        cancelButtonColor: "#3fc1c9",
+        confirmButtonColor: "#d33",
+        confirmButtonText: confirmText,
+        cancelButtonText: cancelText
+    })
+}
