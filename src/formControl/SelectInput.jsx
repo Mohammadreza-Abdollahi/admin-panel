@@ -23,7 +23,7 @@ const SelectInput = ({formik , data , dataValue , dataTitle , name , label , sec
                             <option value="">انتخاب نشده</option>
                             {
                                 data.map(d=>(
-                                    <option value={d[dataValue]}>{d[dataTitle]}</option>
+                                    <option key={`Select_${d[dataValue]}`} value={d[dataValue]}>{d[dataTitle]}</option>
                                 ))
                             }
                         </select>

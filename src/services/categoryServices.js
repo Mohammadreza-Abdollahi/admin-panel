@@ -29,3 +29,10 @@ export const createCategoryService = async (data)=>{
         data
     );
 };
+export const updateCategoryService = async (id , data)=>{
+    return await httpService(
+        `/admin/categories/${id}`,
+        'put',
+        data
+    )
+}

@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./Login";
 import { useIsLogin } from "../../hook/authHook";
-import Loading from "../../components/Loading";
+import Loading from "../../components/loadings/Loading";
 
 const AuthLayout = () => {
     const [loading , isLogin] = useIsLogin();

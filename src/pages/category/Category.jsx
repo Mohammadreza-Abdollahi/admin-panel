@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { getCategoriesService } from "../../services/categoryServices";
 import { Alert } from "../../utils/alert";
 import ShowInMenu from "./ShowInMenu";
-import TableSkeleton from "../../components/TableSkeleton";
+import TableSkeleton from "../../components/loadings/TableSkeleton";
 import CreatedAt from "./CreatedAt";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 

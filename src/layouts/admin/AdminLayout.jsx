@@ -3,7 +3,7 @@ import Header from "./header/Header";
 import Content from "../../pages/Content";
 import { Navigate } from "react-router-dom";
 import { useIsLogin } from "../../hook/authHook";
-import Loading from "../../components/Loading";
+import Loading from "../../components/loadings/Loading";
 
 const IndexAdmin = () => {
     const [loading , isLogin] = useIsLogin();

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Loading from "../../components/Loading";
+import Loading from "../../components/loadings/Loading";
 import { Navigate } from "react-router-dom";
 import { Alert } from "../../utils/alert";
 import { logoutService } from "../../services/authService";
