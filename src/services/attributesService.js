@@ -6,3 +6,10 @@ export const getAttributesService = async (id)=>{
         'get'
     );
 };
+export const createAttributeService = async (id , data)=>{
+    return httpService(
+        `/admin/categories/${id}/attributes`,
+        'post',
+        data
+    );
+};

@@ -54,7 +54,7 @@ const CategoryDialog = ({setForceRender}) => {
   }
   useEffect(()=>{
     handleGetCategories();
-  },[])
+  },[dialogIsOpen])
   useEffect(()=>{
     if(editId){
       handleGetCategoryById(editId);
@@ -104,7 +104,7 @@ const CategoryDialog = ({setForceRender}) => {
                             <FormControler
                             formik={Formik}
                             control={'select'}
-                            name={'parent_id'}
+                            name={'parent_id'}  
                             label={'دسته والد :'}
                             data={selectData}
                             dataValue={'id'}

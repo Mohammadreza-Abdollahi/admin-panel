@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import Btn from "./Btn";
 import SearchBox from "./SearchBox";
 import { useDispatch } from "react-redux";
+import BackButton from "./BackButton";
 
-const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable = false , dialogOpenner , searchParam = 'title' , hasBtn = true}) => {
+const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable = false , dialogOpenner , searchParam = 'title' , hasBtn = true , hasBackBtn = false}) => {
     const dispatch = useDispatch();
     const [initData , setInitData] = useState(data);
     const [searchChar , setSearchChar] = useState('');
@@ -40,6 +41,11 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
                                 {
                                     hasBtn ? (
                                         <span onClick={()=>dispatch(dialogOpenner())}><Btn btnTxt={"افزودن"}/></span>
+                                    ) : null
+                                }
+                                {
+                                    hasBackBtn ? (
+                                        <BackButton btnTxt={'بازگشت'}/>
                                     ) : null
                                 }
                             </dir>
