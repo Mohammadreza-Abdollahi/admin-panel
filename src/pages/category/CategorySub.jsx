@@ -9,7 +9,7 @@ const CategorySub = () => {
         <>
             <h2 className="text-xl text-center my-4 text-slate-800">
                 <span className="bg-palete-2-100 pl-8 py-1 rounded-full">
-                <FontAwesomeIcon icon={faXmark} className="text-red-500 pl-3 pr-4 align-middle cursor-pointer" onClick={()=>navigate('/category')}/>
+                <FontAwesomeIcon icon={faXmark} className="text-red-500 pl-3 pr-4 align-middle cursor-pointer" onClick={()=>navigate('/categories')}/>
                 <b>زیر گروه: </b>
                 <span className="text-palete-2-500">{location.state.title}</span>
                 </span>

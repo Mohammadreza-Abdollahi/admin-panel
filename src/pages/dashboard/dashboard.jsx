@@ -56,7 +56,7 @@ const Dashboard = () => {
                     <div className="mb-6">
                         <span className="text-xl text-slate-500"><b>محصولات رو به اتمام</b></span>
                     </div>
-                    <PaginationTable data={tableData} dataInfo={dataInfo} actionCol={actionColumn} rowInPage={6}/>
+                    <PaginationTable data={tableData} dataInfo={dataInfo} actionCol={actionColumn} rowInPage={6} searchParam={{title: 'title' , placeholder: "مورد مورد نظر را جستجو کنید..."}}/>
                 </div>
                 <div className="w-full">
                     <DashboardChart data={chartData} font={'font'} xFontSize={16} yFontSize={17} showTitle={true} titleText={'نمودار فروش سالانه'} borderWidth={3} dashWidth={5} dashWidthHover={8}/>

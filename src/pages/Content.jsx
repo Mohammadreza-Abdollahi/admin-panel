@@ -16,6 +16,7 @@ import Questions from "./questions/Questions";
 import Comments from "./comments/Comments";
 import Logout from "../layouts/authLayout/Logout";
 import CategorySub from "./category/CategorySub";
+import Attributes from "./category/attributes/Attributes";
 
 const Content = () => {
     return ( 
@@ -23,9 +24,10 @@ const Content = () => {
             <section className="my-bg pt-20 mr-24 pr-3 pl-3">
                 <Routes>
                     <Route path="/" element={<Dashboard/>}/>
-                    <Route path="/category" element={<Category/>}>
+                    <Route path="/categories" element={<Category/>}>
                         <Route path=":categoryId" element={<CategorySub/>}/>
                     </Route>
+                    <Route path="/categories/:categoryId/attributes" element={<Attributes/>}/>
                     <Route path="/product" element={<Product/>}/>
                     <Route path="/colors" element={<Colors/>}/>
                     <Route path="/guaranties" element={<Guaranties/>}/>

@@ -1,7 +1,6 @@
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Zoom } from "@mui/material";
-import { Tooltip } from "chart.js";
+import { Tooltip, Zoom } from "@mui/material";
 import { FastField } from "formik";
 import { useState } from "react";
 
@@ -24,13 +23,6 @@ const FileInput = ({formik , name , label , value = null}) => {
                 }
             </FastField>
             {
-                formik.errors[name] ? (
-                        <div title={formik.errors[name]} className="-translate-y-4 -translate-x-1/2 top-1/2 left-6 absolute w-7 h-7 text-center">
-                            <FontAwesomeIcon icon={faCircleExclamation} className="text-red-500 align-top text-3xl"/>
-                        </div>
-                ) : null
-            }
-            {/* {
                         formik.errors[name] ? (
                             <Tooltip className="text-lg" placement="left" arrow TransitionComponent={Zoom} title={
                                 <>
@@ -44,7 +36,7 @@ const FileInput = ({formik , name , label , value = null}) => {
                         ) : (
                             null
                         )
-            } */}
+            }
         </div>
     );
 }

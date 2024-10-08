@@ -17,7 +17,7 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
         setCurrentPage(v);
     };
     useEffect(()=>{
-        setInitData(data.filter(data=> data[searchParam].includes(searchChar)))
+        setInitData(data.filter(data=> data[searchParam.title].includes(searchChar)))
         setCurrentPage(1);
     },[searchChar , data])
     useEffect(()=>{
@@ -34,7 +34,7 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
                     searchable ? (
                         <section className="flex justify-between items-center my-1 mb-3">
                             <div className="w-1/3 text-start">
-                                <SearchBox btnTxt={"جستجو"} placeholder={"دسته بندی مورد نظر را جستجو کنید..."} setSearch={setSearchChar}/>
+                                <SearchBox btnTxt={"جستجو"} placeholder={searchParam.placeholder} setSearch={setSearchChar}/>
                             </div>
                             <dir className="w-1/3 text-end">
                                 {
@@ -88,7 +88,7 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
                     tableData.length === 0 ? (
                         <div className="flex justify-center items-center text-center text-xl bg-red-100 text-red-800 py-3 rounded-b-md border-2 border-t-0 border-red-300">
                             <i className="fa-solid fa-circle-exclamation text-2xl mx-2"></i>
-                            <h1 className="">هیچ محصولی وجود ندارد...</h1>
+                            <h1 className="">هیچ موردی وجود ندارد!</h1>
                         </div>
                     ) : null
                 }
