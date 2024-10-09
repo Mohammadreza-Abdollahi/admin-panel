@@ -20,3 +20,9 @@ export const editAttributeService = async (id , data)=>{
         data
     );
 };
+export const deleteAttributeService = async (id)=>{
+    return httpService(
+        `/admin/categories/attributes/${id}`,
+        'delete',
+    );
+};
