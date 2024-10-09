@@ -7,7 +7,7 @@ const Loading = () => {
                 <div className="w-80 h-72 flex justify-center items-center bg-white rounded-md m-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-2/3">
                     <section>
                         <div className='spinner m-auto mb-5'></div>
-                        <h1 className='text-center text-xl'>لطفا کمی صبر کنید...</h1>
+                        <h1 className='text-center text-xl text-slate-700'>لطفا کمی صبر کنید...</h1>
                     </section>
                 </div>
             </section>

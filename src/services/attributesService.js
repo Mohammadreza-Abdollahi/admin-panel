@@ -13,3 +13,10 @@ export const createAttributeService = async (id , data)=>{
         data
     );
 };
+export const editAttributeService = async (id , data)=>{
+    return httpService(
+        `/admin/categories/attributes/${id}`,
+        'put',
+        data
+    );
+};

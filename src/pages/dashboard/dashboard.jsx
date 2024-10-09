@@ -18,7 +18,11 @@ const actionColumn = [
 const sendElements = (id)=>{
     // console.log(id);
     return(
-        <Tooltip arrow placement="left" title={<><span className="text-base">حذف</span></>}><FontAwesomeIcon icon={faTrash} className=" text-red-500 hover:bg-red-100 text-xl px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+        <>
+            <section className="py-1.5">
+                <Tooltip arrow placement="left" title={<><span className="text-base">حذف</span></>}><FontAwesomeIcon icon={faTrash} className=" text-red-500 hover:bg-red-100 text-xl px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
+            </section>
+        </>
     )
 }
 
