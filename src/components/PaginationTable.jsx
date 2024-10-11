@@ -18,7 +18,7 @@ const PaginationTable = ({data , dataInfo , actionCol , rowInPage , searchable =
         setCurrentPage(v);
     };
     useEffect(()=>{
-        setInitData(data.filter(data=> data[searchParam.title].includes(searchChar)))
+        setInitData(data.filter(data=> data[searchParam.title].toLowerCase().includes(searchChar.toLowerCase())))
         setCurrentPage(1);
     },[searchChar , data])
     useEffect(()=>{

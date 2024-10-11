@@ -1,6 +1,5 @@
 import PaginationTable from "../../../components/PaginationTable";
 import { useLocation } from "react-router-dom";
-import { attributesDataInfo, attributesInitialValues, attributesOnSubmit, attributesValidationSchema } from "../core";
 import AttributesTableActions from "./AttributesTableActions";
 import { useEffect, useState } from "react";
 import { deleteAttributeService, getAttributesService } from "../../../services/attributesService";
@@ -10,6 +9,7 @@ import TableSkeleton from "../../../components/loadings/TableSkeleton";
 import { Form, Formik } from "formik";
 import FormControler from "../../../formControl/FormControler";
 import Btn from "../../../components/Btn";
+import { DataInfo, InitialValues, onSubmit, ValidationSchema } from "./core";
 
 const Attributes = () => {
   const { state } = useLocation();
@@ -51,8 +51,7 @@ const Attributes = () => {
         const res = await deleteAttributeService(delData.id);
         if(res.status === 200){
           Alert('success',`ویژگی ${delData.title} با موفقیت حذف شد.`);
-          const newData = data.filter(item=>item.id !== delData.id);
-          setData(newData);
+          setData(prevData=>[...prevData].filter(item=>item.id !== delData.id));
           setLoading(false)
         }else{
           Alert('error' , 'ویژگی حذف نشد!')
@@ -81,9 +80,9 @@ const Attributes = () => {
         <div className="relative">
           <b><h1 className="text-3xl text-center my-4 text-slate-800">مدیریت ویژگی های دسته <span className="text-palete-2-600">"{state.title}"</span></h1></b>
           <Formik
-          initialValues={reinitialize || attributesInitialValues}
-          validationSchema={attributesValidationSchema}
-          onSubmit={(values , actions)=>attributesOnSubmit(values , actions , setData , state , setLoading , attributeToEdit , setAttributeToEdit)}
+          initialValues={reinitialize || InitialValues}
+          validationSchema={ValidationSchema}
+          onSubmit={(values , actions)=>onSubmit(values , actions , setData , state , setLoading , attributeToEdit , setAttributeToEdit)}
           enableReinitialize
           >
             {
@@ -148,7 +147,7 @@ const Attributes = () => {
         <section dir="rtl" className="px-6">
           {
             !loading ? (
-              <PaginationTable data={data} dataInfo={attributesDataInfo} actionCol={optionalCols} searchable={true} searchParam={{title: 'title' , placeholder: "ویژگی مورد نظر را جستجو کنید..."}} hasBtn={false} rowInPage={10} hasBackBtn={true}/>
+              <PaginationTable data={data} dataInfo={DataInfo} actionCol={optionalCols} searchable={true} searchParam={{title: 'title' , placeholder: "ویژگی مورد نظر را جستجو کنید..."}} hasBtn={false} rowInPage={10} hasBackBtn={true}/>
             ) : (
               <TableSkeleton/>
             )
