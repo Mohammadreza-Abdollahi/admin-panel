@@ -7,7 +7,7 @@ const initialState = {
 }
 
 const categorySlice = createSlice({
-    name: 'categoryDialog',
+    name: 'categorySlice',
     initialState,
     reducers: {
         openCloseDialog: (state)=>{

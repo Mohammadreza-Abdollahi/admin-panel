@@ -6,3 +6,16 @@ export const getBrandsService = async ()=>{
         'get'
     )
 };
+export const getBrandByIdService = async (id)=>{
+    return await httpService(
+        `/admin/brands/${id}`,
+        'get'
+    )
+};
+export const createBrandService = async (data)=>{
+    return await httpService(
+        '/admin/brands',
+        'post',
+        data
+    )
+};
