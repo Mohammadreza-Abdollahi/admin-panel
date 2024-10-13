@@ -19,3 +19,10 @@ export const createBrandService = async (data)=>{
         data
     )
 };
+export const updateBrandService = async (id , data)=>{
+    return await httpService(
+        `/admin/brands/${id}`,
+        'post',
+        data
+    )
+};

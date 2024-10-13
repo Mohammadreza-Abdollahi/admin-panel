@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { createBrandService } from "../../services/brandsService";
+import { createBrandService, updateBrandService } from "../../services/brandsService";
 import { Alert } from "../../utils/alert";
 import { openCloseDialog } from "../../redux/brands/brandsSlice";
 
@@ -17,8 +17,12 @@ export const initialValues = {
 };
 export const validationSchema = Yup.object({
   original_name: Yup.string().required("نام برند نمیتواند خالی باشد!"),
-  persian_name: Yup.string(),
-  descriptions: Yup.string(),
+  persian_name: Yup.string()
+                   .required('عنوان ویژگی نمیتواند خالی باشد!')
+                   .matches(/^[\u0600-\u06FF\sa-zA-Z0-9@!%$?&]+$/ , 'باید تنها از حروف و اعداد استفاده شود!'),
+  descriptions: Yup.string()
+                   .required('عنوان ویژگی نمیتواند خالی باشد!')
+                   .matches(/^[\u0600-\u06FF\sa-zA-Z0-9@!%$?&]+$/ , 'باید تنها از حروف و اعداد استفاده شود!'),
   // logo: Yup.mixed()
   //          .test('filesize' , 'حجم فایل نمیتواند بیشتر از 50 مگابایت باشد!' , (value)=> !value ? true : value.size <= (50 * 1024))
   //          .test('fileformat' , 'فرمت فایل باید Jpeg باشد!' , (value)=> !value ? true : value.type === 'image/jpeg'),
@@ -28,21 +32,46 @@ export const onSubmit = async (
   actions,
   setLoading,
   setData,
-  dispatch
+  dispatch,
+  editId
 ) => {
   setLoading(true);
   try {
-    const res = await createBrandService(values);
-    console.log(res);
-    if (res.status === 201) {
-      setData((prev) => [...prev, res.data.data]);
-      Alert("success", `برند ${values.persian_name} با موفقیت افزوده شد!`);
-      setLoading(false);
-      dispatch(openCloseDialog());
-      actions.resetForm();
-      actions.setSubmitting(false);
-    } else {
-      Alert("error", "برند ساخته نشد!");
+    if(editId){
+      const res = await updateBrandService(editId , values);
+      console.log(res);
+      if(res.status === 200){
+        Alert('success' , `برند ${res.data.data.original_name} ویرایش شد!`)
+        setData(prev=>{
+          let newData = [...prev]
+          let index = newData.findIndex(item=>item.id === editId);
+          newData[index] = res.data.data;
+          console.log(newData);
+          return newData;
+        });
+        setLoading(false);
+        dispatch(openCloseDialog());
+        actions.resetForm();
+        actions.setSubmitting(false);
+      }else{
+        Alert('error' , 'ویرایش انجام نشد!')
+        setLoading(false);
+        dispatch(openCloseDialog());
+        actions.resetForm();
+        actions.setSubmitting(false);
+      }
+    }else{
+      const res = await createBrandService(values);
+      if (res.status === 201) {
+        setData((prev) => [...prev, res.data.data]);
+        Alert("success", `برند ${values.persian_name} با موفقیت افزوده شد!`);
+        setLoading(false);
+        dispatch(openCloseDialog());
+        actions.resetForm();
+        actions.setSubmitting(false);
+      } else {
+        Alert("error", "برند ساخته نشد!");
+      }
     }
   } catch (error) {
     Alert("error", error);

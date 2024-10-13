@@ -62,14 +62,14 @@ const BrandsDialog = ({ setData, setLoading }) => {
           isOpen={dialogIsOpen}
           maxWidth={"md"}
           myDispatch={openCloseDialog}
-          dialogTitle={"افزودن برند جدید"}
+          dialogTitle={editId ? `ویرایش برند با شناسه ( ${editId} )` : "افزودن برند جدید"}
           btnText={"بستن"}
         >
           <Formik
             initialValues={reinitialize || initialValues}
             validationSchema={validationSchema}
             onSubmit={(values, actions) =>
-              onSubmit(values, actions, setLoading, setData, dispatch)
+              onSubmit(values, actions, setLoading, setData, dispatch , editId)
             }
             enableReinitialize
           >
@@ -122,7 +122,7 @@ const BrandsDialog = ({ setData, setLoading }) => {
                             <FormControler
                                 control={"button"}
                                 formik={Formik}
-                                btnTxt={"افزودن"}
+                                btnTxt={editId ? 'ویرایش' : "افزودن"}
                                 width={"w-full"}
                             />
                             </div>
