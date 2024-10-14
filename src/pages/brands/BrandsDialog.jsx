@@ -52,6 +52,7 @@ const BrandsDialog = ({ setData, setLoading }) => {
         handleGetBrandById(editId);
     }else{
         setReinitialize(null)
+        setFormLoading(false)
     }
   },[editId])
   console.log(reinitialize);

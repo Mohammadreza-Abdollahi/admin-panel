@@ -26,3 +26,9 @@ export const updateBrandService = async (id , data)=>{
         data
     )
 };
+export const deleteBrandService = async (id)=>{
+    return await httpService(
+        `/admin/brands/${id}`,
+        'delete'
+    );
+};

@@ -5,9 +5,9 @@ import { openCloseDialog } from "../../redux/brands/brandsSlice";
 import { useEffect, useState } from "react";
 import { dataInfo } from "./core";
 import TableActions from "./TableActions";
-import { getBrandsService } from "../../services/brandsService";
+import { deleteBrandService, getBrandsService } from "../../services/brandsService";
 import TableSkeleton from "../../components/loadings/TableSkeleton";
-import { Alert } from "../../utils/alert";
+import { Alert, Confirm } from "../../utils/alert";
 
 const Brands = () => {
   const [data, setData] = useState([]);
@@ -15,7 +15,7 @@ const Brands = () => {
   const actionsColumn = [
     {
       title: "عملیات",
-      elements: (data) => <TableActions data={data} />,
+      elements: (data) => <TableActions data={data} deleteBrand={handleDeleteBrand}/>,
     },
   ];
   const handleGetBrands = async () => {
@@ -32,6 +32,26 @@ const Brands = () => {
     } catch (error) {
       Alert("error", error);
       setLoading(false);
+    }
+  };
+  const handleDeleteBrand = async (data)=>{
+    const confirm = await Confirm('حذف برند!',`ایا از حذف برند ${data.original_name} اطمینان دارید؟`,'warning','حذف برند','لغو')
+    if(confirm){
+      setLoading(true);
+      try{
+        const res = await deleteBrandService(data.id);
+        if(res.status === 200){
+          setData(prev=>prev.filter(item=>item.id !== data.id));
+          Alert('success',`برند ${data.original_name} با موفقیت حذف شد!`);
+          setLoading(false);
+        }else{
+          Alert('error','برند حذف نشد!')
+          setLoading(false);
+        }
+      }catch(error){
+        Alert('error',error)
+        setLoading(false);
+      }
     }
   };
   useEffect(() => {
