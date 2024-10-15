@@ -8,11 +8,16 @@ import TableActions from "./TableActions";
 import { deleteBrandService, getBrandsService } from "../../services/brandsService";
 import TableSkeleton from "../../components/loadings/TableSkeleton";
 import { Alert, Confirm } from "../../utils/alert";
+import TableLogo from "./TableLogo";
 
 const Brands = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const actionsColumn = [
+    {
+      title: "لوگو",
+      elements: (data) => <TableLogo data={data}/>,
+    },
     {
       title: "عملیات",
       elements: (data) => <TableActions data={data} deleteBrand={handleDeleteBrand}/>,
@@ -74,7 +79,7 @@ const Brands = () => {
             data={data}
             dataInfo={dataInfo}
             actionCol={actionsColumn}
-            rowInPage={10}
+            rowInPage={5}
             searchable={true}
             dialogOpenner={openCloseDialog}
             searchParam={{
