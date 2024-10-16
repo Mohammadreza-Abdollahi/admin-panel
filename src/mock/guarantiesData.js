@@ -42,9 +42,3 @@ export const data = [
         explanation: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ',
     },
 ];
-export const dataInfo = [
-    { field: 'id' , title: '#' },
-    { field: 'guarantyTitle' , title: 'عنوان گارانتی' },
-    { field: 'guarantyDuration' , title: 'مدت گارانتی' },
-    { field: 'explanation' , title: 'توضیحات' },
-];
