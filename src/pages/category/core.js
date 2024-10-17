@@ -2,14 +2,11 @@ import * as Yup from 'yup';
 import { openCloseDialog } from '../../redux/category/categorySlice';
 import { createCategoryService, updateCategoryService } from '../../services/categoryServices';
 import { Alert } from '../../utils/alert';
-import { createAttributeService, editAttributeService } from '../../services/attributesService';
-// ----------Category----------
 export const categoryDataInfo = [
     { field: 'id' , title: '#' },
     { field: 'title' , title: 'عنوان' },
     { field: 'parent_id' , title: 'شناسه والد' },
 ];
-// ----------Category Dialog----------
 export const initialValues = {
     parent_id: '',
     title: '',
@@ -62,4 +59,3 @@ export const onSubmit = async (values , actions , setForceRender , dispatch , ed
     }
     
 }
-// ----------Attributes----------

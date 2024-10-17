@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import categoryReducer from "./category/categorySlice";
 import productDialogReducer from "./product/productDialog";
 import colorsDialogReducer from "./colors/colorsDialog";
-import guarantiesDialogReducer from "./guaranties/guarantiesDialog";
+import guarantiesSliceReducer from "./guaranties/guarantiesSlice";
 import brandsSliceReducer from "./brands/brandsSlice";
 import discountsDialogReducer from "./discounts/discountsDialog";
 import cartsDialogReducer from "./carts/cartsDialog";
@@ -14,7 +14,7 @@ const store = configureStore({
     categorySlice: categoryReducer,
     productDialog: productDialogReducer,
     colorsDialog: colorsDialogReducer,
-    guarantiesDialog: guarantiesDialogReducer,
+    guarantiesSlice: guarantiesSliceReducer,
     brandsSlice: brandsSliceReducer,
     discountsDialog: discountsDialogReducer,
     cartsDialog: cartsDialogReducer,

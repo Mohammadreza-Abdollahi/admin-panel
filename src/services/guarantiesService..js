@@ -6,3 +6,10 @@ export const getGuarantiesService = async ()=>{
         'get'
     );
 };
+export const createGuarantyService = async (data)=>{
+    return await httpService(
+        '/admin/guarantees',
+        'post',
+        data
+    )
+};

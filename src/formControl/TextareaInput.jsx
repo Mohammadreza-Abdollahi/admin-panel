@@ -7,7 +7,10 @@ import { useState } from "react";
 const TextareaInput = ({formik , name , label , value , placeholder , readOnly = false , row}) => {
     const [focus , setFocus] = useState(false);
     const handleFocus = ()=>{
-        setFocus(!focus)
+        setFocus(true)
+    };
+    const handleBlur = ()=>{
+        setFocus(false)
     };
     return ( 
         <div className={`relative flex ring-2 rounded-sm text-lg text-slate-800 overflow-hidden transition-all duration-150 ${focus ? 'ring-palete-4-500-1' : 'ring-palete-2-400-1'}`}>
@@ -17,7 +20,7 @@ const TextareaInput = ({formik , name , label , value , placeholder , readOnly =
             <FastField name={name}>
                 {
                     (param)=>(
-                        <textarea {...param.field} onFocus={handleFocus} onBlur={handleFocus} rows={row} name={name} type='text' readOnly={readOnly} placeholder={placeholder} className="appearance-none w-3/4 py-2 px-2 text-xl focus:outline-none"/>
+                        <textarea {...param.field} onFocus={handleFocus} onBlur={handleBlur} rows={row} name={name} type='text' readOnly={readOnly} placeholder={placeholder} className="appearance-none w-3/4 py-2 px-2 text-xl focus:outline-none"/>
                     )
                 }
             </FastField>
