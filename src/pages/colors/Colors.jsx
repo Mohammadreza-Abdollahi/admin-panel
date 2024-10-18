@@ -1,39 +1,50 @@
 import ModalContainer from "../../components/ModalPortal";
-import { Tooltip } from "@mui/material";
 import ColorsDialog from "./ColorsDialog";
-import { data } from "../../mock/colorsData";
-import { colorsOpenClose } from "../../redux/colors/colorsDialog";
-import ColorsTable from "./ColorsTable";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import TableActions from "./TableActions";
+import PaginationTable from "../../components/PaginationTable";
+import { dataInfo, handleGetColors } from "./core";
+import TableSkeleton from "../../components/loadings/TableSkeleton";
+import { openCloseDialog } from "../../redux/colors/colorsSlice";
 
-const actionsColumn = {
-  title: 'عملیات',
-  elements: (id)=>sendElements(id)
-}
-const sendElements = (id)=>{
-  return(
-    <>
-      <Tooltip arrow placement="top" title={<><span className="text-base">حذف رنگ</span></>}><FontAwesomeIcon icon={faTrash} className="text-xl text-red-500 hover:bg-red-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>
-    </>
-  )
-}
-
-const Colors = () => {  
-  useEffect(()=>{
-    document.title = 'پنل مدیریت | رنگ ها'
-  },[])
+const Colors = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const actionsColumn = [
+    {
+      title: "عملیات",
+      elements: (data) => <TableActions data={data} />,
+    },
+  ];
+  useEffect(() => {
+    document.title = "پنل مدیریت | رنگ ها";
+    handleGetColors(setData, setLoading);
+  }, []);
   return (
     <>
       <ModalContainer>
-        <ColorsDialog/>
+        <ColorsDialog />
       </ModalContainer>
       <h1 className="text-3xl text-center my-4 text-slate-800">
         <b>مدیریت رنگ ها</b>
       </h1>
       <section>
-        <ColorsTable data={data} actionCol={actionsColumn} rowInPage={10} searchable={true} dialogOpenner={colorsOpenClose} searchParam={'colorName'}/>
+        {loading ? (
+          <TableSkeleton />
+        ) : (
+          <PaginationTable
+            data={data}
+            dataInfo={dataInfo}
+            actionCol={actionsColumn}
+            rowInPage={10}
+            searchable={true}
+            dialogOpenner={openCloseDialog}
+            searchParam={{
+              title: "title",
+              placeholder: "برند مورد نظر را جستجو کنید...",
+            }}
+          />
+        )}
       </section>
     </>
   );
