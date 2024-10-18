@@ -3,10 +3,8 @@ import PaginationTable from "../../components/PaginationTable";
 import GuarantiesDialog from "./GuarantiesDialog";
 import { useEffect, useState } from "react";
 import TableActions from "./TableActions";
-import { dataInfo } from "./core";
+import { dataInfo, handleGetGuaranties } from "./core";
 import TableSkeleton from "../../components/loadings/TableSkeleton";
-import { getGuarantiesService } from "../../services/guarantiesService.";
-import { Alert } from "../../utils/alert";
 import GuarantiesTime from "./GuarantiesTime";
 import { openCloseDialog } from "../../redux/guaranties/guarantiesSlice";
 
@@ -21,28 +19,13 @@ const Guaranties = () => {
     },
     {
       title: "عملیات",
-      elements: (data) => <TableActions data={data} setDataToEdit={setDataToEdit}/>,
+      elements: (data) => <TableActions data={data} setData={setData} setLoading={setLoading} setDataToEdit={setDataToEdit}/>,
     },
   ];
-  const handleGetGuaranties = async () => {
-    setLoading(true);
-    try {
-      const res = await getGuarantiesService();
-      if (res.status === 200) {
-        setData(res.data.data);
-        setLoading(false);
-      } else {
-        Alert("error", "گارانتی ها دریافت نشدند!");
-      }
-    } catch (error) {}
-  };
   useEffect(() => {
     document.title = "پنل مدیریت | گارانتی ها";
-    handleGetGuaranties();
+    handleGetGuaranties(setData,setLoading);
   }, []);
-  useEffect(()=>{
-    console.log(dataToEdit);
-  },[dataToEdit])
   return (
     <>
       <ModalContainer>
@@ -64,7 +47,7 @@ const Guaranties = () => {
             dialogOpenner={openCloseDialog}
             searchParam={{
               title: "title",
-              placeholder: "دسته بندی مورد نظر را جستجو کنید...",
+              placeholder: "گارانتی مورد نظر را جستجو کنید...",
             }}
           />
         )}

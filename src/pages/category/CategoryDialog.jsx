@@ -35,7 +35,6 @@ const CategoryDialog = ({setForceRender}) => {
       const res = await getCategoryByIdService(id);
       if(res.status === 200){
         const oldData = res.data.data;
-        console.log(oldData);
         setReinitialize({
           parent_id: oldData.parent_id || '',
           title: oldData.title,

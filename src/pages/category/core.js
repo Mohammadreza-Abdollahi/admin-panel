@@ -45,7 +45,6 @@ export const onSubmit = async (values , actions , setForceRender , dispatch , ed
           setForceRender(prev=>prev + 1);
       }else{
         const res = await createCategoryService(values);
-        console.log(res);
         if(res.status === 201){
           Alert('success' , "دسته با موفقیت ایجاد شد!");
           dispatch(openCloseDialog());

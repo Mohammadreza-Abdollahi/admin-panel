@@ -55,7 +55,6 @@ const BrandsDialog = ({ setData, setLoading }) => {
         setFormLoading(false)
     }
   },[editId])
-  console.log(reinitialize);
   return (
     <>
       <ModalContainer>
@@ -75,7 +74,6 @@ const BrandsDialog = ({ setData, setLoading }) => {
             enableReinitialize
           >
             {(Formik) => {
-              // console.log(Formik.values);
               return (
                 <Form>
                   {

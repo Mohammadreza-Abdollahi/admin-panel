@@ -20,3 +20,9 @@ export const updateGuarantyService = async (id , data)=>{
         data
     );
 };
+export const deleteGuarantyService = async (id)=>{
+    return await httpService(
+        `/admin/guarantees/${id}`,
+        'delete'
+    );
+};

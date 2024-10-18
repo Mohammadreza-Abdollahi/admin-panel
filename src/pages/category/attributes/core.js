@@ -29,10 +29,8 @@ export const onSubmit = async (values , actions , setData , state , setLoading ,
       ...values,
       in_filter: values.in_filter ? 1 : 0
     };
-    console.log(values);
     if(attributeToEdit){
       const res = await editAttributeService(attributeToEdit.id , values);
-      console.log(res);
       if(res.status === 200){
         setData(prev=>{
           const newData = [...prev];
@@ -43,14 +41,10 @@ export const onSubmit = async (values , actions , setData , state , setLoading ,
         Alert('success' , "ویژگی با موفقیت ویرایش شد!");
         setAttributeToEdit(null);
         setLoading(false);
-        console.log(values);
-        console.log(attributeToEdit.id);
-        console.log(res);
       }
     }else{
       const res = await createAttributeService(state.id , values);
       if(res.status === 201){
-        console.log(res);
         Alert('success' , "ویژگی با موفقیت ایجاد شد!");
         setData(prev=>[...prev , res.data.data]);
         setLoading(false);

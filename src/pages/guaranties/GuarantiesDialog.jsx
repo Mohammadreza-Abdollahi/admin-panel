@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import ModalContainer from "../../components/ModalPortal";
 import MiniDialog from "../../components/Dialog";
-import Btn from "../../components/Btn";
 import FormControler from "../../formControl/FormControler";
 import { Form, Formik } from "formik";
 import { initialValues, lengthUnits, onSubmit, validationSchema } from "./core";
@@ -49,7 +48,6 @@ const GuarantiesDialog = ({ setData, setLoading, dataToEdit, setDataToEdit }) =>
             enableReinitialize
           >
             {(Formik) => {
-              console.log(Formik.values);
               return (
                 <Form>
                   <section dir="rtl">

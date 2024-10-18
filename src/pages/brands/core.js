@@ -39,14 +39,12 @@ export const onSubmit = async (
   try {
     if(editId){
       const res = await updateBrandService(editId , values);
-      console.log(res);
       if(res.status === 200){
         Alert('success' , `برند ${res.data.data.original_name} ویرایش شد!`)
         setData(prev=>{
           let newData = [...prev]
           let index = newData.findIndex(item=>item.id === editId);
           newData[index] = res.data.data;
-          console.log(newData);
           return newData;
         });
         setLoading(false);

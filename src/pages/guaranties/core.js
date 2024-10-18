@@ -1,6 +1,6 @@
 import * as Yup from "yup";
-import { createGuarantyService, updateGuarantyService } from "../../services/guarantiesService.";
-import { Alert } from "../../utils/alert";
+import { createGuarantyService, deleteGuarantyService, getGuarantiesService, updateGuarantyService } from "../../services/guarantiesService.";
+import { Alert, Confirm } from "../../utils/alert";
 import { openCloseDialog } from "../../redux/guaranties/guarantiesSlice";
 
 export const dataInfo = [
@@ -85,7 +85,6 @@ export const onSubmit = async (
     }else{
       const res = await createGuarantyService(values);
       if (res.status === 201) {
-        console.log(res);
         setData((prev) => [...prev, res.data.data]);
         Alert("success", `گارانتی ${values.title} با موفقیت افزوده شد.`);
         dispatch(openCloseDialog());
@@ -108,3 +107,32 @@ export const onSubmit = async (
     setReinitialize(null)
   }
 };
+export const handleGetGuaranties = async (setData,setLoading) => {
+  setLoading(true);
+  try {
+    const res = await getGuarantiesService();
+    if (res.status === 200) {
+      setData(res.data.data);
+      setLoading(false);
+    } else {
+      Alert("error", "گارانتی ها دریافت نشدند!");
+    }
+  } catch (error) {
+    Alert('error',error)
+  }
+};
+export const handleDeleteGuaranty = async (data , setData , setLoading)=>{
+  const confirm = await Confirm('حذف گارانتی!',`ایا از حذف گارانتی ${data.title} اطمینان دارید؟`,'warning','حذف گرانتی','لغو')
+  if(confirm){
+    setLoading(true)
+    const res = await deleteGuarantyService(data.id);
+    if(res.status === 200){
+      setData(prev=>[...prev].filter(item=>item.id !== data.id));
+      Alert('success',`گارانتی ${data.title} با موفقیت حذف شد!`);
+      setLoading(false)
+    }else{
+      Alert('error','گارانتی حذف نشد!')
+      setLoading(false)
+    }
+  }
+}

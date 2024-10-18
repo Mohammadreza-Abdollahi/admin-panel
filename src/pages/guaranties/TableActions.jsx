@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { openCloseDialog } from "../../redux/guaranties/guarantiesSlice";
+import { handleDeleteGuaranty } from "./core";
 
-const TableActions = ({data , setDataToEdit}) => {
+const TableActions = ({data , setData , setLoading , setDataToEdit}) => {
     const dispatch = useDispatch();
     return ( 
         <>
@@ -32,6 +33,7 @@ const TableActions = ({data , setDataToEdit}) => {
                     <span className="text-base">حذف گارانتی</span>
                     </>
                 }
+                onClick={()=>handleDeleteGuaranty(data , setData , setLoading)}
                 >
                 <FontAwesomeIcon
                     icon={faTrash}

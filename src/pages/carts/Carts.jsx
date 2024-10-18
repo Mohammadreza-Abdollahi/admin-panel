@@ -13,7 +13,6 @@ const actionsColumn = {
   elements: (id)=>sendElements(id)
 }
 const sendElements = (id)=>{
-  // console.log(id);
   return(
     <>
       <Tooltip arrow placement="top" title={<><span className="text-base">ویرایش</span></>}><FontAwesomeIcon icon={faEdit} className="text-xl text-yellow-500 hover:bg-yellow-100 px-2 py-1 rounded-md cursor-pointer"/></Tooltip>

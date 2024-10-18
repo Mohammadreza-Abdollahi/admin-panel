@@ -84,7 +84,7 @@ const Brands = () => {
             dialogOpenner={openCloseDialog}
             searchParam={{
               title: "original_name",
-              placeholder: "دسته بندی مورد نظر را جستجو کنید...",
+              placeholder: "برند مورد نظر را جستجو کنید...",
             }}
           />
         )}
