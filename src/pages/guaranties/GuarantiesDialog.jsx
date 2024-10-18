@@ -6,10 +6,30 @@ import FormControler from "../../formControl/FormControler";
 import { Form, Formik } from "formik";
 import { initialValues, lengthUnits, onSubmit, validationSchema } from "./core";
 import { openCloseDialog } from "../../redux/guaranties/guarantiesSlice";
+import { useEffect, useState } from "react";
 
-const GuarantiesDialog = ({ setData, setLoading }) => {
+const GuarantiesDialog = ({ setData, setLoading, dataToEdit, setDataToEdit }) => {
+  const [reinitialize , setReinitialize] = useState(null);
   const { dialogIsOpen } = useSelector((state) => state.guarantiesSlice);
   const dispatch = useDispatch();
+  useEffect(()=>{
+    if(dataToEdit){
+      setReinitialize({
+        title: dataToEdit.title,
+        descriptions: dataToEdit.descriptions,
+        length: dataToEdit.length,
+        length_unit: dataToEdit.length_unit,
+      });
+    }else{
+      setDataToEdit(null)
+    }
+  },[dataToEdit]);
+  useEffect(()=>{
+    if(!dialogIsOpen){
+      setDataToEdit(null);
+      setReinitialize(null);
+    }
+  },[dialogIsOpen])
   return (
     <>
       <ModalContainer>
@@ -17,15 +37,16 @@ const GuarantiesDialog = ({ setData, setLoading }) => {
           isOpen={dialogIsOpen}
           maxWidth={"md"}
           myDispatch={openCloseDialog}
-          dialogTitle={"افزودن گارانتی جدید"}
+          dialogTitle={dataToEdit ? `ویرایش گارانتی ${dataToEdit.title}` : "افزودن گارانتی جدید"}
           btnText={"بستن"}
         >
           <Formik
-            initialValues={initialValues}
+            initialValues={reinitialize || initialValues}
             validationSchema={validationSchema}
             onSubmit={(values, actions) =>
-              onSubmit(values, actions, setData, setLoading, dispatch)
+              onSubmit(values, actions, setData, setLoading, dispatch , dataToEdit , setDataToEdit , setReinitialize)
             }
+            enableReinitialize
           >
             {(Formik) => {
               console.log(Formik.values);
@@ -80,7 +101,7 @@ const GuarantiesDialog = ({ setData, setLoading }) => {
                       <FormControler
                         control={'button'}
                         formik={Formik}
-                        btnTxt={'افزودن'}
+                        btnTxt={dataToEdit ? 'ویرایش' : 'افزودن'}
                         width={'w-full'}
                       />
                     </div>

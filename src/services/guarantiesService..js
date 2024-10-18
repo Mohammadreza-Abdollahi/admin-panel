@@ -13,3 +13,10 @@ export const createGuarantyService = async (data)=>{
         data
     )
 };
+export const updateGuarantyService = async (id , data)=>{
+    return await httpService(
+        `/admin/guarantees/${id}`,
+        'put',
+        data
+    );
+};

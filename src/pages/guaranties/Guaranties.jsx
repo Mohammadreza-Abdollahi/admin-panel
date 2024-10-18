@@ -13,6 +13,7 @@ import { openCloseDialog } from "../../redux/guaranties/guarantiesSlice";
 const Guaranties = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [dataToEdit , setDataToEdit] = useState(null);
   const actionsColumn = [
     {
       title: "مدت گارانتی",
@@ -20,7 +21,7 @@ const Guaranties = () => {
     },
     {
       title: "عملیات",
-      elements: (data) => <TableActions data={data} />,
+      elements: (data) => <TableActions data={data} setDataToEdit={setDataToEdit}/>,
     },
   ];
   const handleGetGuaranties = async () => {
@@ -39,10 +40,13 @@ const Guaranties = () => {
     document.title = "پنل مدیریت | گارانتی ها";
     handleGetGuaranties();
   }, []);
+  useEffect(()=>{
+    console.log(dataToEdit);
+  },[dataToEdit])
   return (
     <>
       <ModalContainer>
-        <GuarantiesDialog setData={setData} setLoading={setLoading} />
+        <GuarantiesDialog setData={setData} setLoading={setLoading} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>
       </ModalContainer>
       <h1 className="text-3xl text-center my-4 text-slate-800">
         <b>مدیریت گارانتی ها</b>
