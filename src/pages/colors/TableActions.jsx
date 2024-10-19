@@ -1,8 +1,11 @@
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { openCloseDialog } from "../../redux/colors/colorsSlice";
 
-const TableActions = ({ data }) => {
+const TableActions = ({ data , setDataToEdit }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <section className="py-1.5">
@@ -14,6 +17,7 @@ const TableActions = ({ data }) => {
               <span className="text-base">ویرایش رنگ</span>
             </>
           }
+          onClick={()=>{dispatch(openCloseDialog());setDataToEdit(data)}}
         >
           <FontAwesomeIcon
             icon={faEdit}

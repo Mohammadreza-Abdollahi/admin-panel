@@ -11,6 +11,7 @@ import ShowColor from "./ShowColor";
 const Colors = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [dataToEdit , setDataToEdit] = useState(null);
   const actionsColumn = [
     {
       title: "رنگ",
@@ -18,7 +19,7 @@ const Colors = () => {
     },
     {
       title: "عملیات",
-      elements: (data) => <TableActions data={data} />,
+      elements: (data) => <TableActions data={data} setDataToEdit={setDataToEdit} />,
     },
   ];
   useEffect(() => {
@@ -28,7 +29,7 @@ const Colors = () => {
   return (
     <>
       <ModalContainer>
-        <ColorsDialog setData={setData} setLoading={setLoading}/>
+        <ColorsDialog setData={setData} setLoading={setLoading} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>
       </ModalContainer>
       <h1 className="text-3xl text-center my-4 text-slate-800">
         <b>مدیریت رنگ ها</b>

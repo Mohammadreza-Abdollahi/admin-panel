@@ -19,7 +19,7 @@ const ColorInput = ({formik , name , label}) => {
             </div>
             <div className="w-3/4 py-0 px-2 text-xl focus:outline-none">
                 <FastField>
-                    {(props)=><input {...props.field} onFocus={handleFocus} onBlur={handleBlur} type='color' name={name} className="appearance-none w-11/12 h-12 align-middle"/>}
+                    {(props)=><input {...props.field} onFocus={handleFocus} onBlur={handleBlur} type='color' name={name} className="appearance-none cursor-pointer w-11/12 h-12 align-middle"/>}
                 </FastField>
                 {
                     formik.errors[name] ? (
