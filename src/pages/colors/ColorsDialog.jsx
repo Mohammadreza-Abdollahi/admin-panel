@@ -79,7 +79,7 @@ const ColorsDialog = ({ setData, setLoading, dataToEdit, setDataToEdit }) => {
                         control={"color"}
                         formik={Formik}
                         name={"code"}
-                        label={"انتخاب  رنگ :"}
+                        label={dataToEdit ? 'ویرایش رنگ :' : "انتخاب  رنگ :"}
                       />
                     </div>
                     <div className="mt-3 mb-1">

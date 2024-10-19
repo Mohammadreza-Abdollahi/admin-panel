@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { openCloseDialog } from "../../redux/colors/colorsSlice";
+import { handleDeleteColor } from "./core";
 
-const TableActions = ({ data , setDataToEdit }) => {
+const TableActions = ({ data , setDataToEdit , setData , setLoading }) => {
   const dispatch = useDispatch();
   return (
     <>
@@ -32,6 +33,7 @@ const TableActions = ({ data , setDataToEdit }) => {
               <span className="text-base">حذف رنگ</span>
             </>
           }
+          onClick={()=>handleDeleteColor(data , setData , setLoading)}
         >
           <FontAwesomeIcon
             icon={faTrash}

@@ -1,10 +1,11 @@
 import { openCloseDialog } from "../../redux/colors/colorsSlice";
 import {
   createColorService,
+  deleteColorService,
   getColorsService,
   updateColorService,
 } from "../../services/colorsService";
-import { Alert } from "../../utils/alert";
+import { Alert, Confirm } from "../../utils/alert";
 import * as Yup from "yup";
 
 export const dataInfo = [
@@ -98,6 +99,26 @@ export const handleGetColors = async (setData, setLoading) => {
     }
   } catch (error) {
     Alert("error", error);
+    setLoading(false);
+  }
+};
+export const handleDeleteColor = async (data , setData , setLoading)=>{
+  const confirm = await Confirm('حذف رنگ!',`ایا از حذف رنگ ${data.title} اطمینان دارید؟`,'warning','حذف رنگ','لغو');
+  try{
+    if(confirm){
+      setLoading(true)
+      const res = await deleteColorService(data.id);
+      if(res.status === 200){
+        setData(prev=>[...prev].filter(item=>item.id !== data.id));
+        Alert('success',`رنگ ${data.title} با موفقیت حذف شد!`);
+        setLoading(false);
+      }else{
+        Alert('success','رنگ حدف نشد!');
+        setLoading(false);
+      }
+    }
+  }catch(error){
+    Alert('success',error);
     setLoading(false);
   }
 };

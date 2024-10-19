@@ -19,7 +19,7 @@ const Colors = () => {
     },
     {
       title: "عملیات",
-      elements: (data) => <TableActions data={data} setDataToEdit={setDataToEdit} />,
+      elements: (data) => <TableActions data={data} setDataToEdit={setDataToEdit} setData={setData} setLoading={setLoading}/>,
     },
   ];
   useEffect(() => {
