@@ -6,11 +6,16 @@ import PaginationTable from "../../components/PaginationTable";
 import { dataInfo, handleGetColors } from "./core";
 import TableSkeleton from "../../components/loadings/TableSkeleton";
 import { openCloseDialog } from "../../redux/colors/colorsSlice";
+import ShowColor from "./ShowColor";
 
 const Colors = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const actionsColumn = [
+    {
+      title: "رنگ",
+      elements: (data) => <ShowColor data={data} />,
+    },
     {
       title: "عملیات",
       elements: (data) => <TableActions data={data} />,
@@ -23,7 +28,7 @@ const Colors = () => {
   return (
     <>
       <ModalContainer>
-        <ColorsDialog />
+        <ColorsDialog setData={setData} setLoading={setLoading}/>
       </ModalContainer>
       <h1 className="text-3xl text-center my-4 text-slate-800">
         <b>مدیریت رنگ ها</b>

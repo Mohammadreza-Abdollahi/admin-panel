@@ -1,4 +1,5 @@
 import Button from './Button';
+import ColorInput from './ColorInput';
 import FileInput from './FileInput';
 import FormCheckbox from './FormCheckbox';
 import Input from './FormInput';
@@ -27,6 +28,10 @@ const FormControler = (props) => {
         case "file":
             return (
                 <FileInput {...props}/>
+            )
+        case "color":
+            return (
+                <ColorInput {...props}/>
             )
         case "switch":
             return (

@@ -1,4 +1,5 @@
-import { getColorsService } from "../../services/colorsService";
+import { openCloseDialog } from "../../redux/colors/colorsSlice";
+import { createColorService, getColorsService } from "../../services/colorsService";
 import { Alert } from "../../utils/alert";
 import * as Yup from 'yup'
 
@@ -17,10 +18,34 @@ export const validationSchema = Yup.object({
               .matches(/^[\u0600-\u06FF\sa-zA-Z0-9]+$/ , 'باید تنها از حروف و اعداد استفاده شود!'),
     code: Yup.string()
              .required('کد رنگی نمیتواند خالی باشد!')
-             .matches(/^[a-zA-Z0-9#]+$/ , 'فرمت کد رنگی باید HEX باشد!'),
+             .matches(/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/ , 'فرمت کد رنگی باید HEX باشد!'),
 });
-export const onSubmit = async (values , actions)=>{
+export const onSubmit = async (values , actions , setData , setLoading , dispatch)=>{
     console.log(values);
+    setLoading(true)
+    try{
+        const res = await createColorService(values);
+        if(res.status === 201){
+            Alert('success',`رنگ ${res.data.data.title} اضافه شد.`);
+            setData(prev=>[...prev , res.data.data]);
+            setLoading(false);
+            actions.resetForm();
+            actions.setSubmitting(false);
+            dispatch(openCloseDialog())
+        }else{
+            Alert('error','رنگ افزوده نشد!');
+            setLoading(false);
+            actions.resetForm();
+            actions.setSubmitting(false);
+            dispatch(openCloseDialog())
+        }
+    }catch(error){
+        Alert('error',error);
+        setLoading(false);
+        actions.resetForm();
+        actions.setSubmitting(false);
+        dispatch(openCloseDialog())
+    }
 };
 export const handleGetColors = async (setData , setLoading)=>{
     setLoading(true)
