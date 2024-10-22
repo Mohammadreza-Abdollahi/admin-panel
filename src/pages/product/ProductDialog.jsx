@@ -4,16 +4,16 @@ import SwitchInput from "../../components/SwitchInput";
 import Btn from "../../components/Btn";
 import FullScreenDialog from "../../components/FullScreenDialog";
 import { useSelector } from "react-redux";
-import { productOpenClose } from "../../redux/product/productDialog";
 import Input from "../../components/Input";
 import TextBadge from "../../components/TextBadge";
 import ColorBadge from "../../components/ColorBadge";
+import { productDialogOpenClose } from "../../redux/product/productSlice";
 
 const ProductDialog = () => {
-    const {isOpen} = useSelector(state=>state.productDialog);
+    const { dialogIsOpen } = useSelector(state=>state.productSlice);
     return ( 
         <>
-            <FullScreenDialog dialogTitle={'افزودن محصول جدید'} open={isOpen} myDispatch={productOpenClose}>
+            <FullScreenDialog dialogTitle={'افزودن محصول جدید'} open={dialogIsOpen} myDispatch={productDialogOpenClose}>
             <section dir="rtl" className="w-2/3 mx-auto py-5 overflow-y-auto px-10">
                         <div className="my-5 w-full">
                             <Input name={'ProductParent'} type={'text'} label={'دسته :'} value={'بدون دسته'} placeholder={'نام محصول وارد را وارد کنید...'}/>

@@ -1,99 +1,40 @@
-import { useDispatch } from "react-redux";
-import {
-  addProductsAttributesOpenClose,
-  productOpenClose,
-} from "../../redux/product/productDialog";
 import ProductDialog from "./ProductDialog";
 import ModalContainer from "../../components/ModalPortal";
-import PaginationTable from "../../components/PaginationTable";
-import { data, dataInfo } from "../../mock/productData";
-import { Tooltip } from "@mui/material";
 import AddProductsAttributes from "./AddProductsAttributes";
-import {
-  faImages,
-  faEdit,
-  faPlus,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ProductPaginationTable from "../../components/ProductPaginationTable";
+import ProductActions from "./ProductActions";
+import { productDialogOpenClose } from "../../redux/product/productSlice";
+import { dataInfo } from "./core";
+import TableSkeleton from "../../components/loadings/TableSkeleton";
+import { getProductsService } from "../../services/productsService";
+import { Alert } from "../../utils/alert";
 
 const Product = () => {
-  const dispatch = useDispatch();
-  const actionsColumn = [
-    {
-      title: "عملیات",
-      elements: (id) => sendElements(id),
-    },
-  ];
-  const sendElements = (id) => {
-    // console.log(id);
-    return (
-      <>
-        <section className="py-1.5">
-          <Tooltip
-            arrow
-            placement="top"
-            title={
-              <>
-                <span className="text-base">مدیریت گالری</span>
-              </>
-            }
-          >
-            <FontAwesomeIcon
-              icon={faImages}
-              className="text-xl text-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md cursor-pointer"
-            />
-          </Tooltip>
-          <Tooltip
-            arrow
-            placement="top"
-            title={
-              <>
-                <span className="text-base">ویرایش</span>
-              </>
-            }
-          >
-            <FontAwesomeIcon
-              icon={faEdit}
-              className="text-xl text-yellow-500 hover:bg-yellow-100 px-2 py-1 rounded-md cursor-pointer"
-            />
-          </Tooltip>
-          <Tooltip
-            arrow
-            placement="top"
-            title={
-              <>
-                <span className="text-base">ثبت ویژگی</span>
-              </>
-            }
-          >
-            <FontAwesomeIcon
-              icon={faPlus}
-              onClick={() => dispatch(addProductsAttributesOpenClose())}
-              className="text-xl text-green-500 hover:bg-green-100 px-2 py-1 rounded-md cursor-pointer"
-            />
-          </Tooltip>
-          <Tooltip
-            arrow
-            placement="top"
-            title={
-              <>
-                <span className="text-base">حذف محصول</span>
-              </>
-            }
-          >
-            <FontAwesomeIcon
-              icon={faTrash}
-              className="text-xl text-red-500 hover:bg-red-100 px-2 py-1 rounded-md cursor-pointer"
-            />
-          </Tooltip>
-        </section>
-      </>
-    );
+  const [data , setData] = useState([]);
+  const [loading , setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState(1);
+  const handleGetProducts = async ()=>{
+    setLoading(true)
+    try{
+      const res = await getProductsService(currentPage , 10 , '');
+      if(res.status === 200){
+        setData(res.data.data)
+        console.log(res);
+        setLoading(false);
+      }else{
+        Alert('error','محصولات دریافت نشدند!');
+        setLoading(false);
+      }
+    }catch(error){
+      Alert('error',error);
+      setLoading(false);
+    }
   };
   useEffect(() => {
     document.title = "پنل مدیریت | محصولات";
+    handleGetProducts();
   }, []);
   return (
     <>
@@ -105,18 +46,27 @@ const Product = () => {
         <b>مدیریت محصولات</b>
       </h1>
       <section>
-        <PaginationTable
-          data={data}
-          dataInfo={dataInfo}
-          actionCol={actionsColumn}
-          rowInPage={10}
-          searchable={true}
-          dialogOpenner={productOpenClose}
-          searchParam={{
-            title: "title",
-            placeholder: "محصول مورد نظر را جستجو کنید...",
-          }}
-        />
+        {
+          loading ? (
+            <TableSkeleton/>
+          ) : (
+            <ProductPaginationTable
+              data={data}
+              dataInfo={dataInfo}
+              rowInPage={10}
+              searchable={true}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              pageCount={pageCount}
+              setPageCount={setPageCount}
+              dialogOpenner={productDialogOpenClose}
+              searchParam={{
+                title: "title",
+                placeholder: "محصول مورد نظر را جستجو کنید...",
+              }}
+            />
+          )
+        }
       </section>
     </>
   );
