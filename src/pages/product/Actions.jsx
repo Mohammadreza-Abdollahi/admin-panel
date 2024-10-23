@@ -4,7 +4,7 @@ import { Tooltip } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addProductAttributeDialogOpenClose } from "../../redux/product/productSlice";
 
-const ProductActions = ({data}) => {
+const Actions = ({data}) => {
     const dispatch = useDispatch();
     return (
         <>
@@ -71,4 +71,4 @@ const ProductActions = ({data}) => {
       );
 }
  
-export default ProductActions;
+export default Actions;
