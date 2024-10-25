@@ -14,6 +14,10 @@ const Product = () => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
+  const handleSearch = async (char)=>{
+    setSearchChar(char);
+    handleGetProducts(setData , setLoading , setPageCount , 1 , itemInPage , char);
+  };
   useEffect(() => {
     document.title = "پنل مدیریت | محصولات";
     handleGetProducts(setData , setLoading , setPageCount , currentPage , itemInPage , searchChar);
@@ -35,6 +39,7 @@ const Product = () => {
             data={data}
             dataInfo={dataInfo}
             setSearchChar={setSearchChar}
+            searchChar={searchChar}
             pageCount={pageCount}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
@@ -44,6 +49,7 @@ const Product = () => {
               title: "title",
               placeholder: "محصول مورد نظر را جستجو کنید...",
             }}
+            handleSearch={handleSearch}
           />
         )}
       </section>
