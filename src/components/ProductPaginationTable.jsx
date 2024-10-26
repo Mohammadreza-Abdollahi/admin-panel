@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import BackButton from "./BackButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const ProductPaginationTable = ({
   data,
@@ -57,9 +58,11 @@ const ProductPaginationTable = ({
             </div>
             <dir className="w-1/3 text-end">
               {hasBtn ? (
-                <span onClick={() => dispatch(dialogOpenner())}>
-                  <Btn btnTxt={"افزودن"} />
-                </span>
+                <Link to={'/products/add-product'}>
+                  <span>
+                    <Btn btnTxt={"افزودن"} />
+                  </span>
+                </Link>
               ) : null}
               {hasBackBtn ? <BackButton btnTxt={"بازگشت"} /> : null}
             </dir>

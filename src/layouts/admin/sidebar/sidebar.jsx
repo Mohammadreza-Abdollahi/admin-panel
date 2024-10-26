@@ -15,7 +15,7 @@ const Aside = () => {
                 <section className='my-2'>
                     <SidebarGroupItem title='فروشگاه'/>
                     <SidebarItem itemPath={'/categories'} icon={faBoxesStacked} title='مدیریت گروه محصول'/>
-                    <SidebarItem itemPath={'/product'} icon={faBoxOpen} title='مدیریت محصول'/>
+                    <SidebarItem itemPath={'/products'} icon={faBoxOpen} title='مدیریت محصول'/>
                     <SidebarItem itemPath={'/brands'} icon={faCopyright} title='مدیریت برند ها'/>
                     <SidebarItem itemPath={'/guaranties'} icon={faCertificate} title='مدیریت گارانتی ها'/>
                     <SidebarItem itemPath={'/colors'} icon={faPalette} title='مدیریت رنگ ها'/>

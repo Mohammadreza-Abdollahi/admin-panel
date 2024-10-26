@@ -17,6 +17,7 @@ import Comments from "./comments/Comments";
 import Logout from "../layouts/authLayout/Logout";
 import CategorySub from "./category/CategorySub";
 import Attributes from "./category/attributes/Attributes";
+import AddProduct from "./product/AddProduct";
 
 const Content = () => {
     return ( 
@@ -28,7 +29,8 @@ const Content = () => {
                         <Route path=":categoryId" element={<CategorySub/>}/>
                     </Route>
                     <Route path="/categories/:categoryId/attributes" element={<Attributes/>}/>
-                    <Route path="/product" element={<Product/>}/>
+                    <Route path="/products" element={<Product/>}/>
+                    <Route path="/products/add-product" element={<AddProduct/>}/>
                     <Route path="/colors" element={<Colors/>}/>
                     <Route path="/guaranties" element={<Guaranties/>}/>
                     <Route path="/brands" element={<Brands/>}/>

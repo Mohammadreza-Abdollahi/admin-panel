@@ -1,4 +1,4 @@
-import ProductDialog from "./ProductDialog";
+import ProductDialog from "./AddProduct";
 import ModalContainer from "../../components/ModalPortal";
 import AddProductsAttributes from "./AddProductsAttributes";
 import { useEffect, useState } from "react";
@@ -60,10 +60,6 @@ const Product = () => {
   }, [currentPage , itemInPage]);
   return (
     <>
-      <ModalContainer>
-        <ProductDialog />
-        <AddProductsAttributes />
-      </ModalContainer>
       <h1 className="text-3xl text-center my-4 text-slate-800">
         <b>مدیریت محصولات</b>
       </h1>
