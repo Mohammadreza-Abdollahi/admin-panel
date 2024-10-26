@@ -1,42 +1,8 @@
 import LikesCount from "./LikesCount";
 import Actions from "./Actions";
-import { getProductsService } from "../../services/productsService";
-import { Alert } from "../../utils/alert";
+import { deleteProductService, getProductsService } from "../../services/productsService";
+import { Alert, Confirm } from "../../utils/alert";
 
-export const dataInfo = [
-  { field: "id", title: "#" },
-  {
-    field: null,
-    title: "گروه محصول",
-    elements: (data) => data.categories[0].title,
-  },
-  { field: "title", title: "عنوان" },
-  { field: "price", title: "قیمت" },
-  { field: "view_count", title: "موجودی" },
-  {
-    field: null,
-    title: "تعداد پسند ها",
-    elements: (data) => <LikesCount data={data} />,
-  },
-  {
-    field: null,
-    title: "گروه محصول",
-    elements: (data) => (
-      <span
-        className={`text-lg ${
-          data.is_active ? "text-green-500" : "text-red-500"
-        }`}
-      >
-        {data.is_active ? "فعال" : "غیرفعال"}
-      </span>
-    ),
-  },
-  {
-    field: null,
-    title: "عملیات",
-    elements: (data) => <Actions data={data} />,
-  },
-];
 export const handleGetProducts = async (setData , setLoading , setPageCount , currentPage , itemInPage , searchChar) => {
   setLoading(true);
   try {
@@ -52,6 +18,26 @@ export const handleGetProducts = async (setData , setLoading , setPageCount , cu
     }
   } catch (error) {
     Alert("error", error);
+    setLoading(false);
+  }
+};
+export const handleDeleteProduct = async (data , setData , setLoading)=>{
+  try{
+    const confirm = await Confirm('حذف محصول!',`ایا از حذف محصول ${data.title} اطمینان دارید؟`,'warning','حذف محصول','لغو');
+    if(confirm){
+      setLoading(true);
+      const res = await deleteProductService(data.id);
+      if(res.status === 200){
+        setData(prev=>[...prev].filter(item=>item.id !== data.id));
+        Alert('success',`محصول ${data.title} با موفقیت حذف شد!`);
+        setLoading(false);
+      }else{
+        Alert('error','محصول حذف نشد!');
+        setLoading(false);
+      }
+    }
+  }catch(error){
+    Alert('error',error);
     setLoading(false);
   }
 };

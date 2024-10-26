@@ -6,3 +6,9 @@ export const getProductsService = async (page , countOnPage , search)=>{
         'get'
     )
 };
+export const deleteProductService = async (id)=>{
+    return await httpService(
+        `/admin/products/${id}`,
+        'delete'
+    )
+};

@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addProductAttributeDialogOpenClose } from "../../redux/product/productSlice";
+import { handleDeleteProduct } from "./core";
 
-const Actions = ({data}) => {
+const Actions = ({data , setData , setLoading}) => {
     const dispatch = useDispatch();
     return (
         <>
@@ -60,6 +61,7 @@ const Actions = ({data}) => {
                   <span className="text-base">حذف محصول</span>
                 </>
               }
+              onClick={()=>handleDeleteProduct(data , setData , setLoading)}
             >
               <FontAwesomeIcon
                 icon={faTrash}
