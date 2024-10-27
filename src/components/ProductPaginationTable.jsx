@@ -1,8 +1,7 @@
 import { Pagination, ThemeProvider } from "@mui/material";
 import { componentsTheme } from "../themes/componentsTheme";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Btn from "./Btn";
-import SearchBox from "./SearchBox";
 import { useDispatch } from "react-redux";
 import BackButton from "./BackButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,23 +21,23 @@ const ProductPaginationTable = ({
   searchParam = "title",
   hasBtn = true,
   hasBackBtn = false,
-  handleSearch
+  handleSearch,
 }) => {
   let timeout;
   const dispatch = useDispatch();
   const [initData, setInitData] = useState(data);
-  const [focus , setFocus] = useState(false);
-    const handleFocus = ()=>{
-        setFocus(!focus)
-    };
+  const [focus, setFocus] = useState(false);
+  const handleFocus = () => {
+    setFocus(!focus);
+  };
   const handleChangePage = (e, v) => {
     setCurrentPage(v);
   };
-  const searchTimeout = (char)=>{
+  const searchTimeout = (char) => {
     clearTimeout(timeout);
-    timeout = setTimeout(()=>{
+    timeout = setTimeout(() => {
       handleSearch(char);
-    },500)
+    }, 500);
   };
   return (
     <>
@@ -46,19 +45,47 @@ const ProductPaginationTable = ({
         {searchable ? (
           <section className="flex justify-between items-center my-1 mb-3">
             <div className="w-1/3 text-start">
-              <form onSubmit={(e)=>e.preventDefault()} className={`overflow-hidden relative ring-2 rounded-sm text-xl transition-all duration-300 group ${focus ? 'ring-palete-4-400' : 'ring-palete-2-400-1'}`}>
-                  <input type="submit" value={'جستجو'} className={`appearance-none w-1/4 py-2 text-white transition-all duration-300   ${focus ? 'bg-palete-4-400' : 'bg-palete-2-400-1'}`}/>
-                  <input onFocus={handleFocus} onBlur={handleFocus} onChange={(e)=>{searchTimeout(e.target.value)}} type="text" className="appearance-none w-3/4 py-2 px-2 focus:outline-none" placeholder={searchChar || 'نام محصول مورد نظر را وارد کنید...'}/>
-                  {
-                    searchChar ? (
-                      <span onClick={()=>{setSearchChar(null);searchTimeout('')}} className="absolute left-3 -translate-y-1/2 top-6 text-red-500 p-1 cursor-pointer"><FontAwesomeIcon icon={faXmark}/></span>
-                    ) : null
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className={`overflow-hidden relative ring-2 rounded-sm text-xl transition-all duration-300 group ${
+                  focus ? "ring-palete-4-400" : "ring-palete-2-400-1"
+                }`}
+              >
+                <input
+                  type="submit"
+                  value={"جستجو"}
+                  className={`appearance-none w-1/4 py-2 text-white transition-all duration-300   ${
+                    focus ? "bg-palete-4-400" : "bg-palete-2-400-1"
+                  }`}
+                />
+                <input
+                  onFocus={handleFocus}
+                  onBlur={handleFocus}
+                  onChange={(e) => {
+                    searchTimeout(e.target.value);
+                  }}
+                  type="text"
+                  className="appearance-none w-3/4 py-2 px-2 focus:outline-none"
+                  placeholder={
+                    searchChar || "نام محصول مورد نظر را وارد کنید..."
                   }
+                />
+                {searchChar ? (
+                  <span
+                    onClick={() => {
+                      setSearchChar(null);
+                      searchTimeout("");
+                    }}
+                    className="absolute left-3 -translate-y-1/2 top-6 text-red-500 p-1 cursor-pointer"
+                  >
+                    <FontAwesomeIcon icon={faXmark} />
+                  </span>
+                ) : null}
               </form>
             </div>
             <dir className="w-1/3 text-end">
               {hasBtn ? (
-                <Link to={'/products/add-product'}>
+                <Link to={"/products/add-product"}>
                   <span>
                     <Btn btnTxt={"افزودن"} />
                   </span>
@@ -71,23 +98,23 @@ const ProductPaginationTable = ({
         <table className="text-center w-full bg-palete-2-100 bg-opacity-60 rounded-sm overflow-hidden ring-1 ring-palete-2-300">
           <thead className="border-b-palete-2-300 border-b-4 bg-palete-2-200 bg-opacity-70">
             <tr className="text-slate-800">
-              {dataInfo.map((i) => (
-                <th key={i.field ? i.field : "no_field"} className="py-3">
+              {dataInfo.map((i , index) => (
+                <th key={i.field ? i.field : `no_field_${index}`} className="py-3">
                   {i.title}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody className="text-slate-600">
-            {initData.map((d) => (
+            {initData.map((d , index) => (
               <tr
-                key={d.id}
+                key={d.field ? d.field : `no_field_${index}`}
                 className="transition-all duration-150 border-b-palete-2-200 border-b-2 hover:bg-palete-2-300 hover:bg-opacity-50"
               >
-                {dataInfo.map((i) =>
+                {dataInfo.map((i , index) =>
                   i.field ? (
                     <td
-                      key={`${i.field}${d.id}`}
+                      key={`${i.field}${index}`}
                       className={`ring-1 ring-palete-2-200`}
                     >
                       {typeof d[i.field] == "number"
@@ -96,7 +123,7 @@ const ProductPaginationTable = ({
                     </td>
                   ) : (
                     <td
-                      key={`no_field${d.id}`}
+                      key={`no_field_${index}`}
                       className={`ring-1 ring-palete-2-200`}
                     >
                       {i.elements(d)}

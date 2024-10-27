@@ -7,11 +7,38 @@ import TextBadge from "../../components/TextBadge";
 import ColorBadge from "../../components/ColorBadge";
 import { Form, Formik } from "formik";
 import { initialValues, onSubmit, validationSchema } from "./core";
-import ProductsSkeleton from "../../components/loadings/ProductsFormSkeleton";
 import ProductsFormSkeleton from "../../components/loadings/ProductsFormSkeleton";
 import BackButton from "../../components/BackButton";
+import { useEffect, useState } from "react";
+import FormControler from "../../formControl/FormControler";
+import OneFiledSkeleton from "../../components/loadings/OneFieldSkeleton";
+import { getCategoriesService } from "../../services/categoryServices";
 
-const AddProduct = ({ loading = false }) => {
+const AddProduct = () => {
+  const [loading, setLoading] = useState(true);
+  const [parentCategories, setParentCategores] = useState([]);
+  const handleGetParentCategories = async ()=>{
+    setLoading(true)
+    try{
+      const res = await getCategoriesService();
+      if(res.status === 200){
+        setParentCategores(res.data.data.map(item=>{
+          return {id: item.id , title: item.title}
+        }));
+        setLoading(false)
+      }else{
+        setLoading(false)
+      }
+    }catch(error){
+      setLoading(false)
+    }
+  };
+  const han = (e)=>{
+    console.log(e.target.value);
+  }
+  useEffect(() => {
+    handleGetParentCategories();
+  }, []);
   return (
     <>
       <section dir="rtl" className="w-2/3 mx-auto pb-5 overflow-y-auto px-10">
@@ -32,16 +59,23 @@ const AddProduct = ({ loading = false }) => {
                 <div className="my-5 w-full">
                   <section className="flex justify-between gap-3">
                     <div className="w-full">
-                        <Input
-                            name={"ProductParent"}
-                            type={"text"}
-                            label={"دسته :"}
-                            value={"بدون دسته"}
-                            placeholder={"نام محصول وارد را وارد کنید..."}
+                      {parentCategories.length > 0 ? (
+                        <FormControler
+                          control={"select"}
+                          formik={Formik}
+                          name={"category_ids"}
+                          data={parentCategories}
+                          dataValue={"id"}
+                          dataTitle={"title"}
+                          label={"دسته بتدی های والد:"}
+                          onChangeFunc={han}
                         />
+                      ) : (
+                        <OneFiledSkeleton />
+                      )}
                     </div>
                     <div>
-                        <BackButton btnTxt={'بازگشت'}/>
+                      <BackButton btnTxt={"بازگشت"} />
                     </div>
                   </section>
                 </div>

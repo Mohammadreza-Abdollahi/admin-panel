@@ -1,6 +1,3 @@
-import ProductDialog from "./AddProduct";
-import ModalContainer from "../../components/ModalPortal";
-import AddProductsAttributes from "./AddProductsAttributes";
 import { useEffect, useState } from "react";
 import ProductPaginationTable from "../../components/ProductPaginationTable";
 import { productDialogOpenClose } from "../../redux/product/productSlice";
@@ -47,17 +44,26 @@ const Product = () => {
     {
       field: null,
       title: "عملیات",
-      elements: (data) => <Actions data={data} setData={setData} setLoading={setLoading}/>,
+      elements: (data) => (
+        <Actions data={data} setData={setData} setLoading={setLoading} />
+      ),
     },
   ];
-  const handleSearch = async (char)=>{
+  const handleSearch = async (char) => {
     setSearchChar(char);
-    handleGetProducts(setData , setLoading , setPageCount , 1 , itemInPage , char);
+    handleGetProducts(setData, setLoading, setPageCount, 1, itemInPage, char);
   };
   useEffect(() => {
     document.title = "پنل مدیریت | محصولات";
-    handleGetProducts(setData , setLoading , setPageCount , currentPage , itemInPage , searchChar);
-  }, [currentPage , itemInPage]);
+    handleGetProducts(
+      setData,
+      setLoading,
+      setPageCount,
+      currentPage,
+      itemInPage,
+      searchChar
+    );
+  }, [currentPage, itemInPage]);
   return (
     <>
       <h1 className="text-3xl text-center my-4 text-slate-800">

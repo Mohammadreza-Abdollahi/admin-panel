@@ -5,7 +5,7 @@ import { Tooltip } from "chart.js";
 import { FastField } from "formik";
 import { useState } from "react";
 
-const SelectInput = ({formik , data , dataValue , dataTitle , name , label , secodeLabel = '' , defaultValue = true}) => {
+const SelectInput = ({formik , data , dataValue , dataTitle , name , label , secodeLabel = '' , defaultValue = true , onChangeFunc}) => {
     const [focus , setFocus] = useState(false);
     const handleFocus = ()=>{
         setFocus(true)
@@ -19,7 +19,7 @@ const SelectInput = ({formik , data , dataValue , dataTitle , name , label , sec
             <FastField name={name} id={name} as={'select'}>
                 {
                     (param)=>(
-                        <select {...param.field} name={name} id={name} onFocus={handleFocus} onBlur={handleBlue} className="w-3/4 px-3 focus:outline-none">
+                        <select {...param.field} name={name} id={name} onFocus={handleFocus} onBlur={handleBlue} onChange={(e)=>onChangeFunc ? onChangeFunc(e) : null} className="w-3/4 px-3 focus:outline-none">
                             {
                                 defaultValue ? (
                                     <option value="">انتخاب نشده</option>

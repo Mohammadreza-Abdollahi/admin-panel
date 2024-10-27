@@ -35,11 +35,11 @@ export const validationSchema = Yup.object({
   price: Yup.number().required("قیمت نمیتواند خالی باشد!"),
   weight: Yup.number(),
   brand_id: Yup.number(),
-  color_ids: Yup.number().matches(
+  color_ids: Yup.string().matches(
     /^[0-9\s-]+$/,
     "فقط میتوان ازاعداد و خط تیره استفاده کرد!"
   ),
-  guarantee_ids: Yup.number().matches(
+  guarantee_ids: Yup.string().matches(
     /^[0-9\s-]+$/,
     "فقط میتوان ازاعداد و خط تیره استفاده کرد!"
   ),
