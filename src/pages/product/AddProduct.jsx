@@ -23,6 +23,21 @@ const AddProduct = () => {
   const [loading, setLoading] = useState(true);
   const [parentCategories, setParentCategores] = useState([]);
   const [categories, setCategores] = useState(null);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const handleAddBadge = (id, formik) => {
+    setSelectedCategories((prev) => {
+      // const x = prev.findIndex(item=>item.id === id);
+      // console.log(x);
+      if (prev.findIndex(item=>item.id == id) == -1) {
+        const newData = [...prev, categories.filter((item) => item.id == id)[0]];
+        const selectedIds = newData.map(item=>item.id);
+        formik.setFieldValue('category_ids' , selectedIds.join('-'));
+        return newData;
+      }else{
+        return prev;
+      }
+    });
+  };
   useEffect(() => {
     handleGetParentCategories(setParentCategores, setLoading);
   }, []);
@@ -50,7 +65,7 @@ const AddProduct = () => {
                         <FormControler
                           control={"select"}
                           formik={Formik}
-                          name={"parent_ids"}
+                          name={"cat1"}
                           data={parentCategories}
                           dataValue={"id"}
                           dataTitle={"title"}
@@ -78,17 +93,33 @@ const AddProduct = () => {
                       <FormControler
                         control={"select"}
                         formik={Formik}
-                        name={"category_ids"}
+                        name={"cat2"}
                         data={categories}
                         dataValue={"id"}
                         dataTitle={"title"}
                         label={"دسته بتدی های والد:"}
+                        onChangeFunc={(id) =>
+                          handleAddBadge(id, Formik)
+                        }
                       />
                     ) : null}
+                    {
+                      Formik.errors.category_ids ? (
+                        <span className="text-red-500 mt-5">{Formik.errors.category_ids}</span>
+                      ) : null
+                    }
                   </section>
                 </div>
                 <section>
-                  <TextBadge title={"دسته فلان"} />
+                  {selectedCategories.map((item) => {
+                    return (
+                      <TextBadge
+                        key={`badge_${item.id}`}
+                        title={item.title}
+                        id={item.id}
+                      />
+                    );
+                  })}
                 </section>
                 <div className="flex justify-between gap-5">
                   <div className="my-5 w-full">
