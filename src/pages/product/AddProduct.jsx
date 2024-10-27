@@ -6,38 +6,25 @@ import Input from "../../components/Input";
 import TextBadge from "../../components/TextBadge";
 import ColorBadge from "../../components/ColorBadge";
 import { Form, Formik } from "formik";
-import { initialValues, onSubmit, validationSchema } from "./core";
+import {
+  handleChangeParentCategories,
+  handleGetParentCategories,
+  initialValues,
+  onSubmit,
+  validationSchema,
+} from "./core";
 import ProductsFormSkeleton from "../../components/loadings/ProductsFormSkeleton";
 import BackButton from "../../components/BackButton";
 import { useEffect, useState } from "react";
 import FormControler from "../../formControl/FormControler";
 import OneFiledSkeleton from "../../components/loadings/OneFieldSkeleton";
-import { getCategoriesService } from "../../services/categoryServices";
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(true);
   const [parentCategories, setParentCategores] = useState([]);
-  const handleGetParentCategories = async ()=>{
-    setLoading(true)
-    try{
-      const res = await getCategoriesService();
-      if(res.status === 200){
-        setParentCategores(res.data.data.map(item=>{
-          return {id: item.id , title: item.title}
-        }));
-        setLoading(false)
-      }else{
-        setLoading(false)
-      }
-    }catch(error){
-      setLoading(false)
-    }
-  };
-  const han = (e)=>{
-    console.log(e.target.value);
-  }
+  const [categories, setCategores] = useState(null);
   useEffect(() => {
-    handleGetParentCategories();
+    handleGetParentCategories(setParentCategores, setLoading);
   }, []);
   return (
     <>
@@ -63,12 +50,18 @@ const AddProduct = () => {
                         <FormControler
                           control={"select"}
                           formik={Formik}
-                          name={"category_ids"}
+                          name={"parent_ids"}
                           data={parentCategories}
                           dataValue={"id"}
                           dataTitle={"title"}
                           label={"دسته بتدی های والد:"}
-                          onChangeFunc={han}
+                          onChangeFunc={(id, formik) =>
+                            handleChangeParentCategories(
+                              id,
+                              formik,
+                              setCategores
+                            )
+                          }
                         />
                       ) : (
                         <OneFiledSkeleton />
@@ -77,6 +70,21 @@ const AddProduct = () => {
                     <div>
                       <BackButton btnTxt={"بازگشت"} />
                     </div>
+                  </section>
+                  <section className="mt-7">
+                    {categories === "Waiting" ? (
+                      <OneFiledSkeleton />
+                    ) : categories !== null ? (
+                      <FormControler
+                        control={"select"}
+                        formik={Formik}
+                        name={"category_ids"}
+                        data={categories}
+                        dataValue={"id"}
+                        dataTitle={"title"}
+                        label={"دسته بتدی های والد:"}
+                      />
+                    ) : null}
                   </section>
                 </div>
                 <section>

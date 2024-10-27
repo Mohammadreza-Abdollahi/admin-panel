@@ -19,7 +19,7 @@ const SelectInput = ({formik , data , dataValue , dataTitle , name , label , sec
             <FastField name={name} id={name} as={'select'}>
                 {
                     (param)=>(
-                        <select {...param.field} name={name} id={name} onFocus={handleFocus} onBlur={handleBlue} onChange={(e)=>onChangeFunc ? onChangeFunc(e) : null} className="w-3/4 px-3 focus:outline-none">
+                        <select {...param.field} name={name} id={name} onFocus={handleFocus} onBlur={handleBlue} onChange={(e)=>onChangeFunc ? onChangeFunc(e.target.value , param) : null} className="w-3/4 px-3 focus:outline-none">
                             {
                                 defaultValue ? (
                                     <option value="">انتخاب نشده</option>

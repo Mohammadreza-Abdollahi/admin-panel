@@ -4,6 +4,7 @@ import {
 } from "../../services/productsService";
 import * as Yup from "yup";
 import { Alert, Confirm } from "../../utils/alert";
+import { getCategoriesService } from "../../services/categoryServices";
 
 export const initialValues = {
   category_ids: "",
@@ -125,5 +126,48 @@ export const handleDeleteProduct = async (data, setData, setLoading) => {
   } catch (error) {
     Alert("error", error);
     setLoading(false);
+  }
+};
+//---------------ADD PRODUCTS---------------
+export const handleGetParentCategories = async (setParentCategores , setLoading) => {
+  setLoading(true);
+  try {
+    const res = await getCategoriesService();
+    if (res.status === 200) {
+      setParentCategores(
+        res.data.data.map((item) => {
+          return { id: item.id, title: item.title };
+        })
+      );
+      setLoading(false);
+    } else {
+      Alert("error", "دسته بندی ها دریافت نشدند!");
+      setLoading(false);
+    }
+  } catch (error) {
+    Alert("error", error);
+    setLoading(false);
+  }
+};
+export const handleChangeParentCategories = async (id, formik , setCategores) => {
+  console.log(id);
+  setCategores("Waiting");
+  try {
+    if (id > 0) {
+      const res = await getCategoriesService(id);
+      if (res.status === 200) {
+        setCategores(
+          res.data.data.map((item) => {
+            return { id: item.id, title: item.title };
+          })
+        );
+      } else {
+        Alert("error", "دسته بندی ها دریافت نشدند!");
+      }
+    } else {
+      setCategores(null);
+    }
+  } catch (error) {
+    Alert("error", "دسته بندی ها دریافت نشدند!");
   }
 };
