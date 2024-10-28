@@ -7,8 +7,10 @@ import TextBadge from "../../components/TextBadge";
 import ColorBadge from "../../components/ColorBadge";
 import { Form, Formik } from "formik";
 import {
+  handleAddSelectedCategory,
   handleChangeParentCategories,
   handleGetParentCategories,
+  handleRemoveSelectedCategory,
   initialValues,
   onSubmit,
   validationSchema,
@@ -18,26 +20,13 @@ import BackButton from "../../components/BackButton";
 import { useEffect, useState } from "react";
 import FormControler from "../../formControl/FormControler";
 import OneFiledSkeleton from "../../components/loadings/OneFieldSkeleton";
+import ErrorMess from "../../formControl/ErrorMess";
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(true);
   const [parentCategories, setParentCategores] = useState([]);
   const [categories, setCategores] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const handleAddBadge = (id, formik) => {
-    setSelectedCategories((prev) => {
-      // const x = prev.findIndex(item=>item.id === id);
-      // console.log(x);
-      if (prev.findIndex(item=>item.id == id) == -1) {
-        const newData = [...prev, categories.filter((item) => item.id == id)[0]];
-        const selectedIds = newData.map(item=>item.id);
-        formik.setFieldValue('category_ids' , selectedIds.join('-'));
-        return newData;
-      }else{
-        return prev;
-      }
-    });
-  };
   useEffect(() => {
     handleGetParentCategories(setParentCategores, setLoading);
   }, []);
@@ -53,7 +42,7 @@ const AddProduct = () => {
           onSubmit={(values, actions) => onSubmit(values, actions)}
         >
           {(Formik) => {
-            console.log(Formik);
+            // console.log(Formik);
             return loading ? (
               <ProductsFormSkeleton />
             ) : (
@@ -99,15 +88,13 @@ const AddProduct = () => {
                         dataTitle={"title"}
                         label={"دسته بتدی های والد:"}
                         onChangeFunc={(id) =>
-                          handleAddBadge(id, Formik)
+                          handleAddSelectedCategory(id, Formik , setSelectedCategories , categories)
                         }
                       />
                     ) : null}
-                    {
-                      Formik.errors.category_ids ? (
-                        <span className="text-red-500 mt-5">{Formik.errors.category_ids}</span>
-                      ) : null
-                    }
+                    {Formik.errors.category_ids ? (
+                      <ErrorMess formik={Formik} name={'category_ids'}/>
+                    ) : null}
                   </section>
                 </div>
                 <section>
@@ -117,6 +104,9 @@ const AddProduct = () => {
                         key={`badge_${item.id}`}
                         title={item.title}
                         id={item.id}
+                        handleDelete={(id) =>
+                          handleRemoveSelectedCategory(id, Formik , setSelectedCategories)
+                        }
                       />
                     );
                   })}

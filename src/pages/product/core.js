@@ -171,3 +171,26 @@ export const handleChangeParentCategories = async (id, formik , setCategores) =>
     Alert("error", "دسته بندی ها دریافت نشدند!");
   }
 };
+export const handleAddSelectedCategory = (id, formik , setSelectedCategories , categories) => {
+  setSelectedCategories((prev) => {
+    if (prev.findIndex((item) => item.id == id) == -1) {
+      const newData = [
+        ...prev,
+        categories.filter((item) => item.id == id)[0],
+      ];
+      const selectedIds = newData.map((item) => item.id);
+      formik.setFieldValue("category_ids", selectedIds.join("-"));
+      return newData;
+    } else {
+      return prev;
+    }
+  });
+};
+export const handleRemoveSelectedCategory = (id, formik , setSelectedCategories) => {
+  setSelectedCategories((prev) => {
+    const newData = prev.filter((item) => item.id != id);
+    const selectedIds = newData.map((item) => item.id);
+    formik.setFieldValue("category_ids", selectedIds.join("-"));
+    return newData;
+  });
+};
