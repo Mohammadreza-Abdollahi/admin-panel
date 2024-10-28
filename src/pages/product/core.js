@@ -186,11 +186,3 @@ export const handleAddSelectedCategory = (id, formik , setSelectedCategories , c
     }
   });
 };
-export const handleRemoveSelectedCategory = (id, formik , setSelectedCategories) => {
-  setSelectedCategories((prev) => {
-    const newData = prev.filter((item) => item.id != id);
-    const selectedIds = newData.map((item) => item.id);
-    formik.setFieldValue("category_ids", selectedIds.join("-"));
-    return newData;
-  });
-};

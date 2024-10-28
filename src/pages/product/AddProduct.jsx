@@ -10,7 +10,6 @@ import {
   handleAddSelectedCategory,
   handleChangeParentCategories,
   handleGetParentCategories,
-  handleRemoveSelectedCategory,
   initialValues,
   onSubmit,
   validationSchema,
@@ -21,6 +20,7 @@ import { useEffect, useState } from "react";
 import FormControler from "../../formControl/FormControler";
 import OneFiledSkeleton from "../../components/loadings/OneFieldSkeleton";
 import ErrorMess from "../../formControl/ErrorMess";
+import Chipses from "./Chipses";
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(true);
@@ -42,7 +42,6 @@ const AddProduct = () => {
           onSubmit={(values, actions) => onSubmit(values, actions)}
         >
           {(Formik) => {
-            // console.log(Formik);
             return loading ? (
               <ProductsFormSkeleton />
             ) : (
@@ -98,18 +97,11 @@ const AddProduct = () => {
                   </section>
                 </div>
                 <section>
-                  {selectedCategories.map((item) => {
-                    return (
-                      <TextBadge
-                        key={`badge_${item.id}`}
-                        title={item.title}
-                        id={item.id}
-                        handleDelete={(id) =>
-                          handleRemoveSelectedCategory(id, Formik , setSelectedCategories)
-                        }
-                      />
-                    );
-                  })}
+                  <Chipses 
+                    chipsList={selectedCategories}
+                    setChips={setSelectedCategories}
+                    formik={Formik}
+                  />
                 </section>
                 <div className="flex justify-between gap-5">
                   <div className="my-5 w-full">
