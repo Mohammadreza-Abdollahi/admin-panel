@@ -7,7 +7,6 @@ import TextBadge from "../../components/TextBadge";
 import ColorBadge from "../../components/ColorBadge";
 import { Form, Formik } from "formik";
 import {
-  handleAddSelectedCategory,
   handleChangeParentCategories,
   handleGetParentCategories,
   initialValues,
@@ -20,13 +19,10 @@ import { useEffect, useState } from "react";
 import FormControler from "../../formControl/FormControler";
 import OneFiledSkeleton from "../../components/loadings/OneFieldSkeleton";
 import ErrorMess from "../../formControl/ErrorMess";
-import Chipses from "./Chipses";
-
 const AddProduct = () => {
   const [loading, setLoading] = useState(true);
   const [parentCategories, setParentCategores] = useState([]);
-  const [categories, setCategores] = useState(null);
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [categories, setCategores] = useState([]);
   useEffect(() => {
     handleGetParentCategories(setParentCategores, setLoading);
   }, []);
@@ -74,35 +70,23 @@ const AddProduct = () => {
                       <BackButton btnTxt={"بازگشت"} />
                     </div>
                   </section>
-                  <section className="mt-7">
-                    {categories === "Waiting" ? (
-                      <OneFiledSkeleton />
-                    ) : categories !== null ? (
+                  <section className="mt-7"></section>
+                  <section className="my-7">
+                    {categories.length > 0 ? (
                       <FormControler
-                        control={"select"}
+                        control={"searchableSelect"}
                         formik={Formik}
-                        name={"cat2"}
+                        name={"category_ids"}
                         data={categories}
-                        dataValue={"id"}
-                        dataTitle={"title"}
-                        label={"دسته بتدی های والد:"}
-                        onChangeFunc={(id) =>
-                          handleAddSelectedCategory(id, Formik , setSelectedCategories , categories)
-                        }
+                        label={"دسته بندی :"}
                       />
                     ) : null}
                     {Formik.errors.category_ids ? (
-                      <ErrorMess formik={Formik} name={'category_ids'}/>
+                      <ErrorMess formik={Formik} name={'category_ids'} />
                     ) : null}
                   </section>
                 </div>
-                <section>
-                  <Chipses 
-                    chipsList={selectedCategories}
-                    setChips={setSelectedCategories}
-                    formik={Formik}
-                  />
-                </section>
+                <section></section>
                 <div className="flex justify-between gap-5">
                   <div className="my-5 w-full">
                     <Input

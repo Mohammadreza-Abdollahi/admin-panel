@@ -1,3 +1,4 @@
+import SearchableSelect from '../components/SearchableSelect';
 import Button from './Button';
 import ColorInput from './ColorInput';
 import FileInput from './FileInput';
@@ -24,6 +25,10 @@ const FormControler = (props) => {
         case "select":
             return (
                 <SelectInput {...props}/>
+            )
+        case "searchableSelect":
+            return (
+                <SearchableSelect {...props}/>
             )
         case "file":
             return (
