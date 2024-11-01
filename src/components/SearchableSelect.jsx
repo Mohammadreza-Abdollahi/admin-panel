@@ -2,31 +2,23 @@ import { faChevronUp, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Field } from "formik";
 import { useEffect, useState } from "react";
-import ErrorMess from "../formControl/ErrorMess";
 
 const SearchableSelect = ({
   formik,
   name,
   data,
   label,
-  initialItems = null,
+  initialItems,
 }) => {
-  const ops = [
-    { id: 1, title: "سلام" },
-    { id: 2, title: "درود" },
-    { id: 3, title: "بدرود" },
-    { id: 4, title: "تست" },
-    { id: 5, title: "گاو" },
-  ];
   const [open, setOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [copyItems, setCopyItems] = useState(ops);
+  const [copyItems, setCopyItems] = useState(data);
   useEffect(() => {
     setCopyItems(data);
   }, [data]);
-  useEffect(() => {
-    setSelectedItems(initialItems);
-  }, [initialItems]);
+  // useEffect(() => {
+  //   setSelectedItems(initialItems);
+  // }, [initialItems]);
   const handleAddSelectedCategory = (id) => {
     setSelectedItems((prev) => {
       if (prev.findIndex((item) => item.id == id) == -1) {
@@ -75,8 +67,8 @@ const SearchableSelect = ({
                   <div
                     className={`${
                       !open
-                        ? "-translate-y-20 opacity-0"
-                        : "-translate-y-0 opacity-100"
+                        ? "-translate-y-20 opacity-0 invisible"
+                        : "-translate-y-0 opacity-100 visible"
                     } top-full transition-all duration-300 w-full translate-x-3 bg-white absolute z-50 ring-2 ring-palete-2-400-1 rounded-sm`}
                   >
                     <div>
@@ -84,7 +76,7 @@ const SearchableSelect = ({
                         onClick={(e) => e.stopPropagation()}
                         onChange={(e) => {
                           setCopyItems(
-                            ops.filter((item) =>
+                            data.filter((item) =>
                               item.title.includes(e.target.value)
                             )
                           );
@@ -119,21 +111,26 @@ const SearchableSelect = ({
       </Field>
       <section>
         <section>
-          {selectedItems.map((item) => {
-            return (
-              <div className="my-2 inline-block">
-                <span className="align-middle mx-1 py-0.5 px-3 bg-palete-2-100 rounded-full">
-                  <button
-                    className="text-red-500 p-0.5"
-                    onClick={() => handleRemoveSelectedCategory(item.id)}
-                  >
-                    <FontAwesomeIcon className="align-middle" icon={faXmark} />
-                  </button>
-                  {item.title}
-                </span>
-              </div>
-            );
-          })}
+          {selectedItems
+            ? selectedItems.map((item) => {
+                return (
+                  <div className="mt-4 inline-block">
+                    <span className="align-middle mx-1 py-0.5 px-3 bg-palete-2-100 rounded-full">
+                      <button
+                        className="text-red-500 p-0.5"
+                        onClick={() => handleRemoveSelectedCategory(item.id)}
+                      >
+                        <FontAwesomeIcon
+                          className="align-middle"
+                          icon={faXmark}
+                        />
+                      </button>
+                      {item.title}
+                    </span>
+                  </div>
+                );
+              })
+            : null}
         </section>
       </section>
     </>

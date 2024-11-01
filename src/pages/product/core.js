@@ -150,8 +150,6 @@ export const handleGetParentCategories = async (setParentCategores , setLoading)
   }
 };
 export const handleChangeParentCategories = async (id, formik , setCategores) => {
-  console.log(id);
-  setCategores("Waiting");
   try {
     if (id > 0) {
       const res = await getCategoriesService(id);

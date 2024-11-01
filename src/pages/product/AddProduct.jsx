@@ -26,6 +26,9 @@ const AddProduct = () => {
   useEffect(() => {
     handleGetParentCategories(setParentCategores, setLoading);
   }, []);
+  useEffect(()=>{
+    console.log(categories);
+  },[categories])
   return (
     <>
       <section dir="rtl" className="w-2/3 mx-auto pb-5 overflow-y-auto px-10">
@@ -38,6 +41,7 @@ const AddProduct = () => {
           onSubmit={(values, actions) => onSubmit(values, actions)}
         >
           {(Formik) => {
+            console.log(Formik);
             return loading ? (
               <ProductsFormSkeleton />
             ) : (
@@ -71,7 +75,7 @@ const AddProduct = () => {
                     </div>
                   </section>
                   <section className="mt-7"></section>
-                  <section className="my-7">
+                  <section className="my-5">
                     {categories.length > 0 ? (
                       <FormControler
                         control={"searchableSelect"}
@@ -79,6 +83,7 @@ const AddProduct = () => {
                         name={"category_ids"}
                         data={categories}
                         label={"دسته بندی :"}
+                        initialItems={[]}
                       />
                     ) : null}
                     {Formik.errors.category_ids ? (
