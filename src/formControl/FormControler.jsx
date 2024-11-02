@@ -1,4 +1,4 @@
-import SearchableSelect from '../components/SearchableSelect';
+import SearchableSelect from './SearchableSelect';
 import Button from './Button';
 import ColorInput from './ColorInput';
 import FileInput from './FileInput';

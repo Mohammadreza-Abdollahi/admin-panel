@@ -5,6 +5,8 @@ import {
 import * as Yup from "yup";
 import { Alert, Confirm } from "../../utils/alert";
 import { getCategoriesService } from "../../services/categoryServices";
+import { getBrandsService } from "../../services/brandsService";
+import { getGuarantiesService } from "../../services/guarantiesService.";
 
 export const initialValues = {
   category_ids: "",
@@ -20,8 +22,8 @@ export const initialValues = {
   image: "",
   alt_image: "",
   keywords: "",
-  stock: "",
-  discount: "",
+  stock: 0,
+  discount: 0,
 };
 export const validationSchema = Yup.object({
   category_ids: Yup.string()
@@ -147,6 +149,46 @@ export const handleGetParentCategories = async (setParentCategores , setLoading)
   } catch (error) {
     Alert("error", error);
     setLoading(false);
+  }
+};
+export const handleGetBrands = async (setBrands , setLoading) => {
+  setLoading(true)
+  try {
+    const res = await getBrandsService();
+    if (res.status === 200) {
+      setBrands(
+        res.data.data.map((item) => {
+          return { id: item.id, title: item.persian_name };
+        })
+      );
+      setLoading(false)
+    } else {
+      Alert("error", "برند ها دریافت نشدند!");
+      setLoading(false)
+    }
+  } catch (error) {
+    Alert("error", error);
+    setLoading(false)
+  }
+};
+export const handleGetGuaranties = async (setGuaranties , setLoading) => {
+  setLoading(true)
+  try {
+    const res = await getGuarantiesService();
+    if (res.status === 200) {
+      setGuaranties(
+        res.data.data.map((item) => {
+          return { id: item.id, title: item.title };
+        })
+      );
+      setLoading(false)
+    } else {
+      Alert("error", "گارانتی ها دریافت نشدند!");
+      setLoading(false)
+    }
+  } catch (error) {
+    Alert("error", error);
+    setLoading(false)
   }
 };
 export const handleChangeParentCategories = async (id, formik , setCategores) => {

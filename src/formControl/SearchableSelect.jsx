@@ -11,13 +11,18 @@ const SearchableSelect = ({
   initialItems,
 }) => {
   const [open, setOpen] = useState(false);
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState(initialItems);
   const [copyItems, setCopyItems] = useState(data);
   useEffect(() => {
     setCopyItems(data);
   }, [data]);
+  useEffect(() => {
+    document.querySelector('body').addEventListener('click',()=>{
+      setOpen(false);
+    })
+  }, []);
   // useEffect(() => {
-  //   setSelectedItems(initialItems);
+  //     setSelectedItems(initialItems)
   // }, [initialItems]);
   const handleAddSelectedCategory = (id) => {
     setSelectedItems((prev) => {
@@ -49,7 +54,7 @@ const SearchableSelect = ({
                 className={`flex text-lg ring-2 ring-palete-2-400-1 rounded-sm cursor-pointer ${
                   !open ? "overflow-hidden" : ""
                 }`}
-                onClick={() => setOpen(!open)}
+                onClick={(e) =>{setOpen(!open);e.stopPropagation()}}
               >
                 <section className="w-1/4 bg-palete-2-400-1 text-center py-2 text-white">
                   <span className="align-middle">{label}</span>

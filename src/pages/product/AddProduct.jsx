@@ -8,6 +8,8 @@ import ColorBadge from "../../components/ColorBadge";
 import { Form, Formik } from "formik";
 import {
   handleChangeParentCategories,
+  handleGetBrands,
+  handleGetGuaranties,
   handleGetParentCategories,
   initialValues,
   onSubmit,
@@ -23,12 +25,16 @@ const AddProduct = () => {
   const [loading, setLoading] = useState(true);
   const [parentCategories, setParentCategores] = useState([]);
   const [categories, setCategores] = useState([]);
+  const [brands, setBrands] = useState([]);
+  const [guaranties, setGuaranties] = useState([]);
   useEffect(() => {
     handleGetParentCategories(setParentCategores, setLoading);
+    handleGetBrands(setBrands, setLoading);
+    handleGetGuaranties(setGuaranties, setLoading);
   }, []);
-  useEffect(()=>{
-    console.log(categories);
-  },[categories])
+  useEffect(() => {
+    console.log(guaranties);
+  }, [guaranties]);
   return (
     <>
       <section dir="rtl" className="w-2/3 mx-auto pb-5 overflow-y-auto px-10">
@@ -41,7 +47,7 @@ const AddProduct = () => {
           onSubmit={(values, actions) => onSubmit(values, actions)}
         >
           {(Formik) => {
-            console.log(Formik);
+            console.log(Formik.values);
             return loading ? (
               <ProductsFormSkeleton />
             ) : (
@@ -87,23 +93,27 @@ const AddProduct = () => {
                       />
                     ) : null}
                     {Formik.errors.category_ids ? (
-                      <ErrorMess formik={Formik} name={'category_ids'} />
+                      <ErrorMess formik={Formik} name={"category_ids"} />
                     ) : null}
                   </section>
                 </div>
                 <section></section>
                 <div className="flex justify-between gap-5">
                   <div className="my-5 w-full">
-                    <Input
-                      name={"ProductTitle"}
+                    <FormControler
+                      control={"input"}
+                      formik={Formik}
+                      name={"title"}
                       type={"text"}
                       label={"عنوان :"}
                       placeholder={"عنوان محصول را وارد کنید..."}
                     />
                   </div>
                   <div className="my-5 w-full">
-                    <Input
-                      name={"ProductPrice"}
+                    <FormControler
+                      control={"input"}
+                      formik={Formik}
+                      name={"price"}
                       type={"number"}
                       label={"قیمت :"}
                       placeholder={"قیمت محصول را وارد کنید..."}
@@ -112,20 +122,29 @@ const AddProduct = () => {
                 </div>
                 <div className="flex justify-between gap-5">
                   <div className="my-5 w-full">
-                    <Input
-                      name={"ProductWeight"}
+                    <FormControler
+                      control={"input"}
+                      formik={Formik}
+                      name={"weight"}
                       type={"number"}
                       label={"وزن :"}
-                      placeholder={"وزن محصول (کیلوگرم) را وارد کنید..."}
+                      placeholder={"وزن محصول (گرم) را وارد کنید..."}
                     />
                   </div>
                   <div className="my-5 w-full">
-                    <Input
-                      name={"ProductBrand"}
-                      type={"text"}
-                      label={"برند :"}
-                      placeholder={"برند محصول را وارد کنید..."}
-                    />
+                    {brands.length > 0 ? (
+                      <FormControler
+                        formik={Formik}
+                        control={"select"}
+                        name={"brand_id"}
+                        label={"برند :"}
+                        data={brands}
+                        dataValue={"id"}
+                        dataTitle={"title"}
+                      />
+                    ) : (
+                      <OneFiledSkeleton />
+                    )}
                   </div>
                 </div>
                 <div className="my-5 w-full">
@@ -142,38 +161,95 @@ const AddProduct = () => {
                   <ColorBadge color={"orange"} />
                 </section>
                 <div className="my-5">
-                  <Input
-                    name={"ProductGaranty"}
-                    type={"text"}
-                    label={"گارانتی :"}
-                    placeholder={"نام گارانتی محصول را وارد کنید..."}
-                  />
+                  {guaranties.length > 0 ? (
+                    <FormControler
+                      control={"searchableSelect"}
+                      formik={Formik}
+                      name={"guarantee_ids"}
+                      data={guaranties}
+                      label={"گارانتی :"}
+                      initialItems={[]}
+                    />
+                  ) : null}
+                  {Formik.errors.guarantee_ids ? (
+                    <ErrorMess formik={Formik} name={"category_ids"} />
+                  ) : null}
                 </div>
-                <section>
-                  <TextBadge title={"گارانتی فلان"} />
-                  <TextBadge title={"گارانتی فلان"} />
-                </section>
                 <div className="my-5">
-                  <TextareaInput
-                    name={"ProductExplanation"}
+                  <FormControler
+                    control={"textarea"}
+                    formik={Formik}
+                    name={"descriptions"}
                     row={4}
-                    type={"text"}
                     label={"توضیحات :"}
                     placeholder={"توضیحات را وارد کنید..."}
                   />
                 </div>
-                <div className="flex justify-between gap-5">
-                  <div className="my-5 w-full">
-                    <FileInput name={"ProductPicture"} label={"تصویر :"} />
-                  </div>
-                  <div className="my-5 w-full text-center">
-                    <SwitchInput
-                      name={"ProductActive"}
-                      label={"وضعیت :"}
-                      switchLabel={"فعال"}
-                      isActive={false}
-                    />
-                  </div>
+                <div className="my-5">
+                  <FormControler
+                    control={"textarea"}
+                    formik={Formik}
+                    name={"short_descriptions"}
+                    row={4}
+                    label={"توضیحات کوتاه :"}
+                    placeholder={"توضیحات کوتاه را وارد کنید..."}
+                  />
+                </div>
+                <div className="my-5">
+                  <FormControler
+                    control={"textarea"}
+                    formik={Formik}
+                    name={"cart_descriptions"}
+                    row={4}
+                    label={"توضیحات سبد :"}
+                    placeholder={"توضیحات سبد را وارد کنید..."}
+                  />
+                </div>
+                <div className="my-5 w-full">
+                  <FileInput name={"ProductPicture"} label={"تصویر :"} />
+                </div>
+                <div className="my-5 w-full text-center">
+                  <FormControler
+                    control={"input"}
+                    formik={Formik}
+                    name={"alt_image"}
+                    type={"text"}
+                    label={"توضیحات تصویر :"}
+                    placeholder={"توضیحات تصویر را وارد کنید..."}
+                  />
+                </div>
+                <div className="mt-5 w-full text-center">
+                  <FormControler
+                    control={"input"}
+                    formik={Formik}
+                    name={"keywords"}
+                    type={"text"}
+                    label={"کلمات کلیدی :"}
+                    placeholder={"کلمات کلیدی را وارد کنید..."}
+                  />
+                </div>
+                <span className="block mt-2 mb-5 mr-2 text-slate-600">
+                  کلمات کلیدی را یکی یکی وارد و میان انها از "-" استفاده کنید.
+                </span>
+                <div className="my-5 w-full">
+                  <FormControler
+                    control={"input"}
+                    formik={Formik}
+                    name={"stock"}
+                    type={"number"}
+                    label={"موجودی :"}
+                    placeholder={"موجودی محصول را وارد کنید..."}
+                  />
+                </div>
+                <div className="my-5 w-full">
+                  <FormControler
+                    control={"input"}
+                    formik={Formik}
+                    name={"discount"}
+                    type={"number"}
+                    label={"درصد تخفیف :"}
+                    placeholder={"درصد تخفیف برای محصول را وارد کنید..."}
+                  />
                 </div>
                 <div className="my-5 flex text-center">
                   <Btn btnTxt={"افزودن"} width={"w-full"} />
