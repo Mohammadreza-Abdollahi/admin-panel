@@ -9,6 +9,7 @@ import { Form, Formik } from "formik";
 import {
   handleChangeParentCategories,
   handleGetBrands,
+  handleGetColors,
   handleGetGuaranties,
   handleGetParentCategories,
   initialValues,
@@ -27,10 +28,12 @@ const AddProduct = () => {
   const [categories, setCategores] = useState([]);
   const [brands, setBrands] = useState([]);
   const [guaranties, setGuaranties] = useState([]);
+  const [colors, setColors] = useState([]);
   useEffect(() => {
     handleGetParentCategories(setParentCategores, setLoading);
     handleGetBrands(setBrands, setLoading);
     handleGetGuaranties(setGuaranties, setLoading);
+    handleGetColors(setColors, setLoading);
   }, []);
   useEffect(() => {
     console.log(guaranties);
@@ -148,18 +151,20 @@ const AddProduct = () => {
                   </div>
                 </div>
                 <div className="my-5 w-full">
-                  <Input
-                    name={"ProductColor"}
-                    type={"text"}
-                    label={"رنگ :"}
-                    placeholder={"رنگ محصول را وارد کنید..."}
-                  />
+                {colors.length > 0 ? (
+                    <FormControler
+                      control={"colorSearchableSelect"}
+                      formik={Formik}
+                      name={"color_ids"}
+                      data={colors}
+                      label={"رنگ :"}
+                      initialItems={[]}
+                    />
+                  ) : <OneFiledSkeleton/>}
+                  {Formik.errors.guarantee_ids ? (
+                    <ErrorMess formik={Formik} name={"category_ids"} />
+                  ) : null}
                 </div>
-                <section>
-                  <ColorBadge color={"red"} />
-                  <ColorBadge color={"blue"} />
-                  <ColorBadge color={"orange"} />
-                </section>
                 <div className="my-5">
                   {guaranties.length > 0 ? (
                     <FormControler
@@ -170,7 +175,7 @@ const AddProduct = () => {
                       label={"گارانتی :"}
                       initialItems={[]}
                     />
-                  ) : null}
+                  ) : <OneFiledSkeleton/>}
                   {Formik.errors.guarantee_ids ? (
                     <ErrorMess formik={Formik} name={"category_ids"} />
                   ) : null}

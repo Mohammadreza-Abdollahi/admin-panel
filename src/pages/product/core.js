@@ -7,6 +7,7 @@ import { Alert, Confirm } from "../../utils/alert";
 import { getCategoriesService } from "../../services/categoryServices";
 import { getBrandsService } from "../../services/brandsService";
 import { getGuarantiesService } from "../../services/guarantiesService.";
+import { getColorsService } from "../../services/colorsService";
 
 export const initialValues = {
   category_ids: "",
@@ -179,6 +180,27 @@ export const handleGetGuaranties = async (setGuaranties , setLoading) => {
       setGuaranties(
         res.data.data.map((item) => {
           return { id: item.id, title: item.title };
+        })
+      );
+      setLoading(false)
+    } else {
+      Alert("error", "گارانتی ها دریافت نشدند!");
+      setLoading(false)
+    }
+  } catch (error) {
+    Alert("error", error);
+    setLoading(false)
+  }
+};
+export const handleGetColors = async (setColors , setLoading) => {
+  setLoading(true)
+  try {
+    const res = await getColorsService();
+    console.log(res);
+    if (res.status === 200) {
+      setColors(
+        res.data.data.map((item) => {
+          return { id: item.id, title: item.title , code: item.code };
         })
       );
       setLoading(false)

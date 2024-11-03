@@ -8,6 +8,7 @@ import FormPassword from './FormPassword';
 import SelectInput from './SelectInput';
 import SwitchInput from './SwitchInput';
 import TextareaInput from './TextareaInput';
+import ColorSearchableSelect from './ColorSearchableSelect';
 const FormControler = (props) => {
     switch (props.control) {
         case "input":
@@ -29,6 +30,10 @@ const FormControler = (props) => {
         case "searchableSelect":
             return (
                 <SearchableSelect {...props}/>
+            )
+        case "colorSearchableSelect":
+            return (
+                <ColorSearchableSelect {...props}/>
             )
         case "file":
             return (
