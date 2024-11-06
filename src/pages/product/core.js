@@ -1,4 +1,5 @@
 import {
+  addProductService,
   deleteProductService,
   getProductsService,
 } from "../../services/productsService";
@@ -79,6 +80,23 @@ export const validationSchema = Yup.object({
 });
 export const onSubmit = async (values, actions) => {
   console.log(values);
+  try {
+    const res = await addProductService(values);
+    console.log(res);
+    if (res.status === 201) {
+      Alert("success", `محصول ${values.title} با موفقیت افزوده شد.`);
+      // actions.resetForm();
+      actions.setSubmitting(false);
+    } else {
+      Alert("error",'محصول افزوده نشد!');
+      // actions.resetForm();
+      actions.setSubmitting(false);
+    }
+  } catch (error) {
+    Alert("error", error);
+    // actions.resetForm();
+    actions.setSubmitting(false);
+  }
 };
 export const handleGetProducts = async (
   setData,
@@ -132,7 +150,10 @@ export const handleDeleteProduct = async (data, setData, setLoading) => {
   }
 };
 //---------------ADD PRODUCTS---------------
-export const handleGetParentCategories = async (setParentCategores , setLoading) => {
+export const handleGetParentCategories = async (
+  setParentCategores,
+  setLoading
+) => {
   setLoading(true);
   try {
     const res = await getCategoriesService();
@@ -152,8 +173,8 @@ export const handleGetParentCategories = async (setParentCategores , setLoading)
     setLoading(false);
   }
 };
-export const handleGetBrands = async (setBrands , setLoading) => {
-  setLoading(true)
+export const handleGetBrands = async (setBrands, setLoading) => {
+  setLoading(true);
   try {
     const res = await getBrandsService();
     if (res.status === 200) {
@@ -162,18 +183,18 @@ export const handleGetBrands = async (setBrands , setLoading) => {
           return { id: item.id, title: item.persian_name };
         })
       );
-      setLoading(false)
+      setLoading(false);
     } else {
       Alert("error", "برند ها دریافت نشدند!");
-      setLoading(false)
+      setLoading(false);
     }
   } catch (error) {
     Alert("error", error);
-    setLoading(false)
+    setLoading(false);
   }
 };
-export const handleGetGuaranties = async (setGuaranties , setLoading) => {
-  setLoading(true)
+export const handleGetGuaranties = async (setGuaranties, setLoading) => {
+  setLoading(true);
   try {
     const res = await getGuarantiesService();
     if (res.status === 200) {
@@ -182,38 +203,42 @@ export const handleGetGuaranties = async (setGuaranties , setLoading) => {
           return { id: item.id, title: item.title };
         })
       );
-      setLoading(false)
+      setLoading(false);
     } else {
       Alert("error", "گارانتی ها دریافت نشدند!");
-      setLoading(false)
+      setLoading(false);
     }
   } catch (error) {
     Alert("error", error);
-    setLoading(false)
+    setLoading(false);
   }
 };
-export const handleGetColors = async (setColors , setLoading) => {
-  setLoading(true)
+export const handleGetColors = async (setColors, setLoading) => {
+  setLoading(true);
   try {
     const res = await getColorsService();
     console.log(res);
     if (res.status === 200) {
       setColors(
         res.data.data.map((item) => {
-          return { id: item.id, title: item.title , code: item.code };
+          return { id: item.id, title: item.title, code: item.code };
         })
       );
-      setLoading(false)
+      setLoading(false);
     } else {
       Alert("error", "گارانتی ها دریافت نشدند!");
-      setLoading(false)
+      setLoading(false);
     }
   } catch (error) {
     Alert("error", error);
-    setLoading(false)
+    setLoading(false);
   }
 };
-export const handleChangeParentCategories = async (id, formik , setCategores) => {
+export const handleChangeParentCategories = async (
+  id,
+  formik,
+  setCategores
+) => {
   try {
     if (id > 0) {
       const res = await getCategoriesService(id);
@@ -233,13 +258,15 @@ export const handleChangeParentCategories = async (id, formik , setCategores) =>
     Alert("error", "دسته بندی ها دریافت نشدند!");
   }
 };
-export const handleAddSelectedCategory = (id, formik , setSelectedCategories , categories) => {
+export const handleAddSelectedCategory = (
+  id,
+  formik,
+  setSelectedCategories,
+  categories
+) => {
   setSelectedCategories((prev) => {
     if (prev.findIndex((item) => item.id == id) == -1) {
-      const newData = [
-        ...prev,
-        categories.filter((item) => item.id == id)[0],
-      ];
+      const newData = [...prev, categories.filter((item) => item.id == id)[0]];
       const selectedIds = newData.map((item) => item.id);
       formik.setFieldValue("category_ids", selectedIds.join("-"));
       return newData;

@@ -151,7 +151,7 @@ const AddProduct = () => {
                   </div>
                 </div>
                 <div className="my-5 w-full">
-                {colors.length > 0 ? (
+                  {colors.length > 0 ? (
                     <FormControler
                       control={"colorSearchableSelect"}
                       formik={Formik}
@@ -160,7 +160,9 @@ const AddProduct = () => {
                       label={"رنگ :"}
                       initialItems={[]}
                     />
-                  ) : <OneFiledSkeleton/>}
+                  ) : (
+                    <OneFiledSkeleton />
+                  )}
                   {Formik.errors.guarantee_ids ? (
                     <ErrorMess formik={Formik} name={"category_ids"} />
                   ) : null}
@@ -175,7 +177,9 @@ const AddProduct = () => {
                       label={"گارانتی :"}
                       initialItems={[]}
                     />
-                  ) : <OneFiledSkeleton/>}
+                  ) : (
+                    <OneFiledSkeleton />
+                  )}
                   {Formik.errors.guarantee_ids ? (
                     <ErrorMess formik={Formik} name={"category_ids"} />
                   ) : null}
@@ -211,7 +215,12 @@ const AddProduct = () => {
                   />
                 </div>
                 <div className="my-5 w-full">
-                  <FileInput name={"ProductPicture"} label={"تصویر :"} />
+                  <FormControler
+                    control={"file"}
+                    formik={Formik}
+                    name={"image"}
+                    label={'تصویر'}
+                  />
                 </div>
                 <div className="my-5 w-full text-center">
                   <FormControler
