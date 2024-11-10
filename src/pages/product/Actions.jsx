@@ -4,9 +4,11 @@ import { Tooltip } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addProductAttributeDialogOpenClose } from "../../redux/product/productSlice";
 import { handleDeleteProduct } from "./core";
+import { useNavigate } from "react-router-dom";
 
 const Actions = ({data , setData , setLoading}) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     return (
         <>
           <section className="py-1.5">
@@ -32,6 +34,7 @@ const Actions = ({data , setData , setLoading}) => {
                   <span className="text-base">ویرایش</span>
                 </>
               }
+              onClick={()=>navigate('/products/add-product',{state: {data: data}})}
             >
               <FontAwesomeIcon
                 icon={faEdit}

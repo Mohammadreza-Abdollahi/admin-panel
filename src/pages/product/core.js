@@ -79,10 +79,8 @@ export const validationSchema = Yup.object({
   discount: Yup.number(),
 });
 export const onSubmit = async (values, actions) => {
-  console.log(values);
   try {
     const res = await addProductService(values);
-    console.log(res);
     if (res.status === 201) {
       Alert("success", `محصول ${values.title} با موفقیت افزوده شد.`);
       // actions.resetForm();
@@ -217,7 +215,6 @@ export const handleGetColors = async (setColors, setLoading) => {
   setLoading(true);
   try {
     const res = await getColorsService();
-    console.log(res);
     if (res.status === 200) {
       setColors(
         res.data.data.map((item) => {

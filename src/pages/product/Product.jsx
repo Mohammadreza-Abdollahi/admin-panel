@@ -18,7 +18,7 @@ const Product = () => {
     {
       field: null,
       title: "گروه محصول",
-      elements: (data) => data.categories[0].title,
+      elements: (data) => data.categories[0]?.title,
     },
     { field: "title", title: "عنوان" },
     { field: "price", title: "قیمت" },

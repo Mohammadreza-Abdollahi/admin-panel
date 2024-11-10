@@ -1,10 +1,3 @@
-import TextareaInput from "../../components/TextareaInput";
-import FileInput from "../../components/FileInput";
-import SwitchInput from "../../components/SwitchInput";
-import Btn from "../../components/Btn";
-import Input from "../../components/Input";
-import TextBadge from "../../components/TextBadge";
-import ColorBadge from "../../components/ColorBadge";
 import { Form, Formik } from "formik";
 import {
   handleChangeParentCategories,
@@ -22,6 +15,7 @@ import { useEffect, useState } from "react";
 import FormControler from "../../formControl/FormControler";
 import OneFiledSkeleton from "../../components/loadings/OneFieldSkeleton";
 import ErrorMess from "../../formControl/ErrorMess";
+import { useLocation } from "react-router-dom";
 const AddProduct = () => {
   const [loading, setLoading] = useState(true);
   const [parentCategories, setParentCategores] = useState([]);
@@ -29,28 +23,45 @@ const AddProduct = () => {
   const [brands, setBrands] = useState([]);
   const [guaranties, setGuaranties] = useState([]);
   const [colors, setColors] = useState([]);
+  const [reinitialValues, setReinitialValues] = useState(null);
+  const [selectedCategories, setSelectedCategories] = useState(null);
+  const [selectedColors, setSelectedColors] = useState(null);
+  const [selectedGuaranties, setSelectedGuaranties] = useState(null);
+  const location = useLocation();
+  const dataToEdit = location.state?.data;
   useEffect(() => {
     handleGetParentCategories(setParentCategores, setLoading);
     handleGetBrands(setBrands, setLoading);
     handleGetGuaranties(setGuaranties, setLoading);
     handleGetColors(setColors, setLoading);
-  }, []);
+    if (dataToEdit) {
+      setReinitialValues({
+        ...dataToEdit,
+        categories: dataToEdit.categories?.map((item) => item.id).join("-"),
+        colors: dataToEdit.colors?.map((item) => item.id).join("-"),
+        guarantees: dataToEdit.guarantees?.map((item) => item.id).join("-"),
+      });
+      console.log(reinitialValues);
+    }
+  }, [dataToEdit]);
   useEffect(() => {
-    console.log(guaranties);
-  }, [guaranties]);
+    console.log(reinitialValues);
+  }, [reinitialValues]);
   return (
     <>
       <section dir="rtl" className="w-2/3 mx-auto pb-5 overflow-y-auto px-10">
         <h1 className="text-3xl text-center my-4 text-slate-800 pb-5">
-          <b>افزودن محصول جدید</b>
+          <b>
+            ویرایش <span className="text-palete-2-600">{dataToEdit.title}</span>
+          </b>
         </h1>
         <Formik
-          initialValues={initialValues}
+          initialValues={reinitialValues || initialValues}
           validationSchema={validationSchema}
           onSubmit={(values, actions) => onSubmit(values, actions)}
+          enableReinitialize
         >
           {(Formik) => {
-            console.log(Formik.values);
             return loading ? (
               <ProductsFormSkeleton />
             ) : (
@@ -215,22 +226,26 @@ const AddProduct = () => {
                   />
                 </div>
                 <div className="my-5 w-full">
-                  <FormControler
-                    control={"file"}
-                    formik={Formik}
-                    name={"image"}
-                    label={'تصویر'}
-                  />
+                  {!dataToEdit ? (
+                    <FormControler
+                      control={"file"}
+                      formik={Formik}
+                      name={"image"}
+                      label={"تصویر"}
+                    />
+                  ) : null}
                 </div>
                 <div className="my-5 w-full text-center">
-                  <FormControler
-                    control={"input"}
-                    formik={Formik}
-                    name={"alt_image"}
-                    type={"text"}
-                    label={"توضیحات تصویر :"}
-                    placeholder={"توضیحات تصویر را وارد کنید..."}
-                  />
+                  {!dataToEdit ? (
+                    <FormControler
+                      control={"input"}
+                      formik={Formik}
+                      name={"alt_image"}
+                      type={"text"}
+                      label={"توضیحات تصویر :"}
+                      placeholder={"توضیحات تصویر را وارد کنید..."}
+                    />
+                  ) : null}
                 </div>
                 <div className="mt-5 w-full text-center">
                   <FormControler
@@ -266,7 +281,12 @@ const AddProduct = () => {
                   />
                 </div>
                 <div className="my-5 flex text-center">
-                  <Btn btnTxt={"افزودن"} width={"w-full"} />
+                  <FormControler
+                    control={"button"}
+                    formik={Formik}
+                    btnTxt={dataToEdit ? "ویرایش" : "افزودن"}
+                    width={"w-full"}
+                  />
                 </div>
               </Form>
             );
