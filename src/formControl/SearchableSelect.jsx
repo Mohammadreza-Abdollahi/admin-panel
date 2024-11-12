@@ -11,7 +11,7 @@ const SearchableSelect = ({
   initialItems,
 }) => {
   const [open, setOpen] = useState(false);
-  const [selectedItems, setSelectedItems] = useState(initialItems);
+  const [selectedItems, setSelectedItems] = useState([]);
   const [copyItems, setCopyItems] = useState(data);
   useEffect(() => {
     setCopyItems(data);
@@ -21,9 +21,9 @@ const SearchableSelect = ({
       setOpen(false);
     })
   }, []);
-  // useEffect(() => {
-  //     setSelectedItems(initialItems)
-  // }, [initialItems]);
+  useEffect(() => {
+      setSelectedItems(initialItems)
+  }, [initialItems]);
   const handleAddSelectedCategory = (id) => {
     setSelectedItems((prev) => {
       if (prev.findIndex((item) => item.id == id) == -1) {
@@ -51,12 +51,13 @@ const SearchableSelect = ({
           return (
             <section>
               <div
-                className={`flex text-lg ring-2 ring-palete-2-400-1 rounded-sm cursor-pointer ${
+                className={`flex text-lg ring-2 rounded-sm cursor-pointer ${
                   !open ? "overflow-hidden" : ""
-                }`}
+                }
+                ${open ? 'ring-palete-4-500-1' : 'ring-palete-2-400-1'}`}
                 onClick={(e) =>{setOpen(!open);e.stopPropagation()}}
               >
-                <section className="w-1/4 bg-palete-2-400-1 text-center py-2 text-white">
+                <section className={`w-1/4 text-center py-2 text-white ${open ? 'bg-palete-4-500-1' : 'bg-palete-2-400-1'}`}>
                   <span className="align-middle">{label}</span>
                 </section>
                 <section className="relative w-3/4 bg-white px-3 flex justify-between items-center text-slate-800">
@@ -74,7 +75,7 @@ const SearchableSelect = ({
                       !open
                         ? "-translate-y-20 opacity-0 invisible"
                         : "-translate-y-0 opacity-100 visible"
-                    } top-full transition-all duration-300 w-full translate-x-3 bg-white absolute z-50 ring-2 ring-palete-2-400-1 rounded-sm`}
+                    } top-full transition-all duration-300 w-full translate-x-3 bg-white absolute z-50 ring-2 rounded-sm ${open ? 'ring-palete-4-500-1' : 'ring-palete-2-400-1'}`}
                   >
                     <div>
                       <input

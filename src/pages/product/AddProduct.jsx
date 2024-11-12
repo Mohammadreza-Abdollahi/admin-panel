@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import FormControler from "../../formControl/FormControler";
 import OneFiledSkeleton from "../../components/loadings/OneFieldSkeleton";
 import ErrorMess from "../../formControl/ErrorMess";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const AddProduct = () => {
   const [loading, setLoading] = useState(true);
   const [parentCategories, setParentCategores] = useState([]);
@@ -24,9 +24,10 @@ const AddProduct = () => {
   const [guaranties, setGuaranties] = useState([]);
   const [colors, setColors] = useState([]);
   const [reinitialValues, setReinitialValues] = useState(null);
-  const [selectedCategories, setSelectedCategories] = useState(null);
-  const [selectedColors, setSelectedColors] = useState(null);
-  const [selectedGuaranties, setSelectedGuaranties] = useState(null);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedGuaranties, setSelectedGuaranties] = useState([]);
+  const navigate = useNavigate();
   const location = useLocation();
   const dataToEdit = location.state?.data;
   useEffect(() => {
@@ -40,25 +41,37 @@ const AddProduct = () => {
         categories: dataToEdit.categories?.map((item) => item.id).join("-"),
         colors: dataToEdit.colors?.map((item) => item.id).join("-"),
         guarantees: dataToEdit.guarantees?.map((item) => item.id).join("-"),
+        keywords: ''
       });
+      handleGetSelecteds();
       console.log(reinitialValues);
     }
   }, [dataToEdit]);
-  useEffect(() => {
-    console.log(reinitialValues);
-  }, [reinitialValues]);
+  const handleGetSelecteds = ()=>{
+    setSelectedCategories(dataToEdit.categories.map(item=>{return {id: item.id , title: item.title}}))
+    setSelectedGuaranties(dataToEdit.guarantees.map(item=>{return {id: item.id , title: item.title}}))
+    setSelectedColors(dataToEdit.colors.map(item=>{return {id: item.id , title: item.title , code: item.code}}))
+  };
   return (
     <>
       <section dir="rtl" className="w-2/3 mx-auto pb-5 overflow-y-auto px-10">
         <h1 className="text-3xl text-center my-4 text-slate-800 pb-5">
           <b>
-            ویرایش <span className="text-palete-2-600">{dataToEdit.title}</span>
+            {
+              dataToEdit ? (
+                <>
+                  <span>ویرایش {dataToEdit.title}</span>
+                </>
+              ) : (
+                'افزودن محصول جدید'
+              )
+            }
           </b>
         </h1>
         <Formik
           initialValues={reinitialValues || initialValues}
           validationSchema={validationSchema}
-          onSubmit={(values, actions) => onSubmit(values, actions)}
+          onSubmit={(values, actions) => onSubmit(values, actions , navigate)}
           enableReinitialize
         >
           {(Formik) => {
@@ -96,14 +109,14 @@ const AddProduct = () => {
                   </section>
                   <section className="mt-7"></section>
                   <section className="my-5">
-                    {categories.length > 0 ? (
+                    {categories.length > 0 || selectedCategories.length > 0 ? (
                       <FormControler
                         control={"searchableSelect"}
                         formik={Formik}
                         name={"category_ids"}
                         data={categories}
                         label={"دسته بندی :"}
-                        initialItems={[]}
+                        initialItems={selectedCategories}
                       />
                     ) : null}
                     {Formik.errors.category_ids ? (
@@ -169,7 +182,7 @@ const AddProduct = () => {
                       name={"color_ids"}
                       data={colors}
                       label={"رنگ :"}
-                      initialItems={[]}
+                      initialItems={selectedColors}
                     />
                   ) : (
                     <OneFiledSkeleton />
@@ -186,7 +199,7 @@ const AddProduct = () => {
                       name={"guarantee_ids"}
                       data={guaranties}
                       label={"گارانتی :"}
-                      initialItems={[]}
+                      initialItems={selectedGuaranties}
                     />
                   ) : (
                     <OneFiledSkeleton />

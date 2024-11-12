@@ -78,13 +78,15 @@ export const validationSchema = Yup.object({
   stock: Yup.number(),
   discount: Yup.number(),
 });
-export const onSubmit = async (values, actions) => {
+export const onSubmit = async (values, actions , navigate) => {
+  console.log(values);
   try {
     const res = await addProductService(values);
     if (res.status === 201) {
       Alert("success", `محصول ${values.title} با موفقیت افزوده شد.`);
-      // actions.resetForm();
+      actions.resetForm();
       actions.setSubmitting(false);
+      navigate('/products')
     } else {
       Alert("error",'محصول افزوده نشد!');
       // actions.resetForm();
@@ -110,7 +112,6 @@ export const handleGetProducts = async (
     if (res.status === 200) {
       setData(res.data.data);
       setPageCount(Math.ceil(res.data.total / itemInPage));
-      console.log(res);
       setLoading(false);
     } else {
       Alert("error", "محصولات دریافت نشدند!");
