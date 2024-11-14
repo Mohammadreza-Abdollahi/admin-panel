@@ -36,42 +36,56 @@ const AddProduct = () => {
     handleGetGuaranties(setGuaranties, setLoading);
     handleGetColors(setColors, setLoading);
     if (dataToEdit) {
+      for(const key in dataToEdit){
+        if(dataToEdit[key] === null) dataToEdit[key] = ""
+      };
       setReinitialValues({
         ...dataToEdit,
         categories: dataToEdit.categories?.map((item) => item.id).join("-"),
         colors: dataToEdit.colors?.map((item) => item.id).join("-"),
         guarantees: dataToEdit.guarantees?.map((item) => item.id).join("-"),
-        keywords: ''
       });
       handleGetSelecteds();
       console.log(reinitialValues);
     }
   }, [dataToEdit]);
-  const handleGetSelecteds = ()=>{
-    setSelectedCategories(dataToEdit.categories.map(item=>{return {id: item.id , title: item.title}}))
-    setSelectedGuaranties(dataToEdit.guarantees.map(item=>{return {id: item.id , title: item.title}}))
-    setSelectedColors(dataToEdit.colors.map(item=>{return {id: item.id , title: item.title , code: item.code}}))
+  const handleGetSelecteds = () => {
+    setSelectedCategories(
+      dataToEdit.categories.map((item) => {
+        return { id: item.id, title: item.title };
+      })
+    );
+    setSelectedGuaranties(
+      dataToEdit.guarantees.map((item) => {
+        return { id: item.id, title: item.title };
+      })
+    );
+    setSelectedColors(
+      dataToEdit.colors.map((item) => {
+        return { id: item.id, title: item.title, code: item.code };
+      })
+    );
   };
   return (
     <>
       <section dir="rtl" className="w-2/3 mx-auto pb-5 overflow-y-auto px-10">
         <h1 className="text-3xl text-center my-4 text-slate-800 pb-5">
           <b>
-            {
-              dataToEdit ? (
-                <>
-                  <span>ویرایش {dataToEdit.title}</span>
-                </>
-              ) : (
-                'افزودن محصول جدید'
-              )
-            }
+            {dataToEdit ? (
+              <>
+                <span>ویرایش {dataToEdit.title}</span>
+              </>
+            ) : (
+              "افزودن محصول جدید"
+            )}
           </b>
         </h1>
         <Formik
           initialValues={reinitialValues || initialValues}
           validationSchema={validationSchema}
-          onSubmit={(values, actions) => onSubmit(values, actions , navigate)}
+          onSubmit={(values, actions) =>
+            onSubmit(values, actions, dataToEdit, navigate)
+          }
           enableReinitialize
         >
           {(Formik) => {

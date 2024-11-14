@@ -2,6 +2,7 @@ import {
   addProductService,
   deleteProductService,
   getProductsService,
+  updateProductService,
 } from "../../services/productsService";
 import * as Yup from "yup";
 import { Alert, Confirm } from "../../utils/alert";
@@ -78,19 +79,31 @@ export const validationSchema = Yup.object({
   stock: Yup.number(),
   discount: Yup.number(),
 });
-export const onSubmit = async (values, actions , navigate) => {
+export const onSubmit = async (values, actions, dataToEdit, navigate) => {
   console.log(values);
   try {
-    const res = await addProductService(values);
-    if (res.status === 201) {
-      Alert("success", `محصول ${values.title} با موفقیت افزوده شد.`);
-      actions.resetForm();
-      actions.setSubmitting(false);
-      navigate('/products')
+    if (dataToEdit) {
+      const res = await updateProductService(dataToEdit.id,values);
+      if (res.status === 200) {
+        Alert("success", `محصول ${values.title} با موفقیت ویرایش شد.`);
+        actions.resetForm();
+        actions.setSubmitting(false);
+        navigate("/products");
+      } else {
+        Alert("error", "محصول ویرایش نشد!");
+        actions.setSubmitting(false);
+      }
     } else {
-      Alert("error",'محصول افزوده نشد!');
-      // actions.resetForm();
-      actions.setSubmitting(false);
+      const res = await addProductService(values);
+      if (res.status === 201) {
+        Alert("success", `محصول ${values.title} با موفقیت افزوده شد.`);
+        actions.resetForm();
+        actions.setSubmitting(false);
+        navigate("/products");
+      } else {
+        Alert("error", "محصول افزوده نشد!");
+        actions.setSubmitting(false);
+      }
     }
   } catch (error) {
     Alert("error", error);

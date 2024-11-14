@@ -14,6 +14,13 @@ export const addProductService = async (data)=>{
         data.image ? convertDataToFormData(data) : data
     )
 };
+export const updateProductService = async (id,data)=>{
+    return await httpService(
+        `/admin/products/${id}`,
+        'put',
+        data
+    )
+};
 export const deleteProductService = async (id)=>{
     return await httpService(
         `/admin/products/${id}`,
