@@ -223,8 +223,16 @@ const AddProduct = () => {
                   ) : null}
                 </div>
                 <div className="my-5">
-                  <FormControler
+                  {/* <FormControler
                     control={"textarea"}
+                    formik={Formik}
+                    name={"descriptions"}
+                    row={4}
+                    label={"توضیحات :"}
+                    placeholder={"توضیحات را وارد کنید..."}
+                  /> */}
+                  <FormControler
+                    control={"ckeditor"}
                     formik={Formik}
                     name={"descriptions"}
                     row={4}

@@ -9,6 +9,7 @@ import SelectInput from './SelectInput';
 import SwitchInput from './SwitchInput';
 import TextareaInput from './TextareaInput';
 import ColorSearchableSelect from './ColorSearchableSelect';
+import Ckeditor from './Ckeditor';
 const FormControler = (props) => {
     switch (props.control) {
         case "input":
@@ -50,6 +51,10 @@ const FormControler = (props) => {
         case "checkbox":
             return (
                 <FormCheckbox {...props}/>
+            )
+        case "ckeditor":
+            return (
+                <Ckeditor {...props}/>
             )
         case "button":
             return (

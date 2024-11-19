@@ -1,22 +1,82 @@
-.my-bg{
-    background: linear-gradient(135deg, rgba(245,245,245,0.75) 0%, rgba(245,245,245,0.75) 100%) , url('../../assets/img/bg.jpg');
-    background-position: center;
-    background-size: contain;
-    min-height: 100vh;
+.my-bg {
+  background: linear-gradient(
+      135deg,
+      rgba(245, 245, 245, 0.75) 0%,
+      rgba(245, 245, 245, 0.75) 100%
+    ),
+    url("../../assets/img/bg.jpg");
+  background-position: center;
+  background-size: contain;
+  min-height: 100vh;
 }
 @font-face {
-    font-family: font;
-    src: url('../font/IRANSans.ttf');
+  font-family: font;
+  src: url("../font/IRANSans.ttf");
 }
-*{
-    font-family: font !important;
+* {
+  font-family: font !important;
 }
-.active{
-    background-color: #ffcbd8 !important;
+.active {
+  background-color: #ffcbd8 !important;
 }
-.active path{
-    color: #c50b51;
+.active path {
+  color: #c50b51;
 }
-.hfill{
-    height: 100vh;
+.hfill {
+  height: 100vh;
+}
+.ck-editor {
+  width: 100%;
+  text-align: end;
+}
+.ck-label {
+  display: none;
+}
+.ck-toolbar {
+  text-align: start;
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #3fc1c9;
+  font-size: 18px;
+}
+.ck-button {
+  font-size: 12px;
+  margin: auto;
+  padding: 2px 10px;
+  border-radius: 3px;
+}
+.ck-button:hover {
+  background-color: #b4ebed;
+  transition: all 0.4s;
+}
+.ck-button__label {
+  font-size: 12px;
+  margin: auto;
+}
+.ck-icon {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+}
+.ck-button {
+  font-size: 18px;
+}
+.ck-toolbar__items {
+  font-size: 18px;
+  margin: 2px 0px 1px 0px;
+}
+.ck-content {
+  width: 100%;
+  padding: 5px 2px;
+  font-family: "Arial", sans-serif;
+  font-size: 18px;
+  background-color: #fff;
+}
+.ck-editor__editable {
+  height: 100px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border: none;
+}
+.ck-editor__editable:focus {
+  outline: none;
 }
