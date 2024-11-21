@@ -6,22 +6,20 @@ import {
   Bold,
   ClassicEditor,
   Essentials,
-  Heading,
-  HeadingEditing,
   Italic,
   Paragraph,
+  Strikethrough,
+  Subscript,
+  Superscript,
 } from "ckeditor5";
-import { FastField, Field } from "formik";
+import { Field } from "formik";
 import { useState } from "react";
 
 const Ckeditor = ({
   formik,
   name,
   label,
-  value,
   placeholder,
-  readOnly = false,
-  row,
 }) => {
   const [focus, setFocus] = useState(false);
   const handleFocus = () => {
@@ -54,21 +52,40 @@ const Ckeditor = ({
             id={name}
             editor={ClassicEditor}
             config={{
-              plugins: [Essentials, Bold, Italic, Paragraph, HeadingEditing],
-              toolbar: ["undo", "redo", "|", "bold", "italic", "ffee"],
+              plugins: [
+                Essentials,
+                Bold,
+                Italic,
+                Strikethrough,
+                Paragraph,
+                Subscript,
+                Superscript,
+              ],
+              toolbar: [
+                "undo",
+                "redo",
+                "heading",
+                "|",
+                "bold",
+                "italic",
+                "strikethrough",
+                "subscript",
+                "superscript",
+              ],
             }}
-            data={param.form.values[name] || `<p>${placeholder}</p>`}
-            onReady={(editor) => {
-              console.log("Editor 1 is ready to use!", editor);
+            data={param.form.values[name] ? `<p>${param.form.values[name]}</p>` : `<p>${placeholder}</p>`}
+            onChange={(event , editor)=>{
+              const data = editor.getData();
+              // param.form.setFieldValue(name , data);
             }}
-            onChange={(editor) => {
-              console.log(editor);
+            onFocus={(event,editor) => {
+              return editor.getData() == `<p>${placeholder}</p>` ? editor.setData('') : null , handleFocus()
             }}
-            onBlur={(editor) => {
-              console.log(editor);
+            onBlur={()=>{
+              param.form.setFieldTouched(name)
+              handleBlur()
             }}
           />
-          // <textarea {...param.field} onFocus={handleFocus} onBlur={handleBlur} rows={row} name={name} type='text' readOnly={readOnly} placeholder={placeholder} className="appearance-none w-3/4 py-2 px-2 text-xl focus:outline-none"/>
         )}
       </Field>
       {formik.errors[name] ? (
